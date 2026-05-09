@@ -323,7 +323,7 @@ function initProjectsData() {
             id: 1,
             title: "Rock and Mine Prediction for Sonar",
             description: "Predicting whether an object is a mine or rock under the sea using Logistic Regression analyzing sonar radar data.",
-            image: "https://images.unsplash.com/photo-1548345680-f7475b51d1da?w=500&h=300&fit=crop",
+            image: "https://images.unsplash.com/photo-evMsDH6XfrU?w=500&h=300&fit=crop",
             category: "ml",
             tags: ['Python', 'Scikit-learn', 'Logistic Regression', 'Classification'],
             codeLink: "https://github.com/siumahameed/ml_projects/tree/main/submarine_sonar_project"
@@ -332,7 +332,7 @@ function initProjectsData() {
             id: 2,
             title: "Spam SMS Detection",
             description: "NLP project to detect spam messages using text classification and machine learning.",
-            image: "https://images.unsplash.com/photo-1602591976034-3f0a13c8a7a0?w=500&h=300&fit=crop",
+            image: "https://images.unsplash.com/photo-LtlAcgEqNhU?w=500&h=300&fit=crop",
             category: "ml",
             tags: ['Python', 'NLP', 'Text Classification', 'Scikit-learn'],
             codeLink: "https://github.com/siumahameed/ml_projects/tree/main/spam_sms_detection"
@@ -341,7 +341,7 @@ function initProjectsData() {
             id: 3,
             title: "Ad Click Prediction",
             description: "Predicting user ad clicks using machine learning classification models for better targeting.",
-            image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=500&h=300&fit=crop",
+            image: "https://images.unsplash.com/photo-h0xEUQXzU38?w=500&h=300&fit=crop",
             category: "ml",
             tags: ['Python', 'Scikit-learn', 'ML', 'Classification'],
             codeLink: "https://github.com/siumahameed/ml_projects/tree/main/Ad_click_project"
