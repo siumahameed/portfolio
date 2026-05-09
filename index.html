@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Portfolio of Sium Ahameed – Machine Learning Engineer. Explore projects, skills, and contact information.">
+    <title>Sium Ahameed - Machine Learning Engineer</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <a href="#home" class="skip-link">Skip to main content</a>
+    
+    <nav class="navbar" role="navigation" aria-label="Main">
+        <div class="container">
+            <div class="logo">
+                <span class="logo-icon">⚡</span>
+                <h1 id="logo-text">Sium Ahameed</h1>
+            </div>
+            <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </button>
+            <ul class="nav-menu" id="primary-navigation" role="menubar">
+                <li><a href="#home" class="nav-link active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+                <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode" title="Toggle theme">
+                    <i class="fas fa-moon" aria-hidden="true"></i>
+                </button></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div id="particles-js"></div>
+        <div class="container">
+            <div class="hero-content" data-aos="fade-right" data-aos-duration="1000">
+                <h1 class="animate-text">Hello, I'm <span class="highlight">Sium Ahameed</span></h1>
+                <h2 class="animate-text delay-1">I'm a <span id="typing-text"></span></h2>
+                <p class="animate-text delay-2">Machine Learning Engineer & Deep Learning Enthusiast building intelligent solutions.</p>
+                <div class="hero-buttons animate-text delay-3">
+                    <a href="#contact" class="btn primary-btn">Contact Me</a>
+                    <a href="#projects" class="btn secondary-btn">View My Work</a>
+                </div>
+                <div class="social-icons animate-text delay-4">
+                    <a href="https://www.linkedin.com/in/sium11/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://github.com/siumahameed" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="mailto:siumahameed2003@gmail.com" class="social-link" aria-label="Email" target="_blank" rel="noopener"><i class="fas fa-envelope" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="hero-image animate-text delay-2" data-aos="fade-left" data-aos-duration="1000">
+                <div class="profile-container">
+                    <div class="profile-circle">
+                        <img src="image/profile.jpg.jpeg" alt="Portrait of Sium Ahameed" id="profile-img" width="340" height="340" decoding="async" fetchpriority="high" onerror="this.src='https://via.placeholder.com/340x340?text=SA'">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>About Me</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text" data-aos="fade-right" data-aos-duration="800">
+                    <h3>Get to know me!</h3>
+                    <p><span class="highlight">Sium Ahameed</span> is a <span class="highlight">Machine Learning Engineer</span> and <span class="highlight">Deep Learning Enthusiast</span> with a passion for building intelligent systems. As an <span class="highlight">aspiring Data Scientist</span>, I specialize in developing machine learning models using Python.</p>
+                    <div class="about-buttons">
+                        <a href="https://github.com/siumahameed/portfolio/releases/download/v1.0/CV.pdf" class="btn primary-btn" id="download-cv" download><i class="fas fa-download"></i> Download CV</a>
+                    </div>
+                </div>
+                <div class="about-details" data-aos="fade-left" data-aos-duration="800">
+                    <div class="detail-item">
+                        <i class="fas fa-user-graduate"></i>
+                        <div>
+                            <h4>Education</h4>
+                            <p>BSc in Statistics, Dhaka College</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-briefcase"></i>
+                        <div>
+                            <h4>Experience</h4>
+                            <p>Aspiring Machine Learning Engineer with passion for data-driven solutions</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h4>Location</h4>
+                            <p>Dhaka, Bangladesh</p>
+                        </div>
+                    </div>
+                    <div class="detail-item">
+                        <i class="fas fa-language"></i>
+                        <div>
+                            <h4>Languages</h4>
+                            <p>English, Bengali</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="projects section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>My Projects</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="project-filters" data-aos="fade-up" data-aos-delay="200">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="ml">Machine Learning</button>
+                <button class="filter-btn" data-filter="eda">EDA</button>
+                <button class="filter-btn" data-filter="dl">Deep Learning</button>
+                <button class="filter-btn" data-filter="ai">AI</button>
+            </div>
+            <div class="projects-grid">
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="skills section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>My Skills</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Programming</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-python"></i></div>
+                            <h4>Python</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 70%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-html5"></i></div>
+                            <h4>HTML</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fab fa-css3-alt"></i></div>
+                            <h4>CSS</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Machine Learning & Data Science</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-brain"></i></div>
+                            <h4>Machine Learning</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-network-wired"></i></div>
+                            <h4>Deep Learning</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-pie"></i></div>
+                            <h4>Data Science</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-file-alt"></i></div>
+                            <h4>NLP</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="skill-category" data-aos="fade-up" data-aos-delay="300">
+                    <h3>ML Libraries & Frameworks</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-layer-group"></i></div>
+                            <h4>TensorFlow</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-fire"></i></div>
+                            <h4>PyTorch</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-cogs"></i></div>
+                            <h4>Scikit-learn</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-table"></i></div>
+                            <h4>Pandas</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 65%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-calculator"></i></div>
+                            <h4>NumPy</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 60%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-line"></i></div>
+                            <h4>Matplotlib</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-chart-area"></i></div>
+                            <h4>Seaborn</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 50%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><i class="fas fa-database"></i></div>
+                            <h4>SQL</h4>
+                            <div class="skill-progress">
+                                <div class="progress-bar" style="width: 55%"></div>
+                            </div>
+                            <span class="skill-percentage"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tech-stack" class="tech-stack section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Tech Stack</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="tech-grid" data-aos="fade-up">
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+                    <span>Python</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+                    <span>TensorFlow</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch">
+                    <span>PyTorch</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn">
+                    <span>Scikit-learn</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
+                    <span>Pandas</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
+                    <span>NumPy</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib">
+                    <span>Matplotlib</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter">
+                    <span>Jupyter</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
+                    <span>VS Code</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+                    <span>Git</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="SQL">
+                    <span>SQL</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn">
+                    <span>Seaborn</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://scipy.org/images/logo.svg" alt="SciPy">
+                    <span>SciPy</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg" alt="Keras">
+                    <span>Keras</span>
+                </div>
+                <div class="tech-item">
+                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="NLTK">
+                    <span>NLTK</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="professional-skills" class="professional-skills section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Professional Skills</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="professional-skills-grid" data-aos="fade-up">
+                <div class="professional-skill-card">
+                    <div class="skill-icon"><i class="fas fa-puzzle-piece"></i></div>
+                    <h3>Problem Solving</h3>
+                    <p>Analyzing complex problems and finding efficient solutions</p>
+                </div>
+                <div class="professional-skill-card">
+                    <div class="skill-icon"><i class="fas fa-users"></i></div>
+                    <h3>Teamwork</h3>
+                    <p>Collaborating effectively with diverse teams</p>
+                </div>
+                <div class="professional-skill-card">
+                    <div class="skill-icon"><i class="fas fa-comments"></i></div>
+                    <h3>Communication</h3>
+                    <p>Conveying ideas clearly and effectively</p>
+                </div>
+                <div class="professional-skill-card">
+                    <div class="skill-icon"><i class="fas fa-chess-king"></i></div>
+                    <h3>Leadership</h3>
+                    <p>Guiding and motivating teams toward goals</p>
+                </div>
+                <div class="professional-skill-card">
+                    <div class="skill-icon"><i class="fas fa-sync-alt"></i></div>
+                    <h3>Adaptability</h3>
+                    <p>Adjusting quickly to new environments and challenges</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact section">
+        <div class="container">
+            <div class="section-header" data-aos="fade-up">
+                <h2>Contact Me</h2>
+                <div class="underline"></div>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info" data-aos="fade-right" data-aos-duration="800">
+                    <h3>Get In Touch</h3>
+                    <p>Feel free to reach out for collaborations, questions, or just to say hello!</p>
+                    <div class="contact-details">
+                        <a href="mailto:siumahameed2003@gmail.com" class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>siumahameed2003@gmail.com</p>
+                            </div>
+                        </a>
+                        <a href="https://www.linkedin.com/in/sium11/" class="contact-item" target="_blank" rel="noopener">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <p>linkedin.com/in/sium11</p>
+                            </div>
+                        </a>
+                        <a href="https://github.com/siumahameed" class="contact-item" target="_blank" rel="noopener">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <h4>GitHub</h4>
+                                <p>github.com/siumahameed</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="contact-code" data-aos="fade-left" data-aos-duration="800">
+                    <div class="code-snippet-container">
+                        <div class="code-header">
+                            <span class="code-title">Python ML Code Sample</span>
+                            <div class="code-actions">
+                                <span class="code-dot red"></span>
+                                <span class="code-dot yellow"></span>
+                                <span class="code-dot green"></span>
+                            </div>
+                        </div>
+                        <pre><code class="language-python"><span class="comment"># Machine Learning Pipeline</span>
+<span class="keyword">import</span> numpy <span class="keyword">as</span> np
+<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
+<span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier
+<span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score
+
+<span class="comment"># Load and prepare data</span>
+X, y = load_data()
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="number">0.25</span>, random_state=<span class="number">42</span>
+)
+
+<span class="comment"># Train model</span>
+model = RandomForestClassifier(n_estimators=<span class="number">100</span>)
+<span class="function">model.fit</span>(X_train, y_train)
+
+<span class="comment"># Evaluate</span>
+y_pred = <span class="function">model.predict</span>(X_test)
+accuracy = <span class="function">accuracy_score</span>(y_test, y_pred)
+<span class="function">print</span>(<span class="string">f"Model accuracy: {accuracy:.2f}"</span>)
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="quotes-section">
+        <div class="container">
+            <div class="quote-card" data-aos="fade-up">
+                <i class="fas fa-quote-left"></i>
+                <blockquote>"Don't fit in. Stand out. Stay you, but shine brighter."</blockquote>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Sium Ahameed Bhuyan</h2>
+                </div>
+                <p>Thanks for visiting my portfolio website.</p>
+                <div class="footer-social">
+                    <a href="https://github.com/siumahameed" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i></a>
+                    <a href="https://www.linkedin.com/in/sium11/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
+                    <a href="https://www.kaggle.com/siumahameedbhuiyain" class="social-link" aria-label="Kaggle" target="_blank" rel="noopener"><i class="fab fa-kaggle" aria-hidden="true"></i></a>
+                    <a href="https://www.instagram.com/c_am.11/" class="social-link" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year"></span> Sium Ahameed Bhuyan. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <button id="music-toggle" class="music-toggle" aria-label="Play relaxing music" title="Play relaxing music 🎧">
+        <i class="fas fa-music" aria-hidden="true"></i>
+    </button>
+    <div id="music-hint" class="music-hint">Click to play music 🎧</div>
+    <audio id="music-player" loop volume="0.3">
+        <source src="https://github.com/siumahameed/portfolio/releases/download/v1.0/Surah.Al.Mulk.RAIN.Thunder.CALM.YOUR.ANXIETY.-.STRESS.Surah.Mulk.Lofi.Quran.-.-.AudioTrimmer.com.mp3" type="audio/mpeg">
+    </audio>
+
+    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
+    <script src="script.js" defer></script>
+</body>
+</html>
