@@ -1771,21 +1771,14 @@ ul {
 }
 
 /* ── Glowing border on card hover ── */
-.project-item::before,
-.tech-card::before {
-    content: '';
-    position: absolute;
-    inset: -1px;
-    border-radius: inherit;
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), #7c3aed);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+.project-item:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.2), 0 0 0 1px rgba(37, 99, 235, 0.3);
 }
 
-.project-item:hover::before,
-.tech-card:hover::before {
-    opacity: 1;
+.tech-item:hover {
+    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
 }
 
 /* ── Social link hover glow ── */
