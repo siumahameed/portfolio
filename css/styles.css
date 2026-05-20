@@ -1876,11 +1876,6 @@ ul {
     width: 100%;
 }
 
-/* ── Project card 3D tilt setup ── */
-.project-item {
-    transform-style: preserve-3d;
-    perspective: 1000px;
-}
 
 /* ── Quote card floating effect ── */
 .quote-card {

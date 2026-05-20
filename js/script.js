@@ -461,18 +461,5 @@ function initMusicPlayer() {
 }
 
 function initCardTilt() {
-    if (window.innerWidth < 768) return;
-
-    document.querySelectorAll('.project-item, .tech-card').forEach(card => {
-        card.addEventListener('mousemove', function(e) {
-            const rect = this.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            this.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-5px)`;
-        });
-
-        card.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
-    });
+    // Removed — 3D tilt was distorting card text on hover
 }
