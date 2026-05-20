@@ -565,8 +565,7 @@ ul {
 }
 
 .hero {
-    min-height: 100vh;
-    min-height: 100dvh;
+    min-height: 90vh;
     display: flex;
     align-items: center;
     position: relative;
@@ -1570,6 +1569,51 @@ ul {
 
 .back-to-top:hover {
     transform: translateY(-5px);
+}
+
+/* ═══════════════════════════════════════
+   SCROLL INDICATOR
+   ═══════════════════════════════════════ */
+.scroll-indicator {
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.scroll-indicator:hover {
+    opacity: 1;
+}
+
+.scroll-mouse {
+    display: block;
+    width: 26px;
+    height: 42px;
+    border: 2px solid var(--primary-color);
+    border-radius: 13px;
+    position: relative;
+}
+
+.scroll-dot {
+    display: block;
+    width: 4px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 2px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollDot 1.8s ease-in-out infinite;
+}
+
+@keyframes scrollDot {
+    0% { opacity: 1; top: 8px; }
+    100% { opacity: 0; top: 24px; }
 }
 
 /* ═══════════════════════════════════════
