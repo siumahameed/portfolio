@@ -279,7 +279,6 @@ ul {
 
 .section {
     padding: 60px 0;
-    overflow-x: hidden;
 }
 
 .section-header {
@@ -567,11 +566,12 @@ ul {
 
 .hero {
     min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     align-items: center;
     position: relative;
     padding-top: 80px;
-    overflow: hidden;
+    padding-bottom: 40px;
 }
 
 #particles-js {
