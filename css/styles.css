@@ -15,11 +15,200 @@
 }
 
 .light-mode {
-    --bg-color: #f8fafc;
-    --text-color: #1e293b;
-    --text-secondary: #64748b;
+    --bg-color: #f1f5f9;
+    --text-color: #0f172a;
+    --text-secondary: #475569;
     --card-bg: #ffffff;
-    --nav-bg: rgba(248, 250, 252, 0.95);
+    --nav-bg: rgba(255, 255, 255, 0.95);
+}
+
+/* ── Light mode: hero ── */
+.light-mode .hero {
+    background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 50%, #dbeafe 100%);
+}
+
+.light-mode #typing-text {
+    color: var(--primary-color);
+}
+
+.light-mode .hero-subtext {
+    color: var(--accent-color);
+}
+
+.light-mode .profile-frame {
+    box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+    border-color: var(--primary-color);
+}
+
+.light-mode .profile-frame:hover {
+    box-shadow: 0 0 30px rgba(37, 99, 235, 0.3), 0 0 60px rgba(124, 58, 237, 0.15);
+}
+
+.light-mode .social-links a {
+    border-color: rgba(37, 99, 235, 0.3);
+}
+
+.light-mode .social-links a:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+}
+
+/* ── Light mode: navbar ── */
+.light-mode .navbar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.light-mode .nav-link {
+    color: var(--text-secondary);
+}
+
+.light-mode .nav-link:hover,
+.light-mode .nav-link.active {
+    color: var(--primary-color);
+}
+
+/* ── Light mode: buttons ── */
+.light-mode .primary-btn {
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    border: none;
+}
+
+.light-mode .primary-btn:hover {
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.45);
+}
+
+.light-mode .secondary-btn {
+    background: transparent;
+    border-color: var(--primary-color);
+    box-shadow: 0 2px 8px rgba(37, 99, 235, 0.1);
+}
+
+/* ── Light mode: cards ── */
+.light-mode .about-info,
+.light-mode .project-item,
+.light-mode .professional-skill-card,
+.light-mode .quote-card {
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.light-mode .about-info:hover,
+.light-mode .project-item:hover,
+.light-mode .professional-skill-card:hover,
+.light-mode .quote-card:hover {
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.12), 0 2px 8px rgba(0, 0, 0, 0.06);
+    border-color: rgba(37, 99, 235, 0.25);
+}
+
+.light-mode .project-item {
+    border-color: rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .project-tag {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-color);
+}
+
+/* ── Light mode: skills ── */
+.light-mode .skill-category {
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.light-mode .skill-category:hover {
+    border-color: rgba(37, 99, 235, 0.25);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.12);
+}
+
+.light-mode .progress-bar {
+    background: rgba(37, 99, 235, 0.1);
+}
+
+.light-mode .skill-item:hover .progress-fill {
+    box-shadow: 0 0 10px rgba(37, 99, 235, 0.4);
+}
+
+/* ── Light mode: tech stack ── */
+.light-mode .tech-card {
+    border-color: rgba(0, 0, 0, 0.06);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.light-mode .tech-card:hover {
+    border-color: rgba(37, 99, 235, 0.3);
+    box-shadow: 0 8px 25px rgba(37, 99, 235, 0.15);
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), rgba(124, 58, 237, 0.05));
+}
+
+/* ── Light mode: filter buttons ── */
+.light-mode .filter-btn {
+    border-color: rgba(0, 0, 0, 0.12);
+    color: var(--text-secondary);
+}
+
+.light-mode .filter-btn:hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.light-mode .filter-btn.active {
+    color: white;
+}
+
+/* ── Light mode: professional skill icons ── */
+.light-mode .professional-skill-card:hover .skill-icon {
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35), 0 0 15px rgba(124, 58, 237, 0.2);
+}
+
+/* ── Light mode: code snippet (stays dark - it's a code block) ── */
+.light-mode .code-snippet-container {
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+/* ── Light mode: section headers ── */
+.light-mode .section-header h2 {
+    color: var(--text-color);
+}
+
+.light-mode .section-tag {
+    background: rgba(37, 99, 235, 0.08);
+    color: var(--primary-color);
+    border: 1px solid rgba(37, 99, 235, 0.15);
+}
+
+/* ── Light mode: footer ── */
+.light-mode .footer {
+    background: #ffffff;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.light-mode .footer-social a {
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.light-mode .footer-social a:hover {
+    border-color: var(--primary-color);
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
+}
+
+.light-mode .footer-bottom {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* ── Light mode: back to top ── */
+.light-mode .back-to-top {
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.25);
+}
+
+.light-mode .back-to-top:hover {
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+}
+
+/* ── Light mode: section dividers ── */
+.light-mode .section:nth-child(even) {
+    background: #e2e8f0;
 }
 
 * {
