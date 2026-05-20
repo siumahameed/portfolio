@@ -10,6 +10,8 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectsData();
     initProjectsFilter();
     initMusicPlayer();
+    initProgressBars();
+    initCardTilt();
 });
 
 function initParticles() {
@@ -454,4 +456,43 @@ function initMusicPlayer() {
             }
         });
     }
+}
+
+function initProgressBars() {
+    const fills = document.querySelectorAll('.progress-fill');
+    if (!fills.length) return;
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const el = entry.target;
+                el.style.width = el.getAttribute('data-width');
+                el.classList.add('animated');
+                observer.unobserve(el);
+            }
+        });
+    }, { threshold: 0.3 });
+
+    fills.forEach(fill => {
+        fill.setAttribute('data-width', fill.style.width);
+        fill.style.width = '0';
+        observer.observe(fill);
+    });
+}
+
+function initCardTilt() {
+    if (window.innerWidth < 768) return;
+
+    document.querySelectorAll('.project-item, .tech-card').forEach(card => {
+        card.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            this.style.transform = `perspective(800px) rotateY(${x * 6}deg) rotateX(${-y * 6}deg) translateY(-5px)`;
+        });
+
+        card.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
 }

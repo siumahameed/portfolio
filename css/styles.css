@@ -278,13 +278,13 @@ ul {
 }
 
 .section {
-    padding: 80px 0;
+    padding: 60px 0;
     overflow-x: hidden;
 }
 
 .section-header {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 35px;
 }
 
 .section-header h2 {
@@ -1133,20 +1133,20 @@ ul {
 }
 
 .skill-category h3 {
-    font-size: 1.3rem;
-    margin-bottom: 20px;
+    font-size: 1.2rem;
+    margin-bottom: 14px;
     color: var(--primary-color);
 }
 
 .skills-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 20px;
+    gap: 14px;
 }
 
 .skill-item {
     background: var(--card-bg);
-    padding: 14px;
+    padding: 12px;
     border-radius: 10px;
     transition: var(--transition);
     border: 1px solid rgba(37, 99, 235, 0.15);
@@ -1159,14 +1159,14 @@ ul {
 }
 
 .skill-icon {
-    font-size: 1.8rem;
-    margin-bottom: 6px;
+    font-size: 1.6rem;
+    margin-bottom: 4px;
     color: var(--primary-color);
 }
 
 .skill-item h4 {
-    font-size: 1rem;
-    margin-bottom: 6px;
+    font-size: 0.95rem;
+    margin-bottom: 4px;
 }
 
 .skill-progress {
@@ -1570,6 +1570,177 @@ ul {
 
 .back-to-top:hover {
     transform: translateY(-5px);
+}
+
+/* ═══════════════════════════════════════
+   COOL EFFECTS
+   ═══════════════════════════════════════ */
+
+/* ── Animated gradient on section headers ── */
+.section-header h2 {
+    background: linear-gradient(270deg, var(--primary-color), var(--accent-color), #7c3aed, var(--primary-color));
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 6s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* ── Animated underline reveal ── */
+.underline {
+    position: relative;
+    overflow: hidden;
+}
+
+.underline::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    animation: shimmerLine 3s ease-in-out infinite;
+}
+
+@keyframes shimmerLine {
+    0% { left: -100%; }
+    100% { left: 100%; }
+}
+
+/* ── Glowing border on card hover ── */
+.project-item::before,
+.tech-card::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    background: linear-gradient(135deg, var(--primary-color), var(--accent-color), #7c3aed);
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.project-item:hover::before,
+.tech-card:hover::before {
+    opacity: 1;
+}
+
+/* ── Social link hover glow ── */
+.social-link {
+    position: relative;
+}
+
+.social-link::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: var(--gradient);
+    z-index: -1;
+    opacity: 0;
+    filter: blur(8px);
+    transition: opacity 0.3s ease;
+}
+
+.social-link:hover::after {
+    opacity: 0.5;
+}
+
+/* ── Skill progress bar animated fill ── */
+.progress-fill {
+    width: 0;
+    transition: width 1s ease-out;
+}
+
+.progress-fill.animated {
+    /* width set via inline style in JS */
+}
+
+/* ── Magnetic button hover (CSS-only subtle lift) ── */
+.primary-btn,
+.secondary-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.primary-btn::after,
+.secondary-btn::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.5s ease, height 0.5s ease;
+}
+
+.primary-btn:hover::after,
+.secondary-btn:hover::after {
+    width: 300px;
+    height: 300px;
+}
+
+/* ── Typing cursor glow ── */
+#typing-text {
+    text-shadow: 0 0 8px rgba(37, 99, 235, 0.3);
+}
+
+/* ── Hero highlight animated gradient ── */
+.hero-content h1 .highlight {
+    background: linear-gradient(270deg, #2563eb, #06b6d4, #7c3aed, #2563eb);
+    background-size: 300% 300%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: gradientShift 4s ease infinite;
+}
+
+/* ── Nav link smooth underline ── */
+.nav-link {
+    position: relative;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient);
+    transition: width 0.3s ease;
+    border-radius: 1px;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+/* ── Project card 3D tilt setup ── */
+.project-item {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+/* ── Quote card floating effect ── */
+.quote-card {
+    animation: gentleFloat 6s ease-in-out infinite;
+}
+
+@keyframes gentleFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-5px); }
 }
 
 @media (max-width: 992px) {
