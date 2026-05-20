@@ -7,7 +7,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initBackToTop();
     initYear();
     initSmoothScroll();
-    initProjectsData();
     initProjectsFilter();
     initMusicPlayer();
     initCardTilt();
@@ -291,9 +290,7 @@ function initProjectsFilter() {
     });
 }
 
-function initProjectsData() {
-    const projectsGrid = document.querySelector('.projects-grid');
-    if (!projectsGrid) return;
+function initMusicPlayer_PLACEHOLDER() {
     
     const projects = [
         {
