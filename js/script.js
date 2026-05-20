@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initProjectsData();
     initProjectsFilter();
     initMusicPlayer();
-    initProgressBars();
     initCardTilt();
 });
 
@@ -462,28 +461,6 @@ function initMusicPlayer() {
             }
         });
     }
-}
-
-function initProgressBars() {
-    const fills = document.querySelectorAll('.progress-fill');
-    if (!fills.length) return;
-
-    const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const el = entry.target;
-                el.style.width = el.getAttribute('data-width');
-                el.classList.add('animated');
-                observer.unobserve(el);
-            }
-        });
-    }, { threshold: 0.3 });
-
-    fills.forEach(fill => {
-        fill.setAttribute('data-width', fill.style.width);
-        fill.style.width = '0';
-        observer.observe(fill);
-    });
 }
 
 function initCardTilt() {
