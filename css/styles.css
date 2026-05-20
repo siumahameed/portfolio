@@ -1146,7 +1146,7 @@ ul {
 
 .skill-item {
     background: var(--card-bg);
-    padding: 20px;
+    padding: 14px;
     border-radius: 10px;
     transition: var(--transition);
     border: 1px solid rgba(37, 99, 235, 0.15);
@@ -1159,14 +1159,14 @@ ul {
 }
 
 .skill-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
+    font-size: 1.8rem;
+    margin-bottom: 6px;
     color: var(--primary-color);
 }
 
 .skill-item h4 {
     font-size: 1rem;
-    margin-bottom: 10px;
+    margin-bottom: 6px;
 }
 
 .skill-progress {
