@@ -205,6 +205,7 @@ function initSmoothScroll() {
     const sections = document.querySelectorAll('section');
     const navLinks = document.querySelectorAll('.nav-link');
     const backToTop = document.getElementById('back-to-top');
+    const navbar = document.querySelector('.navbar');
     let ticking = false;
 
     // Pre-compute section offsets (recalculate on resize)
@@ -220,6 +221,11 @@ function initSmoothScroll() {
 
     function onScroll() {
         const scrollY = window.pageYOffset;
+
+        // Navbar scrolled state
+        if (navbar) {
+            navbar.classList.toggle('scrolled', scrollY > 50);
+        }
 
         // Back to top
         if (backToTop) {
