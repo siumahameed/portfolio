@@ -572,7 +572,6 @@ ul {
     position: relative;
     padding-top: 80px;
     overflow: hidden;
-    max-width: 100vw;
 }
 
 #particles-js {
@@ -582,6 +581,8 @@ ul {
     width: 100%;
     height: 100%;
     z-index: 0;
+    pointer-events: none;
+    will-change: transform;
 }
 
 .hero .container {

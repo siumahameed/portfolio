@@ -16,92 +16,30 @@ function initParticles() {
     if (typeof particlesJS !== 'undefined') {
         particlesJS('particles-js', {
             particles: {
-                number: {
-                    value: 50,
-                    density: {
-                        enable: true,
-                        value_area: 800
-                    }
-                },
-                color: {
-                    value: '#3498db'
-                },
-                shape: {
-                    type: 'circle',
-                    stroke: {
-                        width: 0,
-                        color: '#000000'
-                    }
-                },
-                opacity: {
-                    value: 0.5,
-                    random: false,
-                    anim: {
-                        enable: false,
-                        speed: 1,
-                        opacity_min: 0.1,
-                        sync: false
-                    }
-                },
-                size: {
-                    value: 3,
-                    random: true,
-                    anim: {
-                        enable: false,
-                        speed: 40,
-                        size_min: 0.1,
-                        sync: false
-                    }
-                },
-                line_linked: {
-                    enable: true,
-                    distance: 150,
-                    color: '#3498db',
-                    opacity: 0.4,
-                    width: 1
-                },
-                move: {
-                    enable: true,
-                    speed: 3,
-                    direction: 'none',
-                    random: false,
-                    straight: false,
-                    out_mode: 'out',
-                    bounce: false,
-                    attract: {
-                        enable: false,
-                        rotateX: 600,
-                        rotateY: 1200
-                    }
-                }
+                number: { value: 30, density: { enable: true, value_area: 800 } },
+                color: { value: '#3498db' },
+                shape: { type: 'circle', stroke: { width: 0, color: '#000000' } },
+                opacity: { value: 0.4, random: false, anim: { enable: false } },
+                size: { value: 2, random: true, anim: { enable: false } },
+                line_linked: { enable: true, distance: 150, color: '#3498db', opacity: 0.3, width: 1 },
+                move: { enable: true, speed: 1.5, direction: 'none', random: false, straight: false, out_mode: 'out', bounce: false }
             },
             interactivity: {
                 detect_on: 'canvas',
-                events: {
-                    onhover: {
-                        enable: true,
-                        mode: 'grab'
-                    },
-                    onclick: {
-                        enable: true,
-                        mode: 'push'
-                    },
-                    resize: true
-                },
-                modes: {
-                    grab: {
-                        distance: 140,
-                        line_linked: {
-                            opacity: 1
-                        }
-                    },
-                    push: {
-                        particles_nb: 4
-                    }
-                }
+                events: { onhover: { enable: false }, onclick: { enable: false }, resize: true }
             },
-            retina_detect: true
+            retina_detect: false
         });
+    }
+
+    // Pause particles when hero is not visible
+    const hero = document.getElementById('home');
+    const canvas = document.querySelector('#particles-js canvas');
+    if (hero && canvas) {
+        const observer = new IntersectionObserver(entries => {
+            canvas.style.visibility = entries[0].isIntersecting ? 'visible' : 'hidden';
+        }, { threshold: 0 });
+        observer.observe(hero);
     }
 }
 
@@ -218,10 +156,11 @@ function initMobileMenu() {
 function initAOS() {
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 600,
+            duration: 400,
             once: true,
-            offset: 50,
-            easing: 'ease-out-cubic'
+            offset: 80,
+            easing: 'ease-out',
+            disable: false
         });
     }
 }
@@ -473,7 +412,6 @@ function initProjectsData() {
         const projectItem = document.createElement('div');
         projectItem.className = `project-item ${project.category}`;
         projectItem.setAttribute('data-aos', 'fade-up');
-        projectItem.setAttribute('data-aos-delay', (project.id * 100).toString());
         
         projectItem.innerHTML = `
             <img src="${project.image}" alt="${project.title}" class="project-img" loading="lazy" decoding="async">
