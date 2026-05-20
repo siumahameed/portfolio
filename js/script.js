@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initSmoothScroll();
     initProjectsFilter();
     initMusicPlayer();
-    initCardTilt();
+    initProjectModal();
 });
 
 function initParticles() {
@@ -460,6 +460,45 @@ function initMusicPlayer() {
     }
 }
 
-function initCardTilt() {
-    // Removed — 3D tilt was distorting card text on hover
+function initProjectModal() {
+    const modal = document.getElementById('project-modal');
+    if (!modal) return;
+
+    const overlay = modal.querySelector('.modal-overlay');
+    const closeBtn = modal.querySelector('.modal-close');
+    const modalImg = modal.querySelector('.modal-img');
+    const modalTitle = modal.querySelector('.modal-title');
+    const modalDesc = modal.querySelector('.modal-desc');
+    const modalTags = modal.querySelector('.modal-tags');
+    const modalLink = modal.querySelector('.modal-link');
+
+    function openModal(card) {
+        modalImg.src = card.dataset.img;
+        modalImg.alt = card.dataset.title;
+        modalTitle.textContent = card.dataset.title;
+        modalDesc.textContent = card.dataset.desc;
+        modalLink.href = card.dataset.link;
+        modalTags.innerHTML = card.dataset.tags.split(',').map(t => `<span class="project-tag">${t.trim()}</span>`).join('');
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
+    document.querySelectorAll('.project-item').forEach(card => {
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', function(e) {
+            if (e.target.closest('.project-link')) return;
+            openModal(this);
+        });
+    });
+
+    closeBtn.addEventListener('click', closeModal);
+    overlay.addEventListener('click', closeModal);
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
 }
