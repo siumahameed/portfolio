@@ -1576,38 +1576,52 @@ ul {
     .hero-content h1 {
         font-size: 2.5rem;
     }
-    
+
     .hero-content h2 {
         font-size: 1.5rem;
     }
-    
+
     .about-content,
     .contact-content {
         grid-template-columns: 1fr;
     }
-    
+
     .profile-circle {
         width: 280px;
         height: 280px;
         border-radius: 50%;
+        animation: none;
     }
-    
+
     .profile-circle::before {
         border-radius: 50%;
+        animation: none;
     }
-    
+
     .profile-circle img {
         border-radius: 50%;
     }
-    
+
+    .logo h1 {
+        animation: none;
+    }
+
+    .logo h1::before {
+        animation: none;
+    }
+
+    .logo h1 span {
+        animation: none;
+    }
+
     .projects-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .code-snippet-container {
         overflow-x: auto;
     }
-    
+
     .code-snippet-container pre {
         min-width: 280px;
     }
