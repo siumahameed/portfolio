@@ -156,9 +156,9 @@ function initMobileMenu() {
 function initAOS() {
     if (typeof AOS !== 'undefined') {
         AOS.init({
-            duration: 400,
+            duration: 300,
             once: true,
-            offset: 80,
+            offset: 60,
             easing: 'ease-out',
             disable: false
         });
