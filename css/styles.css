@@ -1634,7 +1634,12 @@ ul {
     color: var(--text-secondary);
     font-size: 0.95rem;
     line-height: 1.7;
-    max-width: 300px;
+}
+
+@media (min-width: 769px) {
+    .footer-brand p {
+        max-width: 300px;
+    }
 }
 
 .footer-links h3,
