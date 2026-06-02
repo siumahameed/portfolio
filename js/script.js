@@ -686,8 +686,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function getColor(isLight) {
             return isLight
-                ? { grid: 'rgba(59, 130, 246, 0.12)', text: '#334155', fill: 'rgba(99, 102, 241, 0.2)', stroke: '#6366f1', dot: '#4f46e5', glow: 'rgba(99, 102, 241, 0.3)', labelFill: '#6366f1' }
-                : { grid: 'rgba(99, 102, 241, 0.15)', text: '#cbd5e1', fill: 'rgba(129, 140, 248, 0.15)', stroke: '#818cf8', dot: '#a78bfa', glow: 'rgba(129, 140, 248, 0.25)', labelFill: '#a78bfa' };
+                ? { grid: 'rgba(100, 116, 139, 0.2)', text: '#475569', fill: 'rgba(99, 102, 241, 0.12)', stroke: '#6366f1', dot: '#4f46e5' }
+                : { grid: 'rgba(148, 163, 184, 0.2)', text: '#94a3b8', fill: 'rgba(129, 140, 248, 0.1)', stroke: '#818cf8', dot: '#a78bfa' };
         }
 
         function draw(progress) {
@@ -696,9 +696,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const c = getColor(document.body.classList.contains('light-mode'));
             const angleStep = (Math.PI * 2) / n;
 
-            // Subtle rotation for visual interest
-            const rotation = progress * 0.08;
-            const startAngle = -Math.PI / 2 + rotation;
+            const startAngle = -Math.PI / 2;
 
             // Grid rings with gradient
             for (let ring = 1; ring <= 5; ring++) {
@@ -727,11 +725,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.stroke();
             }
 
-            // Data polygon with glow
+            // Data polygon
             const dataRadius = radius * progress;
-            ctx.save();
-            ctx.shadowColor = c.glow;
-            ctx.shadowBlur = 20 * progress;
             ctx.beginPath();
             for (let i = 0; i <= n; i++) {
                 const idx = i % n;
@@ -744,11 +739,9 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.closePath();
             ctx.fillStyle = c.fill;
             ctx.fill();
-            ctx.shadowBlur = 0;
             ctx.strokeStyle = c.stroke;
             ctx.lineWidth = 2.5;
             ctx.stroke();
-            ctx.restore();
 
             // Data dots with rings
             for (let i = 0; i < n; i++) {
