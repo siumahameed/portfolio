@@ -122,6 +122,24 @@
                         <img src="images/profile.jpg.jpeg" alt="Portrait of Sium Ahameed" id="profile-img" width="340" height="340" decoding="async" fetchpriority="high" onerror="this.src='https://via.placeholder.com/340x340?text=SA'">
                     </div>
                 </div>
+                <div class="hero-terminal" data-reveal="fade-up">
+                    <div class="terminal-header">
+                        <div class="terminal-dots">
+                            <span class="terminal-dot red"></span>
+                            <span class="terminal-dot yellow"></span>
+                            <span class="terminal-dot green"></span>
+                        </div>
+                        <span class="terminal-title">ml_workspace.py</span>
+                    </div>
+                    <div class="terminal-body">
+                        <div class="terminal-line"><span class="tp-comment"># Importing libraries...</span></div>
+                        <div class="terminal-line"><span class="tp-keyword">import</span> pandas <span class="tp-keyword">as</span> pd</div>
+                        <div class="terminal-line"><span class="tp-keyword">from</span> sklearn.ensemble <span class="tp-keyword">import</span> RandomForestClassifier</div>
+                        <div class="terminal-line"><span class="tp-comment"># Training model...</span></div>
+                        <div class="terminal-line"><span class="tp-func">model.fit</span>(X_train, y_train)</div>
+                        <div class="terminal-line" id="terminal-typing-line"><span id="terminal-typed"></span><span class="terminal-cursor">▊</span></div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -156,7 +174,11 @@
                         <button class="btn secondary-btn" id="preview-cv-btn"><i class="fas fa-eye" aria-hidden="true"></i> Preview CV</button>
                     </div>
                 </div>
-                <div class="about-details" data-reveal="fade-left">
+                <div class="about-skills" data-reveal="fade-left">
+                    <h3 class="about-skills-title">Skill Proficiency</h3>
+                    <canvas id="radar-chart" class="radar-chart" width="300" height="300" aria-label="Radar chart showing skill proficiency"></canvas>
+                </div>
+                <div class="about-details" data-reveal="fade-right">
                     <div class="detail-item">
                         <i class="fas fa-user-graduate" aria-hidden="true"></i>
                         <div>
@@ -257,6 +279,34 @@
                     <div class="step-tools">
                         <span>Scikit-learn</span><span>Matplotlib</span>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Banner -->
+    <section class="stats-banner">
+        <div class="container">
+            <div class="stats-grid" data-reveal="fade-up">
+                <div class="stats-item">
+                    <div class="stats-icon"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
+                    <div class="stats-number" data-count="36">0</div>
+                    <div class="stats-label">Projects Completed</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon"><i class="fas fa-tools" aria-hidden="true"></i></div>
+                    <div class="stats-number" data-count="15">0</div>
+                    <div class="stats-label">Technologies</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon"><i class="fas fa-graduation-cap" aria-hidden="true"></i></div>
+                    <div class="stats-number" data-count="2">0</div>
+                    <div class="stats-label">Years of Learning</div>
+                </div>
+                <div class="stats-item">
+                    <div class="stats-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
+                    <div class="stats-number" data-count="50">0</div>
+                    <div class="stats-label">Datasets Analyzed</div>
                 </div>
             </div>
         </div>

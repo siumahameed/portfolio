@@ -622,6 +622,188 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ═══════════════════════════════════════
+       Terminal Typing Effect
+       ═══════════════════════════════════════ */
+    function initTerminalTyping() {
+        const el = document.getElementById('terminal-typed');
+        if (!el) return;
+        const lines = [
+            "model = RandomForestClassifier(n_estimators=100)",
+            "model.fit(X_train, y_train)",
+            "y_pred = model.predict(X_test)",
+            "acc = accuracy_score(y_test, y_pred)",
+            "print(f\"Accuracy: {acc:.2%}\")",
+            "# Result: 94.5% accuracy!"
+        ];
+        let lineIdx = 0, charIdx = 0;
+        let deleting = false;
+
+        function type() {
+            const current = lines[lineIdx];
+            if (deleting) {
+                el.textContent = current.substring(0, charIdx - 1);
+                charIdx--;
+            } else {
+                el.textContent = current.substring(0, charIdx + 1);
+                charIdx++;
+            }
+
+            let speed = 30;
+            if (!deleting && charIdx === current.length) {
+                deleting = true;
+                speed = 1500;
+            } else if (deleting && charIdx === 0) {
+                deleting = false;
+                lineIdx = (lineIdx + 1) % lines.length;
+                speed = 400;
+            }
+            setTimeout(type, deleting && charIdx > 0 ? 15 : speed);
+        }
+        type();
+    }
+
+    /* ═══════════════════════════════════════
+       Radar Chart
+       ═══════════════════════════════════════ */
+    function initRadarChart() {
+        const canvas = document.getElementById('radar-chart');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        const skills = [
+            { label: 'Python', value: 90 },
+            { label: 'ML', value: 85 },
+            { label: 'Deep Learning', value: 72 },
+            { label: 'Data Analysis', value: 88 },
+            { label: 'Statistics', value: 82 },
+            { label: 'SQL', value: 60 }
+        ];
+        const n = skills.length;
+        const cx = canvas.width / 2;
+        const cy = canvas.height / 2;
+        const radius = Math.min(cx, cy) - 30;
+        let animProgress = 0;
+        let animating = false;
+
+        function getColor(isLight) {
+            return isLight
+                ? { grid: 'rgba(59, 130, 246, 0.15)', text: '#334155', fill: 'rgba(59, 130, 246, 0.15)', stroke: '#3b82f6', dot: '#3b82f6' }
+                : { grid: 'rgba(59, 130, 246, 0.2)', text: '#94a3b8', fill: 'rgba(59, 130, 246, 0.12)', stroke: '#3b82f6', dot: '#8b5cf6' };
+        }
+
+        function draw(progress) {
+            const w = canvas.width, h = canvas.height;
+            ctx.clearRect(0, 0, w, h);
+            const c = getColor(document.body.classList.contains('light-mode'));
+            const angleStep = (Math.PI * 2) / n;
+            const startAngle = -Math.PI / 2;
+
+            // Grid rings
+            for (let ring = 1; ring <= 5; ring++) {
+                const r = (radius / 5) * ring;
+                ctx.beginPath();
+                for (let i = 0; i <= n; i++) {
+                    const angle = startAngle + i * angleStep;
+                    const x = cx + r * Math.cos(angle);
+                    const y = cy + r * Math.sin(angle);
+                    i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+                }
+                ctx.closePath();
+                ctx.strokeStyle = c.grid;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+
+            // Axis lines
+            for (let i = 0; i < n; i++) {
+                const angle = startAngle + i * angleStep;
+                ctx.beginPath();
+                ctx.moveTo(cx, cy);
+                ctx.lineTo(cx + radius * Math.cos(angle), cy + radius * Math.sin(angle));
+                ctx.strokeStyle = c.grid;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+
+            // Data polygon (animated)
+            const dataRadius = radius * progress;
+            ctx.beginPath();
+            for (let i = 0; i <= n; i++) {
+                const idx = i % n;
+                const angle = startAngle + idx * angleStep;
+                const val = (skills[idx].value / 100) * dataRadius;
+                const x = cx + val * Math.cos(angle);
+                const y = cy + val * Math.sin(angle);
+                i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+            }
+            ctx.closePath();
+            ctx.fillStyle = c.fill;
+            ctx.fill();
+            ctx.strokeStyle = c.stroke;
+            ctx.lineWidth = 2;
+            ctx.stroke();
+
+            // Data dots
+            for (let i = 0; i < n; i++) {
+                const angle = startAngle + i * angleStep;
+                const val = (skills[i].value / 100) * dataRadius;
+                const x = cx + val * Math.cos(angle);
+                const y = cy + val * Math.sin(angle);
+                ctx.beginPath();
+                ctx.arc(x, y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = c.dot;
+                ctx.fill();
+                ctx.strokeStyle = '#fff';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+
+            // Labels
+            ctx.font = '11px Poppins, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            for (let i = 0; i < n; i++) {
+                const angle = startAngle + i * angleStep;
+                const lx = cx + (radius + 22) * Math.cos(angle);
+                const ly = cy + (radius + 22) * Math.sin(angle);
+                ctx.fillStyle = c.text;
+                ctx.fillText(skills[i].label, lx, ly);
+            }
+        }
+
+        // Animate on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animating) {
+                    animating = true;
+                    animProgress = 0;
+                    function animate() {
+                        animProgress += 0.03;
+                        if (animProgress > 1) animProgress = 1;
+                        draw(animProgress);
+                        if (animProgress < 1) requestAnimationFrame(animate);
+                        else animating = false;
+                    }
+                    animate();
+                    observer.unobserve(canvas);
+                }
+            });
+        }, { threshold: 0.3 });
+        observer.observe(canvas);
+
+        // Redraw on theme change
+        const themeObserver = new MutationObserver(() => {
+            if (animProgress >= 1) draw(1);
+        });
+        themeObserver.observe(document.body, { attributes: true, attributeFilter: ['class'] });
+
+        // Initial draw
+        draw(0);
+
+        // Handle resize
+        window.addEventListener('resize', () => { if (animProgress >= 1) draw(1); });
+    }
+
+    /* ═══════════════════════════════════════
        Init Everything
        ═══════════════════════════════════════ */
     initTyping();
@@ -640,5 +822,7 @@ document.addEventListener('DOMContentLoaded', function () {
     initMusicPlayer();
     initContactForm();
     initPdfPreview();
+    initTerminalTyping();
+    initRadarChart();
 
 });
