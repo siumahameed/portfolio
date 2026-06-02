@@ -153,6 +153,16 @@
                     </div>
                     <div class="about-buttons">
                         <a href="files/CV.pdf" class="btn primary-btn" id="download-cv" download="Sium_Ahameed_CV.pdf"><i class="fas fa-download" aria-hidden="true"></i> Download CV</a>
+                        <button class="btn secondary-btn" id="preview-cv-btn"><i class="fas fa-eye" aria-hidden="true"></i> Preview CV</button>
+                    </div>
+
+                    <div class="current-work" data-reveal="fade-up">
+                        <div class="current-work-icon"><i class="fas fa-code-branch" aria-hidden="true"></i></div>
+                        <div class="current-work-text">
+                            <span class="current-work-label">Currently working on</span>
+                            <a href="https://github.com/siumahameed" class="current-work-project" target="_blank" rel="noopener">My latest ML project <i class="fas fa-external-link-alt" aria-hidden="true"></i></a>
+                        </div>
+                        <span class="current-work-dot"></span>
                     </div>
                 </div>
                 <div class="about-details" data-reveal="fade-left">
@@ -432,6 +442,17 @@ accuracy = <span class="code-func">accuracy_score</span>(y_test, y_pred)
             </div>
         </div>
     </section>
+
+    <!-- PDF Preview Modal -->
+    <div id="pdf-modal" class="modal modal-pdf" role="dialog" aria-modal="true" aria-label="Resume Preview">
+        <div class="modal-overlay" tabindex="-1"></div>
+        <div class="modal-content">
+            <button class="modal-close" aria-label="Close resume preview"><i class="fas fa-times" aria-hidden="true"></i></button>
+            <div class="modal-body modal-pdf-body">
+                <iframe src="files/CV.pdf" class="pdf-viewer" title="Resume PDF"></iframe>
+            </div>
+        </div>
+    </div>
 
     <!-- Project Modal -->
     <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">

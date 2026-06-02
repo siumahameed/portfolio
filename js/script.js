@@ -23,16 +23,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 charIdx++;
             }
 
-            let speed = 100;
+            let speed = 60;
             if (!deleting && charIdx === current.length) {
                 deleting = true;
-                speed = 2000;
+                speed = 1200;
             } else if (deleting && charIdx === 0) {
                 deleting = false;
                 idx = (idx + 1) % titles.length;
-                speed = 500;
+                speed = 300;
             }
-            setTimeout(type, deleting && charIdx > 0 ? 50 : speed);
+            setTimeout(type, deleting && charIdx > 0 ? 30 : speed);
         }
         type();
     }
@@ -45,8 +45,10 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let w, h, particles = [], mouse = { x: null, y: null };
-        const COUNT = 40;
-        const CONNECTION_DIST = 150;
+        const COUNT = 50;
+        const CONNECTION_DIST = 200;
+        const MOUSE_ATTRACT = 350;
+        const MOUSE_FORCE = 0.02;
 
         function resize() {
             w = canvas.width = window.innerWidth;
@@ -59,9 +61,11 @@ document.addEventListener('DOMContentLoaded', function () {
             constructor() {
                 this.x = Math.random() * w;
                 this.y = Math.random() * h;
-                this.vx = (Math.random() - 0.5) * 0.5;
-                this.vy = (Math.random() - 0.5) * 0.5;
-                this.r = Math.random() * 2 + 1.5;
+                this.vx = (Math.random() - 0.5) * 0.6;
+                this.vy = (Math.random() - 0.5) * 0.6;
+                this.r = Math.random() * 2.5 + 1.5;
+                this.baseR = this.r;
+                this.glow = 0;
             }
             update() {
                 this.x += this.vx;
@@ -72,16 +76,39 @@ document.addEventListener('DOMContentLoaded', function () {
                     const dx = mouse.x - this.x;
                     const dy = mouse.y - this.y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
-                    if (dist < 200) {
-                        this.x += dx * 0.003;
-                        this.y += dy * 0.003;
+                    if (dist < MOUSE_ATTRACT) {
+                        const force = (1 - dist / MOUSE_ATTRACT) * MOUSE_FORCE;
+                        this.vx += dx * force * 0.01;
+                        this.vy += dy * force * 0.01;
+                        this.r = this.baseR + (1 - dist / MOUSE_ATTRACT) * 4;
+                        this.glow = (1 - dist / MOUSE_ATTRACT);
+                    } else {
+                        this.r += (this.baseR - this.r) * 0.05;
+                        this.glow *= 0.95;
                     }
+                } else {
+                    this.r += (this.baseR - this.r) * 0.05;
+                    this.glow *= 0.95;
+                }
+                const speed = Math.sqrt(this.vx * this.vx + this.vy * this.vy);
+                if (speed > 2) {
+                    this.vx = (this.vx / speed) * 2;
+                    this.vy = (this.vy / speed) * 2;
                 }
             }
             draw() {
+                if (this.glow > 0.01) {
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.r * 3, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(59, 130, 246, ${this.glow * 0.15})`;
+                    ctx.fill();
+                }
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-                ctx.fillStyle = '#3b82f6';
+                const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
+                gradient.addColorStop(0, '#8b5cf6');
+                gradient.addColorStop(1, '#3b82f6');
+                ctx.fillStyle = gradient;
                 ctx.fill();
             }
         }
@@ -95,12 +122,13 @@ document.addEventListener('DOMContentLoaded', function () {
                     const dy = particles[i].y - particles[j].y;
                     const dist = Math.sqrt(dx * dx + dy * dy);
                     if (dist < CONNECTION_DIST) {
-                        const opacity = (1 - dist / CONNECTION_DIST) * 0.4;
+                        const opacity = (1 - dist / CONNECTION_DIST) * 0.35;
+                        const avgGlow = (particles[i].glow + particles[j].glow) / 2;
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(59, 130, 246, ${opacity})`;
-                        ctx.lineWidth = 0.8;
+                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacity + avgGlow * 0.3})`;
+                        ctx.lineWidth = 0.8 + avgGlow * 1.2;
                         ctx.stroke();
                     }
                 }
@@ -553,6 +581,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     /* ═══════════════════════════════════════
+       PDF Preview Modal
+       ═══════════════════════════════════════ */
+    function initPdfPreview() {
+        const btn = document.getElementById('preview-cv-btn');
+        const modal = document.getElementById('pdf-modal');
+        if (!btn || !modal) return;
+        const overlay = modal.querySelector('.modal-overlay');
+        const closeBtn = modal.querySelector('.modal-close');
+
+        function open() {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            closeBtn.focus();
+        }
+
+        function close() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            btn.focus();
+        }
+
+        btn.addEventListener('click', open);
+        closeBtn.addEventListener('click', close);
+        overlay.addEventListener('click', close);
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && modal.classList.contains('active')) close();
+        });
+    }
+
+    /* ═══════════════════════════════════════
        Init Everything
        ═══════════════════════════════════════ */
     initTyping();
@@ -570,5 +628,6 @@ document.addEventListener('DOMContentLoaded', function () {
     initCountUp();
     initMusicPlayer();
     initContactForm();
+    initPdfPreview();
 
 });
