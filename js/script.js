@@ -45,8 +45,9 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         let w, h, particles = [], mouse = { x: null, y: null };
-        const COUNT = 50;
-        const CONNECTION_DIST = 200;
+        const isMobile = window.innerWidth < 768;
+        const COUNT = isMobile ? 20 : 50;
+        const CONNECTION_DIST = isMobile ? 120 : 200;
         const MOUSE_ATTRACT = 350;
         const MOUSE_FORCE = 0.02;
 
