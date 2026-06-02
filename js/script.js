@@ -530,36 +530,20 @@ document.addEventListener('DOMContentLoaded', function () {
             return valid;
         }
 
-        form.addEventListener('submit', async function (e) {
+        form.addEventListener('submit', function (e) {
             e.preventDefault();
             if (!validate()) return;
 
-            submitBtn.classList.add('loading');
-            success.classList.remove('show');
+            const name = encodeURIComponent(fields.name.value.trim());
+            const email = encodeURIComponent(fields.email.value.trim());
+            const message = encodeURIComponent(fields.message.value.trim());
+            const subject = encodeURIComponent('Portfolio Contact from ' + fields.name.value.trim());
 
-            try {
-                const res = await fetch('https://formspree.io/f/your-form-id', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        name: fields.name.value,
-                        email: fields.email.value,
-                        message: fields.message.value
-                    })
-                });
+            const mailto = `mailto:siumahameed2003@gmail.com?subject=${subject}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0A${message}`;
 
-                if (res.ok) {
-                    success.classList.add('show');
-                    form.reset();
-                    Object.values(fields).forEach(clearError);
-                } else {
-                    alert('Failed to send. Please try again or email me directly.');
-                }
-            } catch {
-                alert('Network error. Please email me at siumahameed2003@gmail.com');
-            } finally {
-                submitBtn.classList.remove('loading');
-            }
+            window.location.href = mailto;
+            form.reset();
+            Object.values(fields).forEach(clearError);
         });
 
         // Clear errors on input
