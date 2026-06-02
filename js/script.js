@@ -648,16 +648,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 charIdx++;
             }
 
-            let speed = 30;
+            let speed = 80;
             if (!deleting && charIdx === current.length) {
                 deleting = true;
-                speed = 1500;
+                speed = 2000;
             } else if (deleting && charIdx === 0) {
                 deleting = false;
                 lineIdx = (lineIdx + 1) % lines.length;
-                speed = 400;
+                speed = 600;
             }
-            setTimeout(type, deleting && charIdx > 0 ? 15 : speed);
+            setTimeout(type, deleting && charIdx > 0 ? 40 : speed);
         }
         type();
     }
