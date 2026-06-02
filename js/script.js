@@ -670,7 +670,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         const skills = [
-            { label: 'Python', value: 70 },
+            { label: 'Python', value: 78 },
             { label: 'ML', value: 85 },
             { label: 'Deep Learning', value: 60 },
             { label: 'Data Analysis', value: 88 },
@@ -757,7 +757,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 const x = cx + val * Math.cos(angle);
                 const y = cy + val * Math.sin(angle);
 
-                // Outer ring
                 ctx.beginPath();
                 ctx.arc(x, y, 7, 0, Math.PI * 2);
                 ctx.fillStyle = c.dot;
@@ -765,7 +764,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.fill();
                 ctx.globalAlpha = 1;
 
-                // Inner dot
                 ctx.beginPath();
                 ctx.arc(x, y, 4, 0, Math.PI * 2);
                 ctx.fillStyle = c.dot;
@@ -773,24 +771,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.strokeStyle = '#fff';
                 ctx.lineWidth = 1.5;
                 ctx.stroke();
-
-                // Value label near dot
-                if (progress > 0.5) {
-                    const labelAngle = angle;
-                    const labelR = val + 16;
-                    const lx = cx + labelR * Math.cos(labelAngle);
-                    const ly = cy + labelR * Math.sin(labelAngle);
-                    ctx.font = 'bold 10px Poppins, sans-serif';
-                    ctx.textAlign = 'center';
-                    ctx.textBaseline = 'middle';
-                    ctx.fillStyle = c.labelFill;
-                    ctx.globalAlpha = Math.min(1, (progress - 0.5) * 4);
-                    ctx.fillText(skills[i].value + '%', lx, ly);
-                    ctx.globalAlpha = 1;
-                }
             }
 
-            // Labels with better styling
+            // Labels
             for (let i = 0; i < n; i++) {
                 const angle = startAngle + i * angleStep;
                 const lx = cx + (radius + 26) * Math.cos(angle);
@@ -799,13 +782,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.textAlign = 'center';
                 ctx.textBaseline = 'middle';
                 ctx.fillStyle = c.text;
-
-                // Offset labels near bottom to not overlap
-                let offX = 0, offY = 0;
-                if (skills[i].label === 'Statistics') offY = 4;
-                if (skills[i].label === 'Data Analysis') offX = 0;
-                if (skills[i].label === 'SQL') offY = 4;
-                ctx.fillText(skills[i].label, lx + offX, ly + offY);
+                ctx.fillText(skills[i].label, lx, ly);
             }
         }
 
