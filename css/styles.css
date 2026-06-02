@@ -848,6 +848,12 @@ img {
     align-items: start;
 }
 
+.about-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
 .about-text h3 {
     font-size: 1.8rem;
     margin-bottom: 20px;
@@ -2369,6 +2375,24 @@ img {
         max-height: 85vh;
     }
 
+    .about-content {
+        grid-template-columns: 1fr;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+    }
+
+    .hero-terminal {
+        max-width: 100%;
+        font-size: 0.65rem;
+    }
+
+    .terminal-body {
+        padding: 12px 14px;
+    }
+
     .section {
         padding: 50px 0;
     }
@@ -2450,6 +2474,34 @@ img {
 
     .about-stats {
         gap: 16px;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 14px;
+    }
+
+    .stats-item {
+        padding: 18px 14px;
+    }
+
+    .stats-item .stats-number {
+        font-size: 1.5rem;
+    }
+
+    .stats-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+        margin-bottom: 10px;
+    }
+
+    .hero-terminal {
+        font-size: 0.58rem;
+    }
+
+    .terminal-body {
+        padding: 10px 12px;
     }
 
     .project-img {
