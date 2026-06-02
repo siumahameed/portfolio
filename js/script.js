@@ -670,12 +670,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
         const skills = [
-            { label: 'Python', value: 90 },
+            { label: 'Python', value: 88 },
             { label: 'ML', value: 85 },
             { label: 'Deep Learning', value: 60 },
             { label: 'Data Analysis', value: 88 },
             { label: 'Statistics', value: 82 },
-            { label: 'SQL', value: 75 }
+            { label: 'SQL', value: 85 }
         ];
         const n = skills.length;
         const cx = canvas.width / 2;
