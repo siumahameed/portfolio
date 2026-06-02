@@ -672,10 +672,10 @@ document.addEventListener('DOMContentLoaded', function () {
         const skills = [
             { label: 'Python', value: 90 },
             { label: 'ML', value: 85 },
-            { label: 'Deep Learning', value: 72 },
+            { label: 'Deep Learning', value: 60 },
             { label: 'Data Analysis', value: 88 },
             { label: 'Statistics', value: 82 },
-            { label: 'SQL', value: 60 }
+            { label: 'SQL', value: 75 }
         ];
         const n = skills.length;
         const cx = canvas.width / 2;
@@ -686,8 +686,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function getColor(isLight) {
             return isLight
-                ? { grid: 'rgba(59, 130, 246, 0.15)', text: '#334155', fill: 'rgba(59, 130, 246, 0.15)', stroke: '#3b82f6', dot: '#3b82f6' }
-                : { grid: 'rgba(59, 130, 246, 0.2)', text: '#94a3b8', fill: 'rgba(59, 130, 246, 0.12)', stroke: '#3b82f6', dot: '#8b5cf6' };
+                ? { grid: 'rgba(59, 130, 246, 0.12)', text: '#334155', fill: 'rgba(99, 102, 241, 0.2)', stroke: '#6366f1', dot: '#4f46e5', glow: 'rgba(99, 102, 241, 0.3)', labelFill: '#6366f1' }
+                : { grid: 'rgba(99, 102, 241, 0.15)', text: '#cbd5e1', fill: 'rgba(129, 140, 248, 0.15)', stroke: '#818cf8', dot: '#a78bfa', glow: 'rgba(129, 140, 248, 0.25)', labelFill: '#a78bfa' };
         }
 
         function draw(progress) {
@@ -695,9 +695,12 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.clearRect(0, 0, w, h);
             const c = getColor(document.body.classList.contains('light-mode'));
             const angleStep = (Math.PI * 2) / n;
-            const startAngle = -Math.PI / 2;
 
-            // Grid rings
+            // Subtle rotation for visual interest
+            const rotation = progress * 0.08;
+            const startAngle = -Math.PI / 2 + rotation;
+
+            // Grid rings with gradient
             for (let ring = 1; ring <= 5; ring++) {
                 const r = (radius / 5) * ring;
                 ctx.beginPath();
@@ -709,7 +712,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 }
                 ctx.closePath();
                 ctx.strokeStyle = c.grid;
-                ctx.lineWidth = 0.5;
+                ctx.lineWidth = ring === 5 ? 1 : 0.5;
                 ctx.stroke();
             }
 
@@ -724,8 +727,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 ctx.stroke();
             }
 
-            // Data polygon (animated)
+            // Data polygon with glow
             const dataRadius = radius * progress;
+            ctx.save();
+            ctx.shadowColor = c.glow;
+            ctx.shadowBlur = 20 * progress;
             ctx.beginPath();
             for (let i = 0; i <= n; i++) {
                 const idx = i % n;
@@ -738,35 +744,68 @@ document.addEventListener('DOMContentLoaded', function () {
             ctx.closePath();
             ctx.fillStyle = c.fill;
             ctx.fill();
+            ctx.shadowBlur = 0;
             ctx.strokeStyle = c.stroke;
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 2.5;
             ctx.stroke();
+            ctx.restore();
 
-            // Data dots
+            // Data dots with rings
             for (let i = 0; i < n; i++) {
                 const angle = startAngle + i * angleStep;
                 const val = (skills[i].value / 100) * dataRadius;
                 const x = cx + val * Math.cos(angle);
                 const y = cy + val * Math.sin(angle);
+
+                // Outer ring
+                ctx.beginPath();
+                ctx.arc(x, y, 7, 0, Math.PI * 2);
+                ctx.fillStyle = c.dot;
+                ctx.globalAlpha = 0.2;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+
+                // Inner dot
                 ctx.beginPath();
                 ctx.arc(x, y, 4, 0, Math.PI * 2);
                 ctx.fillStyle = c.dot;
                 ctx.fill();
                 ctx.strokeStyle = '#fff';
-                ctx.lineWidth = 1;
+                ctx.lineWidth = 1.5;
                 ctx.stroke();
+
+                // Value label near dot
+                if (progress > 0.5) {
+                    const labelAngle = angle;
+                    const labelR = val + 16;
+                    const lx = cx + labelR * Math.cos(labelAngle);
+                    const ly = cy + labelR * Math.sin(labelAngle);
+                    ctx.font = 'bold 10px Poppins, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillStyle = c.labelFill;
+                    ctx.globalAlpha = Math.min(1, (progress - 0.5) * 4);
+                    ctx.fillText(skills[i].value + '%', lx, ly);
+                    ctx.globalAlpha = 1;
+                }
             }
 
-            // Labels
-            ctx.font = '11px Poppins, sans-serif';
-            ctx.textAlign = 'center';
-            ctx.textBaseline = 'middle';
+            // Labels with better styling
             for (let i = 0; i < n; i++) {
                 const angle = startAngle + i * angleStep;
-                const lx = cx + (radius + 22) * Math.cos(angle);
-                const ly = cy + (radius + 22) * Math.sin(angle);
+                const lx = cx + (radius + 26) * Math.cos(angle);
+                const ly = cy + (radius + 26) * Math.sin(angle);
+                ctx.font = '600 11px Poppins, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
                 ctx.fillStyle = c.text;
-                ctx.fillText(skills[i].label, lx, ly);
+
+                // Offset labels near bottom to not overlap
+                let offX = 0, offY = 0;
+                if (skills[i].label === 'Statistics') offY = 4;
+                if (skills[i].label === 'Data Analysis') offX = 0;
+                if (skills[i].label === 'SQL') offY = 4;
+                ctx.fillText(skills[i].label, lx + offX, ly + offY);
             }
         }
 
