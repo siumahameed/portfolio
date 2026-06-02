@@ -50,6 +50,15 @@ document.addEventListener('DOMContentLoaded', function () {
         const MOUSE_ATTRACT = 350;
         const MOUSE_FORCE = 0.02;
 
+        const colors = {
+            dark: { node1: '#8b5cf6', node2: '#3b82f6', glow: '59, 130, 246', line: '139, 92, 246' },
+            light: { node1: '#6366f1', node2: '#818cf8', glow: '99, 102, 241', line: '99, 102, 241' }
+        };
+
+        function getColors() {
+            return document.body.classList.contains('light-mode') ? colors.light : colors.dark;
+        }
+
         function resize() {
             w = canvas.width = window.innerWidth;
             h = canvas.height = window.innerHeight;
@@ -96,18 +105,18 @@ document.addEventListener('DOMContentLoaded', function () {
                     this.vy = (this.vy / speed) * 2;
                 }
             }
-            draw() {
+            draw(c) {
                 if (this.glow > 0.01) {
                     ctx.beginPath();
                     ctx.arc(this.x, this.y, this.r * 3, 0, Math.PI * 2);
-                    ctx.fillStyle = `rgba(59, 130, 246, ${this.glow * 0.15})`;
+                    ctx.fillStyle = `rgba(${c.glow}, ${this.glow * 0.12})`;
                     ctx.fill();
                 }
                 ctx.beginPath();
                 ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
                 const gradient = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.r);
-                gradient.addColorStop(0, '#8b5cf6');
-                gradient.addColorStop(1, '#3b82f6');
+                gradient.addColorStop(0, c.node1);
+                gradient.addColorStop(1, c.node2);
                 ctx.fillStyle = gradient;
                 ctx.fill();
             }
@@ -115,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         for (let i = 0; i < COUNT; i++) particles.push(new Node());
 
-        function drawConnections() {
+        function drawConnections(c) {
             for (let i = 0; i < particles.length; i++) {
                 for (let j = i + 1; j < particles.length; j++) {
                     const dx = particles[i].x - particles[j].x;
@@ -127,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
                         ctx.beginPath();
                         ctx.moveTo(particles[i].x, particles[i].y);
                         ctx.lineTo(particles[j].x, particles[j].y);
-                        ctx.strokeStyle = `rgba(139, 92, 246, ${opacity + avgGlow * 0.3})`;
+                        ctx.strokeStyle = `rgba(${c.line}, ${opacity + avgGlow * 0.3})`;
                         ctx.lineWidth = 0.8 + avgGlow * 1.2;
                         ctx.stroke();
                     }
@@ -137,8 +146,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         function animate() {
             ctx.clearRect(0, 0, w, h);
-            particles.forEach(p => { p.update(); p.draw(); });
-            drawConnections();
+            const c = getColors();
+            particles.forEach(p => { p.update(); p.draw(c); });
+            drawConnections(c);
             requestAnimationFrame(animate);
         }
 
