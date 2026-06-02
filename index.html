@@ -3,24 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portfolio of Sium Ahameed – Machine Learning Engineer. Explore projects, skills, and contact information.">
-    <title>Sium Ahameed - Machine Learning Engineer</title>
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
+    <meta name="description" content="Sium Ahameed — Machine Learning Engineer & AI Enthusiast. Explore ML projects, data analysis work, skills, and contact information.">
+    <meta name="theme-color" content="#0a0e1a">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Social -->
+    <meta property="og:title" content="Sium Ahameed — Machine Learning Engineer">
+    <meta property="og:description" content="Statistics graduate building intelligent ML solutions. Explore my projects in machine learning, deep learning, and data analysis.">
+    <meta property="og:image" content="https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg">
+    <meta property="og:image:width" content="340">
+    <meta property="og:image:height" content="340">
+    <meta property="og:url" content="https://siumahameed.github.io/portfolio/">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Sium Ahameed — Machine Learning Engineer">
+    <meta name="twitter:description" content="Statistics graduate building intelligent ML solutions. Explore ML projects, data analysis, and AI work.">
+    <meta name="twitter:image" content="https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg">
+
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Sium Ahameed",
+      "givenName": "Sium",
+      "familyName": "Ahameed",
+      "jobTitle": "Machine Learning Engineer",
+      "description": "Statistics graduate with a strong foundation in statistical modeling and data analysis, passionate about leveraging machine learning techniques.",
+      "url": "https://siumahameed.github.io/portfolio/",
+      "sameAs": [
+        "https://github.com/siumahameed",
+        "https://www.linkedin.com/in/sium11/",
+        "https://www.kaggle.com/siumahameedbhuiyain"
+      ],
+      "knowsAbout": ["Machine Learning", "Deep Learning", "Data Science", "Statistics", "Python"],
+      "alumniOf": "Dhaka College"
+    }
+    </script>
+
+    <title>Sium Ahameed — Machine Learning Engineer & AI Enthusiast</title>
+
+    <!-- Preconnect -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+
+    <!-- Preload critical image -->
+    <link rel="preload" as="image" href="images/profile.jpg.jpeg" fetchpriority="high">
+
+    <!-- Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
+
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🤖</text></svg>">
 </head>
 <body>
+
     <a href="#home" class="skip-link">Skip to main content</a>
-    
+
+    <!-- Neural Network Canvas Background -->
+    <canvas id="nn-canvas" aria-hidden="true"></canvas>
+
     <nav class="navbar" role="navigation" aria-label="Main">
         <div class="container">
             <div class="logo">
-                <span class="logo-icon bd-flag"><span class="flag-red"></span></span>
-                <h1 id="logo-text">Sium Ahameed</h1>
+                <span class="logo-icon bd-flag" aria-hidden="true"><span class="flag-red"></span></span>
+                <span class="logo-text" id="logo-text" data-text="Sium Ahameed">Sium Ahameed</span>
             </div>
             <button class="menu-toggle" id="mobile-menu" aria-label="Toggle menu" aria-controls="primary-navigation" aria-expanded="false">
                 <span class="bar"></span>
@@ -36,31 +88,36 @@
                 <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
-                <li><button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode" title="Toggle theme">
-                    <i class="fas fa-moon" aria-hidden="true"></i>
-                </button></li>
+                <li>
+                    <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode" title="Toggle theme">
+                        <i class="fas fa-moon" aria-hidden="true"></i>
+                    </button>
+                </li>
             </ul>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section id="home" class="hero">
-        <div id="particles-js"></div>
         <div class="container">
-            <div class="hero-content" data-aos="fade-right">
-                <h1 class="animate-text">Hello, I'm <span class="highlight">Sium Ahameed</span></h1>
-                <h2 class="animate-text delay-1">I'm <span id="typing-text"></span></h2>
-                <p class="animate-text delay-2">Machine Learning Engineer & Deep Learning Enthusiast, building intelligent solutions.</p>
-                <div class="hero-buttons animate-text delay-3">
+            <div class="hero-content">
+                <div class="hero-badge" data-reveal="fade-up">Machine Learning Engineer</div>
+                <h1 class="hero-title" data-reveal="fade-up">Hello, I'm <span class="gradient-text">Sium Ahameed</span></h1>
+                <h2 class="hero-subtitle" data-reveal="fade-up">
+                    I'm <span id="typing-text" aria-live="polite" aria-label="Machine Learning Engineer"></span>
+                </h2>
+                <p class="hero-desc" data-reveal="fade-up">Building intelligent, data-driven solutions with machine learning & deep learning.</p>
+                <div class="hero-buttons" data-reveal="fade-up">
                     <a href="#contact" class="btn primary-btn">Contact Me</a>
                     <a href="#projects" class="btn secondary-btn">View My Work</a>
                 </div>
-                <div class="social-icons animate-text delay-4">
+                <div class="hero-social" data-reveal="fade-up">
                     <a href="https://www.linkedin.com/in/sium11/" class="social-link" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i></a>
                     <a href="https://github.com/siumahameed" class="social-link" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i></a>
                     <a href="mailto:siumahameed2003@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope" aria-hidden="true"></i></a>
                 </div>
             </div>
-            <div class="hero-image animate-text delay-2" data-aos="fade-left">
+            <div class="hero-image" data-reveal="fade-left">
                 <div class="profile-container">
                     <div class="profile-circle">
                         <img src="images/profile.jpg.jpeg" alt="Portrait of Sium Ahameed" id="profile-img" width="340" height="340" decoding="async" fetchpriority="high" onerror="this.src='https://via.placeholder.com/340x340?text=SA'">
@@ -70,58 +127,59 @@
         </div>
     </section>
 
-    <section id="about" class="about section">
+    <!-- About -->
+    <section id="about" class="section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-reveal="fade-up">
                 <h2>About Me</h2>
                 <div class="underline"></div>
             </div>
             <div class="about-content">
-                <div class="about-text" data-aos="fade-right">
+                <div class="about-text" data-reveal="fade-right">
                     <h3>Get to know me!</h3>
                     <p>Statistics graduate with a strong foundation in statistical modeling and data analysis. Passionate about leveraging machine learning techniques to extract meaningful insights from complex datasets. Skilled in building predictive models with Scikit-Learn, designing neural network architectures with TensorFlow, and optimizing hardware configurations for deep learning applications. Committed to continuous learning and staying at the forefront of AI innovation.</p>
                     <div class="about-stats">
-                        <div class="stat-item" data-aos="zoom-in">
-                            <span class="stat-number">13+</span>
+                        <div class="stat-item" data-reveal="zoom-in">
+                            <span class="stat-number" data-count="13">0</span>
                             <span class="stat-label">Projects</span>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in">
-                            <span class="stat-number">10+</span>
+                        <div class="stat-item" data-reveal="zoom-in">
+                            <span class="stat-number" data-count="10">0</span>
                             <span class="stat-label">Technologies</span>
                         </div>
-                        <div class="stat-item" data-aos="zoom-in">
-                            <span class="stat-number">2+</span>
+                        <div class="stat-item" data-reveal="zoom-in">
+                            <span class="stat-number" data-count="2">0</span>
                             <span class="stat-label">Years Learning</span>
                         </div>
                     </div>
                     <div class="about-buttons">
-                        <a href="files/CV.pdf" class="btn primary-btn" id="download-cv" download="Sium_Ahameed_CV.pdf"><i class="fas fa-download"></i> Download CV</a>
+                        <a href="files/CV.pdf" class="btn primary-btn" id="download-cv" download="Sium_Ahameed_CV.pdf"><i class="fas fa-download" aria-hidden="true"></i> Download CV</a>
                     </div>
                 </div>
-                <div class="about-details" data-aos="fade-left">
+                <div class="about-details" data-reveal="fade-left">
                     <div class="detail-item">
-                        <i class="fas fa-user-graduate"></i>
+                        <i class="fas fa-user-graduate" aria-hidden="true"></i>
                         <div>
                             <h4>Education</h4>
                             <p>BSc in Statistics, Dhaka College</p>
                         </div>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-briefcase"></i>
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
                         <div>
                             <h4>Experience</h4>
                             <p>Aspiring Machine Learning Engineer with passion for data-driven solutions</p>
                         </div>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-map-marker-alt" aria-hidden="true"></i>
                         <div>
                             <h4>Location</h4>
                             <p>Dhaka, Bangladesh</p>
                         </div>
                     </div>
                     <div class="detail-item">
-                        <i class="fas fa-language"></i>
+                        <i class="fas fa-language" aria-hidden="true"></i>
                         <div>
                             <h4>Languages</h4>
                             <p>English, Bengali</p>
@@ -132,209 +190,68 @@
         </div>
     </section>
 
-    <section id="projects" class="projects section">
+    <!-- Projects -->
+    <section id="projects" class="section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-reveal="fade-up">
                 <h2>My Projects</h2>
                 <div class="underline"></div>
             </div>
-            <div class="project-filters" data-aos="fade-up">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="ml">Machine Learning</button>
-                <button class="filter-btn" data-filter="eda">EDA</button>
-                <button class="filter-btn" data-filter="dl">Deep Learning</button>
-                <button class="filter-btn" data-filter="ai">AI</button>
-                <button class="filter-btn" data-filter="app">App & SaaS</button>
+            <div class="project-filters" data-reveal="fade-up" role="tablist" aria-label="Filter projects by category">
+                <button class="filter-btn active" data-filter="all" role="tab" aria-selected="true">All</button>
+                <button class="filter-btn" data-filter="ml" role="tab" aria-selected="false">ML</button>
+                <button class="filter-btn" data-filter="eda" role="tab" aria-selected="false">EDA</button>
+                <button class="filter-btn" data-filter="dl" role="tab" aria-selected="false">Deep Learning</button>
+                <button class="filter-btn" data-filter="ai" role="tab" aria-selected="false">AI</button>
+                <button class="filter-btn" data-filter="app" role="tab" aria-selected="false">App & SaaS</button>
             </div>
-            <div class="projects-grid">
-                <div class="project-item ml" data-title="Rock and Mine Prediction for Sonar" data-desc="Predicting whether an object is a mine or rock under the sea using Logistic Regression analyzing sonar radar data." data-img="images/Rock and Mine Prediction for Sonar.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/submarine_sonar_project" data-tags="Python, Scikit-learn, Logistic Regression, Classification">
-                    <div class="project-img-wrap"><img src="images/Rock and Mine Prediction for Sonar.jpg" alt="Rock and Mine Prediction for Sonar" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Rock and Mine Prediction for Sonar</h3>
-                        <p>Predicting whether an object is a mine or rock under the sea using Logistic Regression analyzing sonar radar data.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">Logistic Regression</span><span class="project-tag">Classification</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/submarine_sonar_project" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item ml" data-title="Spam SMS Detection" data-desc="NLP project to detect spam messages using text classification and machine learning." data-img="images/Spam SMS Detection.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/spam_sms_detection" data-tags="Python, NLP, Text Classification, Scikit-learn">
-                    <div class="project-img-wrap"><img src="images/Spam SMS Detection.jpg" alt="Spam SMS Detection" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Spam SMS Detection</h3>
-                        <p>NLP project to detect spam messages using text classification and machine learning.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">NLP</span><span class="project-tag">Text Classification</span><span class="project-tag">Scikit-learn</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/spam_sms_detection" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item ml" data-title="Ad Click Prediction" data-desc="Predicting user ad clicks using machine learning classification models for better targeting." data-img="images/Ad Click Prediction.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/Ad_click_project" data-tags="Python, Scikit-learn, ML, Classification">
-                    <div class="project-img-wrap"><img src="images/Ad Click Prediction.jpg" alt="Ad Click Prediction" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Ad Click Prediction</h3>
-                        <p>Predicting user ad clicks using machine learning classification models for better targeting.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">ML</span><span class="project-tag">Classification</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/Ad_click_project" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item ml" data-title="Energy Consumption Prediction" data-desc="Forecasting energy consumption using regression models for better resource planning." data-img="images/Energy Consumption Prediction.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/Energy%20Consumption%20Project" data-tags="Python, ML, Regression, Data Analysis">
-                    <div class="project-img-wrap"><img src="images/Energy Consumption Prediction.jpg" alt="Energy Consumption Prediction" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Energy Consumption Prediction</h3>
-                        <p>Forecasting energy consumption using regression models for better resource planning.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">ML</span><span class="project-tag">Regression</span><span class="project-tag">Data Analysis</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/Energy%20Consumption%20Project" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item ml" data-title="Loan Prediction" data-desc="Predicting loan approval status based on applicant details using classification algorithms." data-img="images/Loan Prediction.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/Loand%20Prediction" data-tags="Python, Scikit-learn, Classification, Finance">
-                    <div class="project-img-wrap"><img src="images/Loan Prediction.jpg" alt="Loan Prediction" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Loan Prediction</h3>
-                        <p>Predicting loan approval status based on applicant details using classification algorithms.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Scikit-learn</span><span class="project-tag">Classification</span><span class="project-tag">Finance</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/Loand%20Prediction" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item ml" data-title="Heart Disease Prediction" data-desc="Predicting heart disease risk using classification algorithms on patient medical data." data-img="images/Heart Disease Prediction.jpg" data-link="https://github.com/siumahameed/ml_projects/tree/main/heart_disease_prediction" data-tags="Python, ML, Healthcare, Classification">
-                    <div class="project-img-wrap"><img src="images/Heart Disease Prediction.jpg" alt="Heart Disease Prediction" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Heart Disease Prediction</h3>
-                        <p>Predicting heart disease risk using classification algorithms on patient medical data.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">ML</span><span class="project-tag">Healthcare</span><span class="project-tag">Classification</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/ml_projects/tree/main/heart_disease_prediction" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="BD Cricket Analysis" data-desc="Exploratory data analysis of Bangladesh cricket statistics and performance metrics." data-img="images/BD Cricket Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/BD%20Cricket%20Analysis" data-tags="Python, Pandas, Data Visualization, EDA">
-                    <div class="project-img-wrap"><img src="images/BD Cricket Analysis.jpg" alt="BD Cricket Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>BD Cricket Analysis</h3>
-                        <p>Exploratory data analysis of Bangladesh cricket statistics and performance metrics.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Data Visualization</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/BD%20Cricket%20Analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="BD Road Accident Analysis" data-desc="Analyzing road accident patterns in Bangladesh to identify key causes and safety recommendations." data-img="images/BD Road Accident Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/BD%20Road%20Accident%20Analysis" data-tags="Python, Pandas, Matplotlib, EDA">
-                    <div class="project-img-wrap"><img src="images/BD Road Accident Analysis.jpg" alt="BD Road Accident Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>BD Road Accident Analysis</h3>
-                        <p>Analyzing road accident patterns in Bangladesh to identify key causes and safety recommendations.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Matplotlib</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/BD%20Road%20Accident%20Analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="BD Temperature & Rain Analysis" data-desc="Analyzing temperature and rainfall patterns across Bangladesh to identify seasonal and regional trends." data-img="images/BD Temperature & Rain analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Bangladesh%20Temperature%20and%20Rain%20Analysis" data-tags="Python, Pandas, Matplotlib, EDA">
-                    <div class="project-img-wrap"><img src="images/BD Temperature & Rain analysis.jpg" alt="BD Temperature & Rain Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>BD Temperature & Rain Analysis</h3>
-                        <p>Analyzing temperature and rainfall patterns across Bangladesh to identify seasonal and regional trends.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Matplotlib</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Bangladesh%20Temperature%20and%20Rain%20Analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="Diwali Sales Analysis" data-desc="Analyzing Diwali sales data to understand customer purchasing patterns and product trends." data-img="images/Diwali Sales Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Diwali%20Sales%20Analysis" data-tags="Python, Pandas, Matplotlib, EDA">
-                    <div class="project-img-wrap"><img src="images/Diwali Sales Analysis.jpg" alt="Diwali Sales Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Diwali Sales Analysis</h3>
-                        <p>Analyzing Diwali sales data to understand customer purchasing patterns and product trends.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Matplotlib</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Diwali%20Sales%20Analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="IPL Data Analysis" data-desc="Comprehensive analysis of Indian Premier League cricket data to extract team and player insights." data-img="images/IPL Data Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/IPL%20Data%20Analysis" data-tags="Python, Pandas, Visualization, EDA">
-                    <div class="project-img-wrap"><img src="images/IPL Data Analysis.jpg" alt="IPL Data Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>IPL Data Analysis</h3>
-                        <p>Comprehensive analysis of Indian Premier League cricket data to extract team and player insights.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Visualization</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/IPL%20Data%20Analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="Shop Data Analysis" data-desc="Analyzing US retail shop data to understand sales patterns and customer behavior." data-img="images/Shop Data Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Us%20shop%20data%20analysis" data-tags="Python, Pandas, Tableau, EDA">
-                    <div class="project-img-wrap"><img src="images/Shop Data Analysis.jpg" alt="Shop Data Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Shop Data Analysis</h3>
-                        <p>Analyzing US retail shop data to understand sales patterns and customer behavior.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Tableau</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/Us%20shop%20data%20analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item eda" data-title="Lego Data Analysis" data-desc="Exploratory analysis of Lego product datasets to explore sets, themes, and trends." data-img="images/Lego Data Analysis.jpg" data-link="https://github.com/siumahameed/Eda-projects-basic-/tree/main/lego%20analysis" data-tags="Python, Pandas, Data Visualization, EDA">
-                    <div class="project-img-wrap"><img src="images/Lego Data Analysis.jpg" alt="Lego Data Analysis" class="project-img" loading="lazy" decoding="async"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>Lego Data Analysis</h3>
-                        <p>Exploratory analysis of Lego product datasets to explore sets, themes, and trends.</p>
-                        <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag">Pandas</span><span class="project-tag">Data Visualization</span><span class="project-tag">EDA</span></div>
-                        <div class="project-links"><a href="https://github.com/siumahameed/Eda-projects-basic-/tree/main/lego%20analysis" class="project-link" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source Code</a></div>
-                    </div>
-                </div>
-                <div class="project-item app" data-title="AgriTech" data-desc="AI-powered agricultural advisory platform for Bangladeshi farmers — Bengali chatbot, crop recommendations, disease detection via image upload, fertilizer calculator, and government subsidy info." data-img="images/AgriTech.jpg" data-link="https://agritech-fwib.onrender.com/" data-tags="Node.js, AI, Tailwind CSS, JavaScript">
-                    <div class="project-img-wrap"><img src="images/AgriTech.jpg" alt="AgriTech" class="project-img" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22340%22 height=%22200%22 viewBox=%220 0 340 200%22%3E%3Crect fill=%22%232563eb%22 width=%22340%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2230%22 font-family=%22Arial%22%3E🌾 AgriTech%3C/text%3E%3C/svg%3E'"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>AgriTech</h3>
-                        <p>AI-powered agricultural advisory platform for Bangladeshi farmers — Bengali chatbot, crop recommendations, disease detection via image upload, fertilizer calculator, and government subsidy info.</p>
-                        <div class="project-tags"><span class="project-tag">Node.js</span><span class="project-tag">AI</span><span class="project-tag">Tailwind CSS</span><span class="project-tag">JavaScript</span></div>
-                        <div class="project-links"><a href="https://agritech-fwib.onrender.com/" class="project-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-                    </div>
-                </div>
-                <div class="project-item app" data-title="VocabPro" data-desc="SaaS platform delivering 10 daily English vocabulary words with Bengali meanings via WhatsApp and email. Includes AI chatbot with 6 personas, weekly quiz contests, streaks, and 15 Tk/month subscription." data-img="images/VocabPro.jpg" data-link="https://vocabpro-dgow.onrender.com/" data-tags="FastAPI, PostgreSQL, WhatsApp API, AI, Email">
-                    <div class="project-img-wrap"><img src="images/VocabPro.jpg" alt="VocabPro" class="project-img" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22340%22 height=%22200%22 viewBox=%220 0 340 200%22%3E%3Crect fill=%22%237c3aed%22 width=%22340%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2230%22 font-family=%22Arial%22%3E📖 VocabPro%3C/text%3E%3C/svg%3E'"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>VocabPro</h3>
-                        <p>SaaS platform delivering 10 daily English vocabulary words with Bengali meanings via WhatsApp and email. Includes AI chatbot with 6 personas, weekly quiz contests, streaks, and 15 Tk/month subscription.</p>
-                        <div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">PostgreSQL</span><span class="project-tag">WhatsApp API</span><span class="project-tag">AI</span><span class="project-tag">Email</span></div>
-                        <div class="project-links"><a href="https://vocabpro-dgow.onrender.com/" class="project-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-                    </div>
-                </div>
-                <div class="project-item app" data-title="StatWise" data-desc="Automated statistical reporting platform for SMEs — upload Excel/CSV data, get comprehensive analysis with descriptive stats, trend analysis, forecasting, and downloadable PDF reports (Flash + Full)." data-img="images/StatWise.jpg" data-link="https://statwise-k9vn.onrender.com/" data-tags="FastAPI, scikit-learn, pandas, PostgreSQL, Tailwind CSS">
-                    <div class="project-img-wrap"><img src="images/StatWise.jpg" alt="StatWise" class="project-img" loading="lazy" decoding="async" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22340%22 height=%22200%22 viewBox=%220 0 340 200%22%3E%3Crect fill=%22%23059869%22 width=%22340%22 height=%22200%22/%3E%3Ctext x=%2250%%22 y=%2250%%22 dominant-baseline=%22middle%22 text-anchor=%22middle%22 fill=%22white%22 font-size=%2230%22 font-family=%22Arial%22%3E📊 StatWise%3C/text%3E%3C/svg%3E'"><div class="project-overlay"><span>View Details</span></div></div>
-                    <div class="project-content">
-                        <h3>StatWise</h3>
-                        <p>Automated statistical reporting platform for SMEs — upload Excel/CSV data, get comprehensive analysis with descriptive stats, trend analysis, forecasting, and downloadable PDF reports (Flash + Full).</p>
-                        <div class="project-tags"><span class="project-tag">FastAPI</span><span class="project-tag">scikit-learn</span><span class="project-tag">pandas</span><span class="project-tag">PostgreSQL</span><span class="project-tag">Tailwind CSS</span></div>
-                        <div class="project-links"><a href="https://statwise-k9vn.onrender.com/" class="project-link" target="_blank" rel="noopener"><i class="fas fa-external-link-alt"></i> Live Demo</a></div>
-                    </div>
-                </div>
+            <div class="projects-grid" id="projects-grid" role="list" aria-label="Project list">
+                <!-- Dynamically rendered -->
             </div>
         </div>
     </section>
 
+    <!-- How I Work / Pipeline -->
     <section id="skills" class="section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-reveal="fade-up">
                 <h2>How I Work</h2>
                 <div class="underline"></div>
             </div>
-            <div class="pipeline-steps" data-aos="fade-up">
+            <div class="pipeline-steps" data-reveal="fade-up">
                 <div class="pipeline-step">
                     <div class="step-number">01</div>
-                    <div class="step-icon"><i class="fas fa-database"></i></div>
+                    <div class="step-icon"><i class="fas fa-database" aria-hidden="true"></i></div>
                     <h3>Data Collection & Cleaning</h3>
                     <p>Gathering, cleaning, and preprocessing raw data for analysis</p>
                     <div class="step-tools">
                         <span>Pandas</span><span>NumPy</span><span>SQL</span>
                     </div>
                 </div>
-                <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="pipeline-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></div>
                 <div class="pipeline-step">
                     <div class="step-number">02</div>
-                    <div class="step-icon"><i class="fas fa-chart-bar"></i></div>
+                    <div class="step-icon"><i class="fas fa-chart-bar" aria-hidden="true"></i></div>
                     <h3>Exploratory Analysis</h3>
                     <p>Finding patterns, correlations, and insights in data</p>
                     <div class="step-tools">
                         <span>Matplotlib</span><span>Seaborn</span><span>Pandas</span>
                     </div>
                 </div>
-                <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="pipeline-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></div>
                 <div class="pipeline-step">
                     <div class="step-number">03</div>
-                    <div class="step-icon"><i class="fas fa-brain"></i></div>
+                    <div class="step-icon"><i class="fas fa-brain" aria-hidden="true"></i></div>
                     <h3>Model Building</h3>
                     <p>Training and tuning ML/DL models for prediction</p>
                     <div class="step-tools">
                         <span>Scikit-learn</span><span>TensorFlow</span><span>PyTorch</span>
                     </div>
                 </div>
-                <div class="pipeline-arrow"><i class="fas fa-chevron-right"></i></div>
+                <div class="pipeline-arrow" aria-hidden="true"><i class="fas fa-chevron-right"></i></div>
                 <div class="pipeline-step">
                     <div class="step-number">04</div>
-                    <div class="step-icon"><i class="fas fa-check-circle"></i></div>
+                    <div class="step-icon"><i class="fas fa-check-circle" aria-hidden="true"></i></div>
                     <h3>Evaluation & Deployment</h3>
                     <p>Validating performance and preparing for production</p>
                     <div class="step-tools">
@@ -345,140 +262,85 @@
         </div>
     </section>
 
+    <!-- Tech Stack -->
     <section id="tech-stack" class="section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-reveal="fade-up">
                 <h2>Tech Stack</h2>
                 <div class="underline"></div>
             </div>
-            <div class="tech-categories" data-aos="fade-up">
+            <div class="tech-categories" data-reveal="fade-up">
                 <div class="tech-category">
-                    <h3><i class="fas fa-brain"></i> ML & Deep Learning</h3>
+                    <h3><i class="fas fa-brain" aria-hidden="true"></i> ML & Deep Learning</h3>
                     <div class="tech-grid">
-                        <div class="tech-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn">
-                            <span>Scikit-learn</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
-                            <span>TensorFlow</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg" alt="Keras">
-                            <span>Keras</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch">
-                            <span>PyTorch</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="NLTK">
-                            <span>NLTK</span>
-                        </div>
+                        <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/0/05/Scikit_learn_logo_small.svg" alt="Scikit-learn" loading="lazy"><span>Scikit-learn</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" loading="lazy"><span>TensorFlow</span></div>
+                        <div class="tech-item"><img src="https://upload.wikimedia.org/wikipedia/commons/a/ae/Keras_logo.svg" alt="Keras" loading="lazy"><span>Keras</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" loading="lazy"><span>PyTorch</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="NLTK" loading="lazy"><span>NLTK</span></div>
                     </div>
                 </div>
                 <div class="tech-category">
-                    <h3><i class="fas fa-database"></i> Data & Analysis</h3>
+                    <h3><i class="fas fa-database" aria-hidden="true"></i> Data & Analysis</h3>
                     <div class="tech-grid">
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas">
-                            <span>Pandas</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy">
-                            <span>NumPy</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://scipy.org/images/logo.svg" alt="SciPy">
-                            <span>SciPy</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL">
-                            <span>SQL</span>
-                        </div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" alt="Pandas" loading="lazy"><span>Pandas</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/numpy/numpy-original.svg" alt="NumPy" loading="lazy"><span>NumPy</span></div>
+                        <div class="tech-item"><img src="https://scipy.org/images/logo.svg" alt="SciPy" loading="lazy"><span>SciPy</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="SQL" loading="lazy"><span>SQL</span></div>
                     </div>
                 </div>
                 <div class="tech-category">
-                    <h3><i class="fas fa-chart-line"></i> Visualization</h3>
+                    <h3><i class="fas fa-chart-line" aria-hidden="true"></i> Visualization</h3>
                     <div class="tech-grid">
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib">
-                            <span>Matplotlib</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn">
-                            <span>Seaborn</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://images.plot.ly/logo/new-branding/plotly-logomark.png" alt="Plotly">
-                            <span>Plotly</span>
-                        </div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/matplotlib/matplotlib-original.svg" alt="Matplotlib" loading="lazy"><span>Matplotlib</span></div>
+                        <div class="tech-item"><img src="https://seaborn.pydata.org/_images/logo-mark-lightbg.svg" alt="Seaborn" loading="lazy"><span>Seaborn</span></div>
+                        <div class="tech-item"><img src="https://images.plot.ly/logo/new-branding/plotly-logomark.png" alt="Plotly" loading="lazy"><span>Plotly</span></div>
                     </div>
                 </div>
                 <div class="tech-category">
-                    <h3><i class="fas fa-code"></i> Development</h3>
+                    <h3><i class="fas fa-code" aria-hidden="true"></i> Development</h3>
                     <div class="tech-grid">
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
-                            <span>Python</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI">
-                            <span>FastAPI</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
-                            <span>Git</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter">
-                            <span>Jupyter</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code">
-                            <span>VS Code</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://cursor.sh/favicon.ico" alt="Cursor" onerror="this.src='https://ucarecdn.com/4c3d7cc9-bdf7-4f89-8c0c-45a8c88b8e01/cursor-logo.svg'">
-                            <span>Cursor</span>
-                        </div>
-                        <div class="tech-item">
-                            <img src="https://img.icons8.com/fluency/48/microsoft-office-2019.png" alt="MS Office">
-                            <span>MS Office</span>
-                        </div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" loading="lazy"><span>Python</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg" alt="FastAPI" loading="lazy"><span>FastAPI</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" loading="lazy"><span>Git</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jupyter/jupyter-original.svg" alt="Jupyter" loading="lazy"><span>Jupyter</span></div>
+                        <div class="tech-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" alt="VS Code" loading="lazy"><span>VS Code</span></div>
+                        <div class="tech-item"><img src="https://cursor.sh/favicon.ico" alt="Cursor" loading="lazy" onerror="this.style.display='none'"><span>Cursor</span></div>
+                        <div class="tech-item"><img src="https://img.icons8.com/fluency/48/microsoft-office-2019.png" alt="MS Office" loading="lazy"><span>MS Office</span></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="contact section">
+    <!-- Contact -->
+    <section id="contact" class="section">
         <div class="container">
-            <div class="section-header" data-aos="fade-up">
+            <div class="section-header" data-reveal="fade-up">
                 <h2>Contact Me</h2>
                 <div class="underline"></div>
             </div>
             <div class="contact-content">
-                <div class="contact-info" data-aos="fade-right">
+                <div class="contact-info" data-reveal="fade-right">
                     <h3>Get In Touch</h3>
                     <p>Feel free to reach out for collaborations, questions, or just to say hello!</p>
                     <div class="contact-details">
                         <a href="mailto:siumahameed2003@gmail.com" class="contact-item">
-                            <i class="fas fa-envelope"></i>
+                            <i class="fas fa-envelope" aria-hidden="true"></i>
                             <div>
                                 <h4>Email</h4>
                                 <p>siumahameed2003@gmail.com</p>
                             </div>
                         </a>
                         <a href="https://www.linkedin.com/in/sium11/" class="contact-item" target="_blank" rel="noopener">
-                            <i class="fab fa-linkedin"></i>
+                            <i class="fab fa-linkedin" aria-hidden="true"></i>
                             <div>
                                 <h4>LinkedIn</h4>
                                 <p>linkedin.com/in/sium11</p>
                             </div>
                         </a>
                         <a href="https://github.com/siumahameed" class="contact-item" target="_blank" rel="noopener">
-                            <i class="fab fa-github"></i>
+                            <i class="fab fa-github" aria-hidden="true"></i>
                             <div>
                                 <h4>GitHub</h4>
                                 <p>github.com/siumahameed</p>
@@ -486,69 +348,110 @@
                         </a>
                     </div>
                 </div>
-                
-                <div class="contact-code" data-aos="fade-left">
-                    <div class="code-snippet-container">
-                        <div class="code-header">
-                            <span class="code-title">Python ML Code Sample</span>
-                            <div class="code-actions">
-                                <span class="code-dot red"></span>
-                                <span class="code-dot yellow"></span>
-                                <span class="code-dot green"></span>
+                <div class="contact-form-wrap" data-reveal="fade-left">
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-header">
+                            <span class="form-title">Send a Message</span>
+                            <div class="form-dots">
+                                <span class="form-dot red"></span>
+                                <span class="form-dot yellow"></span>
+                                <span class="form-dot green"></span>
                             </div>
                         </div>
-                        <pre><code class="language-python"><span class="comment"># Machine Learning Pipeline</span>
-<span class="keyword">import</span> numpy <span class="keyword">as</span> np
-<span class="keyword">from</span> sklearn.model_selection <span class="keyword">import</span> train_test_split
-<span class="keyword">from</span> sklearn.ensemble <span class="keyword">import</span> RandomForestClassifier
-<span class="keyword">from</span> sklearn.metrics <span class="keyword">import</span> accuracy_score
-
-<span class="comment"># Load and prepare data</span>
-X, y = load_data()
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=<span class="number">0.25</span>, random_state=<span class="number">42</span>
-)
-
-<span class="comment"># Train model</span>
-model = RandomForestClassifier(n_estimators=<span class="number">100</span>)
-<span class="function">model.fit</span>(X_train, y_train)
-
-<span class="comment"># Evaluate</span>
-y_pred = <span class="function">model.predict</span>(X_test)
-accuracy = <span class="function">accuracy_score</span>(y_test, y_pred)
-<span class="function">print</span>(<span class="string">f"Model accuracy: {accuracy:.2f}"</span>)
-                        </code></pre>
-                    </div>
+                        <div class="form-body">
+                            <div class="form-group">
+                                <label for="form-name" class="form-label">Name</label>
+                                <input type="text" id="form-name" name="name" class="form-input" placeholder="Your Name" required autocomplete="name">
+                                <span class="form-error" role="alert"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-email" class="form-label">Email</label>
+                                <input type="email" id="form-email" name="email" class="form-input" placeholder="your@email.com" required autocomplete="email">
+                                <span class="form-error" role="alert"></span>
+                            </div>
+                            <div class="form-group">
+                                <label for="form-message" class="form-label">Message</label>
+                                <textarea id="form-message" name="message" class="form-input form-textarea" placeholder="Tell me about your project or idea..." required rows="4"></textarea>
+                                <span class="form-error" role="alert"></span>
+                            </div>
+                            <button type="submit" class="btn primary-btn form-submit">
+                                <span class="form-submit-text">Send Message</span>
+                                <span class="form-submit-loading" aria-hidden="true"><i class="fas fa-spinner fa-spin"></i> Sending...</span>
+                            </button>
+                            <div class="form-success" role="status" aria-live="polite">
+                                <i class="fas fa-check-circle" aria-hidden="true"></i> Message sent successfully! I'll get back to you soon.
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Code Sample Section -->
+    <section class="code-section">
+        <div class="container">
+            <div class="code-sample-card" data-reveal="fade-up">
+                <div class="code-header">
+                    <span class="code-title">ml_pipeline.py</span>
+                    <div class="code-actions">
+                        <span class="code-dot red"></span>
+                        <span class="code-dot yellow"></span>
+                        <span class="code-dot green"></span>
+                    </div>
+                </div>
+                <pre><code><span class="code-comment"># Machine Learning Pipeline</span>
+<span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+<span class="code-keyword">from</span> sklearn.model_selection <span class="code-keyword">import</span> train_test_split
+<span class="code-keyword">from</span> sklearn.ensemble <span class="code-keyword">import</span> RandomForestClassifier
+<span class="code-keyword">from</span> sklearn.metrics <span class="code-keyword">import</span> accuracy_score
+
+<span class="code-comment"># Load and prepare data</span>
+X, y = load_data()
+X_train, X_test, y_train, y_test = train_test_split(
+    X, y, test_size=<span class="code-number">0.25</span>, random_state=<span class="code-number">42</span>
+)
+
+<span class="code-comment"># Train model</span>
+model = RandomForestClassifier(n_estimators=<span class="code-number">100</span>)
+<span class="code-func">model.fit</span>(X_train, y_train)
+
+<span class="code-comment"># Evaluate</span>
+y_pred = <span class="code-func">model.predict</span>(X_test)
+accuracy = <span class="code-func">accuracy_score</span>(y_test, y_pred)
+<span class="code-func">print</span>(<span class="code-string">f"Model accuracy: {accuracy:.2f}"</span>)</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Quote -->
     <section class="quotes-section">
         <div class="container">
-            <div class="quote-card" data-aos="fade-up">
-                <i class="fas fa-quote-left"></i>
+            <div class="quote-card" data-reveal="fade-up">
+                <i class="fas fa-quote-left" aria-hidden="true"></i>
                 <blockquote>Don't fit in. Stand out.<br>Stay you, but be more you.</blockquote>
             </div>
         </div>
     </section>
 
-    <div id="project-modal" class="modal">
-        <div class="modal-overlay"></div>
+    <!-- Project Modal -->
+    <div id="project-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <div class="modal-overlay" tabindex="-1"></div>
         <div class="modal-content">
-            <button class="modal-close" aria-label="Close"><i class="fas fa-times"></i></button>
+            <button class="modal-close" aria-label="Close modal"><i class="fas fa-times" aria-hidden="true"></i></button>
             <div class="modal-body">
-                <img src="" alt="" class="modal-img">
+                <img src="" alt="" class="modal-img" id="modal-img">
                 <div class="modal-info">
-                    <h2 class="modal-title"></h2>
+                    <h2 class="modal-title" id="modal-title"></h2>
                     <p class="modal-desc"></p>
                     <div class="modal-tags"></div>
-                    <a href="" class="modal-link btn primary-btn" target="_blank" rel="noopener"><i class="fab fa-github"></i> View Source Code</a>
+                    <a href="" class="modal-link btn primary-btn" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> <span>View Source Code</span></a>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
@@ -566,10 +469,10 @@ accuracy = <span class="function">accuracy_score</span>(y_test, y_pred)
                 </div>
                 <div class="footer-connect">
                     <h3>Connect</h3>
-                    <a href="https://github.com/siumahameed" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
-                    <a href="https://www.linkedin.com/in/sium11/" target="_blank" rel="noopener"><i class="fab fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://www.kaggle.com/siumahameedbhuiyain" target="_blank" rel="noopener"><i class="fab fa-kaggle"></i> Kaggle</a>
-                    <a href="mailto:siumahameed2003@gmail.com"><i class="fas fa-envelope"></i> Email</a>
+                    <a href="https://github.com/siumahameed" target="_blank" rel="noopener"><i class="fab fa-github" aria-hidden="true"></i> GitHub</a>
+                    <a href="https://www.linkedin.com/in/sium11/" target="_blank" rel="noopener"><i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn</a>
+                    <a href="https://www.kaggle.com/siumahameedbhuiyain" target="_blank" rel="noopener"><i class="fab fa-kaggle" aria-hidden="true"></i> Kaggle</a>
+                    <a href="mailto:siumahameed2003@gmail.com"><i class="fas fa-envelope" aria-hidden="true"></i> Email</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -578,6 +481,7 @@ accuracy = <span class="function">accuracy_score</span>(y_test, y_pred)
         </div>
     </footer>
 
+    <!-- Fixed buttons -->
     <button id="back-to-top" class="back-to-top" aria-label="Back to top">
         <i class="fas fa-arrow-up" aria-hidden="true"></i>
     </button>
@@ -585,12 +489,12 @@ accuracy = <span class="function">accuracy_score</span>(y_test, y_pred)
     <button id="music-toggle" class="music-toggle" aria-label="Play relaxing music" title="Play relaxing music">
         <i class="fas fa-music" aria-hidden="true"></i>
     </button>
-    <audio id="music-player" loop>
+    <audio id="music-player" loop preload="none">
         <source src="files/music.mp3" type="audio/mpeg">
     </audio>
 
-    <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
-    <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js" defer></script>
-    <script src="js/script.js" defer></script>
+    <!-- Scripts -->
+    <script src="js/projects.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
