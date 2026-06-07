@@ -55,7 +55,7 @@ export function Hero() {
           </div>
 
           <div className="flex items-center justify-center md:col-span-2 md:justify-end">
-            <div className="w-full max-w-sm card p-6">
+            <div className="w-full max-w-md card p-5">
               <div className="flex flex-col items-center text-center">
                 <div className="h-28 w-28 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
                   <img
@@ -67,17 +67,17 @@ export function Hero() {
                     }}
                   />
                 </div>
-                <div className="mt-4">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                <div className="mt-3">
+                  <h3 className="text-base font-semibold text-[var(--text-primary)]">
                     Sium Ahameed Bhuyan
                   </h3>
-                  <p className="text-sm text-[var(--text-secondary)]">
+                  <p className="text-xs text-[var(--text-secondary)]">
                     Jr. Machine Learning Engineer
                   </p>
                 </div>
               </div>
 
-              <div className="mt-6 space-y-4 border-t border-[var(--border)] pt-6">
+              <div className="mt-4 space-y-2 border-t border-[var(--border)] pt-4">
                 <DetailRow icon={
                   <svg className="mt-0.5 h-4 w-4 shrink-0 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
