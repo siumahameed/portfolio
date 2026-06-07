@@ -55,9 +55,9 @@ export function Hero() {
           </div>
 
           <div className="flex items-center justify-center md:col-span-2 md:justify-end">
-            <div className="w-full card p-4">
-              <div className="flex items-start gap-4">
-                <div className="h-24 w-24 shrink-0 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
+            <div className="w-full card p-4 md:p-6">
+              <div className="flex items-start gap-4 md:gap-5">
+                <div className="h-24 w-24 md:h-28 md:w-28 shrink-0 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
                   <img
                     src="/portfolio/images/profile.jpg.jpeg"
                     alt="Sium Ahameed"
@@ -68,13 +68,13 @@ export function Hero() {
                   />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <h3 className="text-base font-semibold text-[var(--text-primary)]">
+                  <h3 className="text-base md:text-lg font-semibold text-[var(--text-primary)]">
                     Sium Ahameed Bhuyan
                   </h3>
-                  <p className="text-xs text-[var(--text-secondary)]">
+                  <p className="text-xs md:text-sm text-[var(--text-secondary)]">
                     Jr. Machine Learning Engineer
                   </p>
-                  <div className="mt-2 space-y-1">
+                  <div className="mt-2 md:mt-3 space-y-1 md:space-y-1.5">
                     <DetailRow icon={
                       <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -90,7 +90,7 @@ export function Hero() {
                 </div>
               </div>
 
-              <div className="mt-3 grid grid-cols-2 gap-1.5 border-t border-[var(--border)] pt-3">
+              <div className="mt-3 md:mt-4 grid grid-cols-2 gap-1.5 md:gap-2 border-t border-[var(--border)] pt-3 md:pt-4">
                 <CompactRow icon={
                   <svg className="h-3.5 w-3.5 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                     <path strokeLinecap="round" strokeLinejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
