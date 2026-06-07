@@ -52,24 +52,22 @@ const proficiencies = [
   { label: "SQL", value: 90 },
 ];
 
-function RadarChart({
-  visible,
-}: {
-  visible: boolean;
-}) {
+function RadarChart({ visible }: { visible: boolean }) {
   const cx = 200, cy = 200, r = 130;
   const n = proficiencies.length;
   const slice = (2 * Math.PI) / n;
   const ringValues = [20, 40, 60, 80, 100];
 
   const segmentColors = [
-    "#3B82F6", // Blue        · Python (top)
-    "#8B5CF6", // Purple      · Machine Learning (upper-right)
-    "#14B8A6", // Teal        · Deep Learning (lower-right)
-    "#F59E0B", // Orange      · Data Analysis (bottom)
-    "#EF4444", // Red         · Statistics (lower-left)
-    "#EC4899", // Pink        · SQL (upper-left)
+    "#3B82F6",
+    "#8B5CF6",
+    "#14B8A6",
+    "#F59E0B",
+    "#EF4444",
+    "#EC4899",
   ];
+
+  const segmentLabels = ["Python", "ML", "DL", "Data Analysis", "Statistics", "SQL"];
 
   const angle = (i: number) => -Math.PI / 2 + i * slice;
 
@@ -103,88 +101,116 @@ function RadarChart({
 
   return (
     <svg viewBox="0 0 400 400" className="w-full max-w-[260px] mx-auto">
-      {/* Grid area fill */}
-      <polygon
-        points={gridRing(r)}
-        fill="var(--accent)"
-        opacity="0.08"
-      />
+      <defs>
+        {segmentColors.map((color, i) => (
+          <filter key={i} id={`glow-${i}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feFlood floodColor={color} floodOpacity="0.6" />
+            <feComposite in2="blur" operator="in" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        ))}
+        <radialGradient id="data-fill-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.02" />
+        </radialGradient>
+      </defs>
 
-      {/* Grid rings */}
-      {ringValues.map((v) => (
-        <polygon
-          key={v}
-          points={gridRing((v / 100) * r)}
-          fill="none"
-          stroke="var(--border)"
-          strokeWidth="0.8"
-          opacity="0.5"
-        />
-      ))}
+      <polygon points={gridRing(r)} fill="url(#data-fill-grad)" />
 
-      {/* Axis spokes */}
-      {Array.from({ length: n }, (_, i) => (
-        <line
-          key={i}
-          x1={cx}
-          y1={cy}
-          x2={axisEnd(i).split(",")[0]}
-          y2={axisEnd(i).split(",")[1]}
-          stroke="var(--border)"
-          strokeWidth="0.8"
-          opacity="0.4"
-        />
-      ))}
+      <g>
+        {ringValues.map((v) => (
+          <polygon
+            key={v}
+            points={gridRing((v / 100) * r)}
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+        ))}
+      </g>
 
-      {/* Colored data segments */}
-      {dp.map((p, i) => {
-        const next = dp[(i + 1) % n];
-        return (
+      <g>
+        {Array.from({ length: n }, (_, i) => (
           <line
             key={i}
-            x1={p.x}
-            y1={p.y}
-            x2={next.x}
-            y2={next.y}
-            stroke={segmentColors[i]}
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            style={{
-              opacity: visible ? 1 : 0,
-              transition: `opacity ${0.6 + i * 0.08}s ease-out`,
-            }}
+            x1={cx}
+            y1={cy}
+            x2={axisEnd(i).split(",")[0]}
+            y2={axisEnd(i).split(",")[1]}
+            stroke="var(--border)"
+            strokeWidth="0.8"
+            opacity="0.4"
           />
-        );
-      })}
+        ))}
+      </g>
 
-      {/* Data fill */}
+      <g>
+        {dp.map((p, i) => {
+          const next = dp[(i + 1) % n];
+          return (
+            <line
+              key={i}
+              x1={p.x}
+              y1={p.y}
+              x2={next.x}
+              y2={next.y}
+              stroke={segmentColors[i]}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter={`url(#glow-${i})`}
+              style={{
+                opacity: visible ? 1 : 0,
+                transition: `opacity ${0.6 + i * 0.08}s ease-out`,
+              }}
+            />
+          );
+        })}
+      </g>
+
       <polygon
         points={dpString}
         fill="var(--accent)"
         style={{
-          opacity: visible ? 0.08 : 0,
+          opacity: visible ? 0.12 : 0,
           transition: "opacity 0.8s ease-out",
         }}
       />
 
-      {/* Data nodes */}
       {dp.map((p, i) => (
-        <circle
-          key={i}
-          cx={p.x}
-          cy={p.y}
-          r="5"
-          fill={segmentColors[i]}
-          stroke="var(--bg-primary)"
-          strokeWidth="2"
-          style={{
-            opacity: visible ? 1 : 0,
-            transition: `opacity ${0.6 + i * 0.08}s ease-out`,
-          }}
-        />
+        <g key={i}>
+          <circle
+            cx={p.x}
+            cy={p.y}
+            r="6"
+            fill={segmentColors[i]}
+            stroke="var(--bg-primary)"
+            strokeWidth="2.5"
+            filter={`url(#glow-${i})`}
+            className={visible ? "radar-node-pulse" : ""}
+            style={{
+              animationDelay: `${0.6 + i * 0.08}s`,
+              opacity: visible ? 1 : 0,
+              transition: `opacity ${0.6 + i * 0.08}s ease-out`,
+            }}
+          />
+          <circle
+            cx={p.x}
+            cy={p.y}
+            r="14"
+            fill="transparent"
+            className="cursor-pointer"
+          >
+            <title>{`${segmentLabels[i]}: ${proficiencies[i].value}%`}</title>
+          </circle>
+        </g>
       ))}
 
-      {/* Outer skill labels */}
       {proficiencies.map((p, i) => {
         const pos = labelPos(i);
         return (
@@ -198,6 +224,10 @@ function RadarChart({
             fontSize="11"
             fontWeight="500"
             fontFamily="inherit"
+            style={{
+              opacity: visible ? 1 : 0,
+              transition: `opacity ${0.8 + i * 0.1}s ease-out`,
+            }}
           >
             {p.label}
           </text>
@@ -212,6 +242,15 @@ export function Skills() {
   const barsRef = useRef<HTMLDivElement>(null);
   const gridVisible = useInView(gridRef);
   const barsVisible = useInView(barsRef);
+
+  const segmentColors = [
+    "#3B82F6",
+    "#8B5CF6",
+    "#14B8A6",
+    "#F59E0B",
+    "#EF4444",
+    "#EC4899",
+  ];
 
   return (
     <Section id="skills">
@@ -239,10 +278,8 @@ export function Skills() {
               transition: `all 0.3s ease ${i * 60}ms`,
             }}
           >
-            {/* Top accent line */}
             <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-60" />
 
-            {/* Icon + Title */}
             <div className="mb-4 flex items-center gap-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[var(--accent-subtle)] text-[var(--accent)] transition-colors duration-200 group-hover:bg-[var(--accent)] group-hover:text-white">
                 {cat.icon}
@@ -252,7 +289,6 @@ export function Skills() {
               </h3>
             </div>
 
-            {/* Skills */}
             <div className="flex flex-wrap gap-1.5">
               {cat.skills.map((skill) => (
                 <span
@@ -267,7 +303,7 @@ export function Skills() {
         ))}
       </div>
 
-      {/* Proficiency Radar */}
+      {/* Proficiency Radar + Bars */}
       <div ref={barsRef} className="mt-8">
         <div className="mb-3 flex items-center gap-3">
           <div className="divider-accent" />
@@ -276,13 +312,52 @@ export function Skills() {
           </h3>
         </div>
         <div
-          className="card p-3 sm:p-4 flex justify-center"
+          className="card p-3 sm:p-5"
           style={{
             transform: barsVisible ? "translateY(0)" : "translateY(8px)",
             transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <RadarChart visible={barsVisible} />
+          <div className="grid gap-6 md:grid-cols-2 md:gap-8 items-center">
+            <RadarChart visible={barsVisible} />
+
+            <div className="space-y-3">
+              {proficiencies.map((p, i) => (
+                <div key={p.label}>
+                  <div className="flex items-center justify-between mb-1">
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="h-2.5 w-2.5 rounded-full"
+                        style={{ backgroundColor: segmentColors[i] }}
+                      />
+                      <span className="text-xs font-medium text-[var(--text-primary)]">
+                        {p.label}
+                      </span>
+                    </div>
+                    <span
+                      className="text-xs font-semibold tabular-nums"
+                      style={{
+                        color: segmentColors[i],
+                        opacity: barsVisible ? 1 : 0,
+                        transition: `opacity 0.5s ease-out ${0.3 + i * 0.1}s`,
+                      }}
+                    >
+                      {p.value}%
+                    </span>
+                  </div>
+                  <div className="proficiency-bar">
+                    <div
+                      className="h-full rounded-full skill-bar-fill"
+                      style={{
+                        width: barsVisible ? `${p.value}%` : "0%",
+                        backgroundColor: segmentColors[i],
+                      }}
+                    />
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </Section>
