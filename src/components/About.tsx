@@ -29,12 +29,12 @@ export function About() {
             I&apos;m a Statistics undergraduate at Dhaka College, but the
             classroom only explains so much. What really drives me is
             building things with data. Machine learning, deep learning, data
-            science — these aren&apos;t just subjects I study; they&apos;re how
+            science, these aren&apos;t just subjects I study. They&apos;re how
             I solve real problems.
           </p>
           <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base">
             My stats background means I don&apos;t treat models as black boxes.
-            Probability theory, inference, experimental design — these shape
+            Probability theory, inference, experimental design. These shape
             how I approach every project. I care about whether a model actually
             works in the real world, not just whether it scores well on a test
             set.
