@@ -55,8 +55,8 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
         scrolled
-          ? "border-b border-[var(--border)] bg-[var(--bg-primary)]/95 shadow-sm"
-          : "bg-transparent"
+          ? "border-b border-[var(--border)] bg-[var(--bg-primary)]/90 shadow-sm backdrop-blur-md"
+          : "bg-[var(--bg-primary)]/50 backdrop-blur-sm"
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between">

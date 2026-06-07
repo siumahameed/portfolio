@@ -26,24 +26,30 @@ export function About() {
       >
         <div className="lg:col-span-3">
           <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-            I&apos;m a Statistics undergraduate at Dhaka College with a deep
-            interest in machine learning, deep learning, and data science. My
-            academic background in statistics gives me a rigorous foundation in
-            probability theory, statistical inference, and experimental design —
-            skills I apply directly to every ML project I build.
+            I&apos;m a Statistics undergraduate at Dhaka College, but the
+            classroom only explains so much. What really drives me is
+            building things with data. Machine learning, deep learning, data
+            science — these aren&apos;t just subjects I study; they&apos;re how
+            I solve real problems.
           </p>
           <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base">
-            I started my journey into AI by exploring how data could be used to
-            make predictions and uncover hidden patterns. What began as curiosity
-            quickly turned into a commitment: I&apos;ve since completed over 36
-            projects spanning classification, regression, natural language
-            processing, exploratory data analysis, and full-stack AI
-            applications.
+            My stats background means I don&apos;t treat models as black boxes.
+            Probability theory, inference, experimental design — these shape
+            how I approach every project. I care about whether a model actually
+            works in the real world, not just whether it scores well on a test
+            set.
           </p>
           <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base">
-            I&apos;m currently seeking internship and research collaboration
-            opportunities where I can contribute to impactful ML systems and
-            continue growing as an engineer.
+            I got into AI because I wanted to find patterns that matter. Over
+            36 projects later, I&apos;ve built everything from text classifiers
+            to data analysis pipelines to full stack AI apps. Each one taught
+            me something new about turning messy data into something useful.
+          </p>
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base">
+            Right now I&apos;m looking for an internship or research
+            collaboration where I can work on real ML systems alongside people
+            who know more than me. I learn fastest when I&apos;m building
+            something that matters.
           </p>
         </div>
 
