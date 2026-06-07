@@ -21,8 +21,9 @@ jobs:
 
       - run: npm run build
 
-      - name: Deploy to gh-pages branch
+      - name: Create .nojekyll and deploy
         run: |
+          touch out/.nojekyll
           cd out
           git init
           git config user.name github-actions
