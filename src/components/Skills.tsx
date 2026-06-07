@@ -52,7 +52,12 @@ const proficiencies = [
   { label: "SQL", value: 90 },
 ];
 
-function CircularGauges({ visible }: { visible: boolean }) {
+function RadarChart({ visible }: { visible: boolean }) {
+  const cx = 200, cy = 200, r = 130;
+  const n = proficiencies.length;
+  const slice = (2 * Math.PI) / n;
+  const ringValues = [20, 40, 60, 80, 100];
+
   const segmentColors = [
     "#3B82F6",
     "#8B5CF6",
@@ -62,91 +67,173 @@ function CircularGauges({ visible }: { visible: boolean }) {
     "#EC4899",
   ];
 
-  const size = 90;
-  const stroke = 6;
-  const radius = (size - stroke) / 2;
-  const circ = 2 * Math.PI * radius;
+  const segmentLabels = ["Python", "ML", "DL", "Data Analysis", "Statistics", "SQL"];
+
+  const angle = (i: number) => -Math.PI / 2 + i * slice;
+
+  const gridRing = (radius: number) =>
+    Array.from({ length: n + 1 }, (_, i) => {
+      const a = angle(i);
+      return `${cx + radius * Math.cos(a)},${cy + radius * Math.sin(a)}`;
+    }).join(" ");
+
+  const axisEnd = (i: number) => {
+    const a = angle(i);
+    return `${cx + r * Math.cos(a)},${cy + r * Math.sin(a)}`;
+  };
+
+  const labelPos = (i: number) => {
+    const a = angle(i);
+    const lr = r + 28;
+    return {
+      x: cx + lr * Math.cos(a),
+      y: cy + lr * Math.sin(a),
+    };
+  };
+
+  const dp = proficiencies.map((p, i) => {
+    const a = angle(i);
+    const d = ((visible ? p.value : 0) / 100) * r;
+    return { x: cx + d * Math.cos(a), y: cy + d * Math.sin(a) };
+  });
+
+  const dpString = dp.map((p) => `${p.x},${p.y}`).join(" ");
 
   return (
-    <div className="grid grid-cols-3 gap-3 sm:gap-4 w-full max-w-[400px] mx-auto">
-      {proficiencies.map((p, i) => {
-        const offset = circ - (p.value / 100) * circ;
-        return (
-          <div key={p.label} className="flex flex-col items-center gap-1.5 group">
-            <svg
-              width={size}
-              height={size}
-              className="drop-shadow-[0_0_6px_rgba(0,0,0,0.15)]"
-            >
-              <defs>
-                <filter id={`cg-glow-${i}`}>
-                  <feGaussianBlur stdDeviation="2" result="blur" />
-                  <feFlood floodColor={segmentColors[i]} floodOpacity="0.5" />
-                  <feComposite in2="blur" operator="in" />
-                  <feMerge>
-                    <feMergeNode />
-                    <feMergeNode in="SourceGraphic" />
-                  </feMerge>
-                </filter>
-              </defs>
-              <circle
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                fill="none"
-                stroke="var(--border)"
-                strokeWidth={stroke}
-                opacity="0.4"
-              />
-              <circle
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                fill="none"
-                stroke={segmentColors[i]}
-                strokeWidth={stroke}
-                strokeLinecap="round"
-                strokeDasharray={circ}
-                strokeDashoffset={visible ? offset : circ}
-                filter={`url(#cg-glow-${i})`}
-                className="transition-all duration-[1.2s] ease-out"
-                style={{
-                  transform: "rotate(-90deg)",
-                  transformOrigin: "center",
-                  transitionDelay: `${i * 0.08}s`,
-                }}
-              />
-              <text
-                x="50%"
-                y="50%"
-                textAnchor="middle"
-                dominantBaseline="central"
-                fill="var(--text-primary)"
-                fontSize="16"
-                fontWeight="700"
-                fontFamily="inherit"
-                className="tabular-nums"
-                style={{
-                  opacity: visible ? 1 : 0,
-                  transition: `opacity 0.5s ease-out ${0.3 + i * 0.1}s`,
-                }}
-              >
-                {p.value}
-              </text>
-            </svg>
-            <span
-              className="text-[10px] font-medium text-[var(--text-secondary)] text-center leading-tight"
+    <svg viewBox="0 0 400 400" className="w-full max-w-[260px] mx-auto">
+      <defs>
+        {segmentColors.map((color, i) => (
+          <filter key={i} id={`glow-${i}`} x="-50%" y="-50%" width="200%" height="200%">
+            <feGaussianBlur stdDeviation="3" result="blur" />
+            <feFlood floodColor={color} floodOpacity="0.6" />
+            <feComposite in2="blur" operator="in" />
+            <feMerge>
+              <feMergeNode />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        ))}
+        <radialGradient id="data-fill-grad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="var(--accent)" stopOpacity="0.15" />
+          <stop offset="100%" stopColor="var(--accent)" stopOpacity="0.02" />
+        </radialGradient>
+      </defs>
+
+      <polygon points={gridRing(r)} fill="url(#data-fill-grad)" />
+
+      <g>
+        {ringValues.map((v) => (
+          <polygon
+            key={v}
+            points={gridRing((v / 100) * r)}
+            fill="none"
+            stroke="var(--border)"
+            strokeWidth="0.8"
+            opacity="0.5"
+          />
+        ))}
+      </g>
+
+      <g>
+        {Array.from({ length: n }, (_, i) => (
+          <line
+            key={i}
+            x1={cx}
+            y1={cy}
+            x2={axisEnd(i).split(",")[0]}
+            y2={axisEnd(i).split(",")[1]}
+            stroke="var(--border)"
+            strokeWidth="0.8"
+            opacity="0.4"
+          />
+        ))}
+      </g>
+
+      <g>
+        {dp.map((p, i) => {
+          const next = dp[(i + 1) % n];
+          return (
+            <line
+              key={i}
+              x1={p.x}
+              y1={p.y}
+              x2={next.x}
+              y2={next.y}
+              stroke={segmentColors[i]}
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              filter={`url(#glow-${i})`}
               style={{
                 opacity: visible ? 1 : 0,
-                transition: `opacity 0.5s ease-out ${0.4 + i * 0.1}s`,
+                transition: `opacity ${0.6 + i * 0.08}s ease-out`,
               }}
-            >
-              {p.label}
-            </span>
-          </div>
+            />
+          );
+        })}
+      </g>
+
+      <polygon
+        points={dpString}
+        fill="var(--accent)"
+        style={{
+          opacity: visible ? 0.12 : 0,
+          transition: "opacity 0.8s ease-out",
+        }}
+      />
+
+      {dp.map((p, i) => (
+        <g key={i}>
+          <circle
+            cx={p.x}
+            cy={p.y}
+            r="6"
+            fill={segmentColors[i]}
+            stroke="var(--bg-primary)"
+            strokeWidth="2.5"
+            filter={`url(#glow-${i})`}
+            className={visible ? "radar-node-pulse" : ""}
+            style={{
+              animationDelay: `${0.6 + i * 0.08}s`,
+              opacity: visible ? 1 : 0,
+              transition: `opacity ${0.6 + i * 0.08}s ease-out`,
+            }}
+          />
+          <circle
+            cx={p.x}
+            cy={p.y}
+            r="14"
+            fill="transparent"
+            className="cursor-pointer"
+          >
+            <title>{`${segmentLabels[i]}: ${proficiencies[i].value}%`}</title>
+          </circle>
+        </g>
+      ))}
+
+      {proficiencies.map((p, i) => {
+        const pos = labelPos(i);
+        return (
+          <text
+            key={p.label}
+            x={pos.x}
+            y={pos.y}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="var(--text-primary)"
+            fontSize="11"
+            fontWeight="500"
+            fontFamily="inherit"
+            style={{
+              opacity: visible ? 1 : 0,
+              transition: `opacity ${0.8 + i * 0.1}s ease-out`,
+            }}
+          >
+            {p.label}
+          </text>
         );
       })}
-    </div>
+    </svg>
   );
 }
 
@@ -222,7 +309,7 @@ export function Skills() {
             transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <CircularGauges visible={barsVisible} />
+          <RadarChart visible={barsVisible} />
         </div>
       </div>
     </Section>
