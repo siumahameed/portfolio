@@ -1,0 +1,151 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: #F4F4F7;
+    --bg-secondary: #EEEEF2;
+    --text-primary: #181A25;
+    --text-secondary: #5E6275;
+    --border: #DADAE0;
+    --accent: #4A4ED4;
+    --accent-hover: #3C3FB8;
+    --accent-subtle: rgba(74, 78, 212, 0.06);
+    --accent-border: #4A4ED4;
+    --card-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03);
+    --card-shadow-hover: 0 2px 16px rgba(0, 0, 0, 0.04);
+  }
+
+  .dark {
+    --bg-primary: #0B0D14;
+    --bg-secondary: #131620;
+    --text-primary: #E4E5EB;
+    --text-secondary: #878B9C;
+    --border: #1C1F2B;
+    --accent: #5B5FEE;
+    --accent-hover: #7C7FF5;
+    --accent-subtle: rgba(91, 95, 238, 0.08);
+    --accent-border: #5B5FEE;
+    --card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
+    --card-shadow-hover: 0 2px 16px rgba(0, 0, 0, 0.3);
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  ::selection {
+    background: var(--accent-subtle);
+    color: var(--accent);
+  }
+}
+
+@layer components {
+  .container-content {
+    @apply mx-auto max-w-[1200px] px-5 sm:px-8;
+  }
+
+  .section-padding {
+    @apply pt-14 pb-16 md:pt-16 md:pb-20;
+  }
+
+  .section-padding-compact {
+    @apply pt-16 pb-20 md:pt-24 md:pb-28;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-5 py-2.5 text-sm font-medium text-white transition-all duration-200 hover:bg-[var(--accent-hover)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--accent)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--bg-primary)];
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center gap-2 rounded-lg border-2 border-[var(--border)] px-5 py-2.5 text-sm font-medium text-[var(--text-primary)] transition-all duration-200 hover:bg-[var(--bg-secondary)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--border)];
+  }
+
+  .card {
+    @apply rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] shadow-sm;
+  }
+
+  .card-accent {
+    @apply card border-l-[3px] border-l-[var(--accent-border)];
+  }
+
+  .card-hover {
+    @apply card transition-all duration-200 hover:shadow-md;
+  }
+
+  .card-solid {
+    @apply rounded-lg bg-[var(--bg-secondary)] border border-[var(--border)];
+  }
+
+  .section-title {
+    @apply text-2xl font-bold tracking-tight text-[var(--text-primary)] sm:text-3xl;
+  }
+
+  .section-subtitle {
+    @apply mt-2 text-[var(--text-secondary)] max-w-xl;
+  }
+
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded-md bg-[var(--bg-secondary)] px-2.5 py-1 text-xs font-medium text-[var(--text-secondary)];
+    border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  }
+
+  .proficiency-bar {
+    @apply h-2 rounded-full bg-[var(--bg-secondary)] overflow-hidden;
+    border: 1px solid color-mix(in srgb, var(--border) 50%, transparent);
+  }
+
+  .proficiency-fill {
+    @apply h-full rounded-full bg-[var(--accent)] transition-all duration-1000 ease-out;
+  }
+
+  .nav-link {
+    @apply text-sm font-medium text-[var(--text-secondary)] transition-colors duration-200 hover:text-[var(--text-primary)] relative after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-0 after:bg-[var(--accent)] after:transition-all after:duration-200 hover:after:w-full;
+  }
+
+  .nav-link-active {
+    @apply text-[var(--text-primary)] after:w-full;
+  }
+
+  .stat-value {
+    @apply text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl;
+  }
+
+  .stat-label {
+    @apply mt-1 text-sm text-[var(--text-secondary)];
+  }
+
+  .divider-accent {
+    @apply w-12 h-[3px] bg-[var(--accent)] rounded-full;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
