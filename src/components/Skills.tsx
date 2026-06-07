@@ -102,7 +102,7 @@ function RadarChart({
   const dpString = dp.map((p) => `${p.x},${p.y}`).join(" ");
 
   return (
-    <svg viewBox="0 0 400 400" className="w-full max-w-[380px] mx-auto">
+    <svg viewBox="0 0 400 400" className="w-full max-w-[260px] mx-auto">
       {/* Grid area fill */}
       <polygon
         points={gridRing(r)}
@@ -268,15 +268,15 @@ export function Skills() {
       </div>
 
       {/* Proficiency Radar */}
-      <div ref={barsRef} className="mt-14">
-        <div className="mb-6 flex items-center gap-3">
+      <div ref={barsRef} className="mt-8">
+        <div className="mb-3 flex items-center gap-3">
           <div className="divider-accent" />
-          <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+          <h3 className="text-sm font-semibold text-[var(--text-primary)] uppercase tracking-wider">
             Proficiency
           </h3>
         </div>
         <div
-          className="card p-4 sm:p-6 flex justify-center"
+          className="card p-3 sm:p-4 flex justify-center"
           style={{
             transform: barsVisible ? "translateY(0)" : "translateY(8px)",
             transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
