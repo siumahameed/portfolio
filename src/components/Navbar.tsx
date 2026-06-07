@@ -21,7 +21,7 @@ export function Navbar() {
 
   const toggleMusic = () => {
     if (!audioRef.current) {
-      audioRef.current = new Audio("/files/music.mp3");
+      audioRef.current = new Audio("/portfolio/files/music.mp3");
       audioRef.current.loop = true;
     }
     if (playing) {

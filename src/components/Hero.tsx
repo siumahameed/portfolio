@@ -40,7 +40,7 @@ export function Hero() {
                 View Projects
               </a>
               <a
-                href="/files/CV.pdf"
+                href="/portfolio/files/CV.pdf"
                 download="Sium_Ahameed_CV.pdf"
                 className="btn-ghost gap-1.5"
               >
@@ -59,7 +59,7 @@ export function Hero() {
               <div className="flex flex-col items-center text-center">
                 <div className="h-28 w-28 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
                   <img
-                    src="/images/profile.jpg.jpeg"
+                    src="/portfolio/images/profile.jpg.jpeg"
                     alt="Sium Ahameed"
                     className="h-full w-full object-cover"
                     onError={(e) => {
