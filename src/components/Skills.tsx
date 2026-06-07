@@ -243,15 +243,6 @@ export function Skills() {
   const gridVisible = useInView(gridRef);
   const barsVisible = useInView(barsRef);
 
-  const segmentColors = [
-    "#3B82F6",
-    "#8B5CF6",
-    "#14B8A6",
-    "#F59E0B",
-    "#EF4444",
-    "#EC4899",
-  ];
-
   return (
     <Section id="skills">
       <div className="mb-12">
@@ -303,7 +294,7 @@ export function Skills() {
         ))}
       </div>
 
-      {/* Proficiency Radar + Bars */}
+      {/* Proficiency Radar */}
       <div ref={barsRef} className="mt-8">
         <div className="mb-3 flex items-center gap-3">
           <div className="divider-accent" />
@@ -312,52 +303,13 @@ export function Skills() {
           </h3>
         </div>
         <div
-          className="card p-3 sm:p-5"
+          className="card p-4 sm:p-6 flex justify-center"
           style={{
             transform: barsVisible ? "translateY(0)" : "translateY(8px)",
             transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
           }}
         >
-          <div className="grid gap-6 md:grid-cols-2 md:gap-8 items-center">
-            <RadarChart visible={barsVisible} />
-
-            <div className="space-y-3">
-              {proficiencies.map((p, i) => (
-                <div key={p.label}>
-                  <div className="flex items-center justify-between mb-1">
-                    <div className="flex items-center gap-2">
-                      <span
-                        className="h-2.5 w-2.5 rounded-full"
-                        style={{ backgroundColor: segmentColors[i] }}
-                      />
-                      <span className="text-xs font-medium text-[var(--text-primary)]">
-                        {p.label}
-                      </span>
-                    </div>
-                    <span
-                      className="text-xs font-semibold tabular-nums"
-                      style={{
-                        color: segmentColors[i],
-                        opacity: barsVisible ? 1 : 0,
-                        transition: `opacity 0.5s ease-out ${0.3 + i * 0.1}s`,
-                      }}
-                    >
-                      {p.value}%
-                    </span>
-                  </div>
-                  <div className="proficiency-bar">
-                    <div
-                      className="h-full rounded-full skill-bar-fill"
-                      style={{
-                        width: barsVisible ? `${p.value}%` : "0%",
-                        backgroundColor: segmentColors[i],
-                      }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
+          <RadarChart visible={barsVisible} />
         </div>
       </div>
     </Section>
