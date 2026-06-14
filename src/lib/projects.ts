@@ -120,7 +120,7 @@ export const projectsData: Project[] = [
     title: "StatWise",
     desc: "Automated statistical reporting platform for SMEs — upload Excel/CSV data, get comprehensive analysis with descriptive stats, trend analysis, forecasting, and downloadable PDF reports.",
     tags: ["FastAPI", "scikit-learn", "pandas", "PostgreSQL", "Tailwind CSS"],
-    live: "https://statwise-k9vn.onrender.com/",
+    live: "https://statwise-te5z.onrender.com/",
     github: "https://github.com/siumahameed/ml_projects/tree/main/submarine_sonar_project",
   },
 ];
