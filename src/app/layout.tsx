@@ -19,11 +19,11 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Sium Ahameed — Machine Learning Engineer",
+  title: "Sium Ahameed — Machine Learning Enthusiast",
   description:
     "Statistics undergraduate building intelligent ML solutions. Portfolio of Sium Ahameed — machine learning, deep learning, and data science projects.",
   openGraph: {
-    title: "Sium Ahameed — Machine Learning Engineer",
+    title: "Sium Ahameed — Machine Learning Enthusiast",
     description:
       "Statistics undergraduate building intelligent ML solutions. Explore projects in machine learning, deep learning, and data analysis.",
     url: "https://siumahameed.github.io/portfolio/",
@@ -33,7 +33,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sium Ahameed — Machine Learning Engineer",
+    title: "Sium Ahameed — Machine Learning Enthusiast",
     description:
       "Statistics undergraduate building intelligent ML solutions.",
   },

@@ -26,7 +26,7 @@ export function Hero() {
               Sium Ahameed
             </h1>
             <p className="mt-4 text-lg text-[var(--text-secondary)] sm:text-xl">
-              Jr. Machine Learning Engineer
+              Machine Learning Enthusiast
             </p>
             <p className="mt-6 max-w-lg text-[var(--text-secondary)] leading-relaxed">
               Statistics undergraduate with a strong foundation in statistical
@@ -72,7 +72,7 @@ export function Hero() {
                     Sium Ahameed Bhuyan
                   </h3>
                   <p className="text-xs md:text-sm text-[var(--text-secondary)]">
-                    Jr. Machine Learning Engineer
+                    Machine Learning Enthusiast
                   </p>
                   <div className="mt-2 md:mt-3 space-y-1 md:space-y-1.5">
                     <DetailRow icon={
