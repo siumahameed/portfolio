@@ -25,27 +25,27 @@ export function About() {
         }}
       >
         <div className="lg:col-span-3 max-w-prose">
-          <p className="text-[var(--text-secondary)] leading-relaxed text-base text-pretty">
+          <p className="text-[var(--text-secondary)] leading-relaxed text-base text-justify">
             I&apos;m a Statistics undergraduate at Dhaka College, but the
             classroom only explains so much. What really drives me is
             building things with data. Machine learning, deep learning, data
             science, these aren&apos;t just subjects I study. They&apos;re how
             I solve real problems.
           </p>
-          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-pretty">
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-justify">
             My stats background means I don&apos;t treat models as black boxes.
             Probability theory, inference, experimental design. These shape
             how I approach every project. I care about whether a model actually
             works in the real world, not just whether it scores well on a test
             set.
           </p>
-          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-pretty">
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-justify">
             I got into AI because I wanted to find patterns that matter. Over
             36 projects later, I&apos;ve built everything from text classifiers
             to data analysis pipelines to full stack AI apps. Each one taught
             me something new about turning messy data into something useful.
           </p>
-          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-pretty">
+          <p className="mt-4 text-[var(--text-secondary)] leading-relaxed text-base text-justify">
             Right now I&apos;m looking for an internship or research
             collaboration where I can work on real ML systems alongside people
             who know more than me. I learn fastest when I&apos;m building
