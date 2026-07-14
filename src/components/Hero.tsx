@@ -83,57 +83,8 @@ export function Hero() {
 
           </div>
 
-          <div className="relative flex items-center justify-center md:col-span-2 md:justify-end">
-            {/* Decorative mockup card (background) */}
-            <div
-              className="absolute right-[5%] top-[-20px] hidden w-full max-w-[320px] overflow-hidden rounded-xl border border-[var(--border)] opacity-30 md:block"
-              style={{
-                background: "rgba(11, 13, 20, 0.85)",
-                boxShadow: "0 8px 40px rgba(0,0,0,0.35)",
-                zIndex: 0,
-              }}
-            >
-              <div className="flex items-center gap-2 border-b border-[var(--border)] px-3 py-2">
-                <span className="h-2 w-2 rounded-full bg-red-400" />
-                <span className="h-2 w-2 rounded-full bg-yellow-400" />
-                <span className="h-2 w-2 rounded-full bg-green-400" />
-                <span className="ml-auto text-[9px] font-medium text-[var(--text-secondary)]">&#10003; Analyzed</span>
-              </div>
-              <div className="space-y-2 p-3">
-                <div className="flex items-center justify-around rounded-lg border border-[var(--border)] bg-[var(--bg-primary)]/30 p-2">
-                  {[
-                    { val: "918", lbl: "Rows" },
-                    { val: "12", lbl: "Columns" },
-                    { val: "0.87", lbl: "Correlation" },
-                    { val: "94%", lbl: "Accuracy" },
-                  ].map((s, i) => (
-                    <div key={i} className="text-center">
-                      <div className="text-xs font-bold text-[var(--text-primary)]" style={{ fontFamily: "JetBrains Mono, monospace" }}>{s.val}</div>
-                      <div className="text-[7px] uppercase tracking-wider text-[var(--text-secondary)]">{s.lbl}</div>
-                    </div>
-                  ))}
-                </div>
-                <svg viewBox="0 0 280 80" className="h-12 w-full" preserveAspectRatio="xMidYMid meet">
-                  <defs>
-                    <linearGradient id="mockGrad" x1="0" y1="0" x2="0" y2="1">
-                      <stop offset="0%" stopColor="rgba(91,95,238,0.2)" />
-                      <stop offset="100%" stopColor="rgba(91,95,238,0)" />
-                    </linearGradient>
-                  </defs>
-                  <polyline points="10,65 50,45 90,52 130,25 170,38 210,18 250,30 275,12" fill="none" stroke="rgba(91,95,238,0.4)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-                  <polyline points="10,65 50,45 90,52 130,25 170,38 210,18 250,30 275,12" fill="url(#mockGrad)" stroke="none" />
-                </svg>
-                <div className="flex gap-1">
-                  {["Descriptive Stats", "Trend Analysis", "PDF Report"].map((t, i) => (
-                    <span key={i} className="rounded-md border border-[var(--border)] bg-[var(--bg-primary)]/30 px-2 py-0.5 text-[8px] text-[var(--text-secondary)]">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            <div className="relative w-full card p-4 md:p-6" style={{ zIndex: 1 }}>
+          <div className="flex items-center justify-center md:col-span-2 md:justify-end">
+            <div className="w-full card p-4 md:p-6">
               <div className="flex items-start gap-4 md:gap-5">
                 <div className="h-24 w-24 md:h-28 md:w-28 shrink-0 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
                   <img
