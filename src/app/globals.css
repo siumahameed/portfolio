@@ -15,7 +15,7 @@
     --accent-border: #4A4ED4;
     --card-shadow: 0 0 0 1px rgba(0, 0, 0, 0.03);
     --card-shadow-hover: 0 2px 16px rgba(0, 0, 0, 0.04);
-    --grid-line: rgba(0, 0, 0, 0.04);
+    --grid-line: rgba(0, 0, 0, 0.025);
   }
 
   .dark {
