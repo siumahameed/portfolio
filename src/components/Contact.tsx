@@ -1,7 +1,7 @@
 "use client";
 
 import { Section } from "./Section";
-import { useRef } from "react";
+import { useRef, useState, FormEvent } from "react";
 import { useInView } from "@/lib/useInView";
 
 const links = [
@@ -50,46 +50,130 @@ const links = [
 export function Contact() {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref);
+  const [sent, setSent] = useState(false);
+
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const form = e.currentTarget;
+    const data = new FormData(form);
+    const name = data.get("name") as string;
+    const email = data.get("email") as string;
+    const subject = data.get("subject") as string;
+    const message = data.get("message") as string;
+    const body = `From: ${name} (${email})\n\n${message}`;
+    const mailto = `mailto:siumahameed2003@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailto;
+    setSent(true);
+  };
 
   return (
     <Section id="contact">
       <div className="mb-12">
-        <h2 className="section-title">Let&apos;s Connect</h2>
+        <h2 className="section-title">Let&apos;s Collaborate</h2>
         <p className="section-subtitle mt-3 max-w-lg">
-          I&apos;m always interested in discussing AI, machine learning, research
-          opportunities, and collaborative projects.
+          Have a project idea, research collaboration, or just want to talk AI?
+          I&apos;d love to hear from you.
         </p>
       </div>
 
       <div
         ref={ref}
-        className="grid gap-4 sm:grid-cols-2"
+        className="grid gap-8 md:grid-cols-5 md:gap-12"
         style={{
           transform: isVisible ? "translateY(0)" : "translateY(8px)",
           transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
         }}
       >
-        {links.map((link) => (
-          <a
-            key={link.label}
-            href={link.href}
-            target={link.href.startsWith("mailto:") ? undefined : "_blank"}
-            rel={link.href.startsWith("mailto:") ? undefined : "noopener"}
-            className="card-hover group flex items-center gap-4 p-5"
-          >
-            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--accent)]/20 bg-[var(--accent-subtle)] text-[var(--accent)]">
-              {link.icon}
+        {/* Form */}
+        <div className="md:col-span-3">
+          {sent ? (
+            <div className="card flex flex-col items-center gap-4 p-10 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-full bg-[var(--accent-subtle)] text-[var(--accent)]">
+                <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-lg font-semibold text-[var(--text-primary)]">Message Sent!</h3>
+              <p className="text-sm text-[var(--text-secondary)]">Thanks for reaching out. I&apos;ll get back to you soon.</p>
             </div>
-            <div className="min-w-0">
-              <p className="text-sm font-medium text-[var(--text-primary)]">
-                {link.label}
-              </p>
-              <p className="truncate text-xs text-[var(--text-secondary)]">
-                {link.value}
-              </p>
-            </div>
-          </a>
-        ))}
+          ) : (
+            <form onSubmit={handleSubmit} className="card space-y-4 p-6 md:p-8">
+              <div className="grid gap-4 sm:grid-cols-2">
+                <div>
+                  <label htmlFor="name" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">Name</label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
+                    placeholder="Your name"
+                  />
+                </div>
+                <div>
+                  <label htmlFor="email" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">Email</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
+                    placeholder="your@email.com"
+                  />
+                </div>
+              </div>
+              <div>
+                <label htmlFor="subject" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">Subject</label>
+                <input
+                  id="subject"
+                  name="subject"
+                  type="text"
+                  required
+                  className="w-full rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
+                  placeholder="What's this about?"
+                />
+              </div>
+              <div>
+                <label htmlFor="message" className="mb-1.5 block text-xs font-medium uppercase tracking-wider text-[var(--text-secondary)]">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  required
+                  className="w-full resize-none rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] px-4 py-2.5 text-sm text-[var(--text-primary)] outline-none transition focus:border-[var(--accent)] focus:ring-1 focus:ring-[var(--accent)]"
+                  placeholder="Tell me about your project or idea..."
+                />
+              </div>
+              <button type="submit" className="btn-primary w-full justify-center py-3">
+                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6 12L3.269 3.126A59.768 59.768 0 0121.485 12 59.77 59.77 0 013.27 20.876L5.999 12zm0 0h7.5" />
+                </svg>
+                Send Message
+              </button>
+            </form>
+          )}
+        </div>
+
+        {/* Links */}
+        <div className="flex flex-col gap-3 md:col-span-2 md:justify-center">
+          {links.map((link) => (
+            <a
+              key={link.label}
+              href={link.href}
+              target={link.href.startsWith("mailto:") ? undefined : "_blank"}
+              rel={link.href.startsWith("mailto:") ? undefined : "noopener"}
+              className="card-hover group flex items-center gap-4 p-5"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-[var(--accent)]/20 bg-[var(--accent-subtle)] text-[var(--accent)]">
+                {link.icon}
+              </div>
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-[var(--text-primary)]">{link.label}</p>
+                <p className="truncate text-xs text-[var(--text-secondary)]">{link.value}</p>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     </Section>
   );
