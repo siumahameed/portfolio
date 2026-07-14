@@ -18,7 +18,7 @@ export function Hero() {
         style={{
           width: "800px",
           height: "600px",
-          background: "radial-gradient(ellipse, rgba(91, 95, 238, 0.12) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse, rgba(91, 95, 238, 0.06) 0%, transparent 70%)",
         }}
       />
       {/* Background Orb */}
@@ -27,7 +27,7 @@ export function Hero() {
         style={{
           width: "300px",
           height: "300px",
-          background: "radial-gradient(circle, rgba(91, 95, 238, 0.06) 0%, transparent 70%)",
+          background: "radial-gradient(circle, rgba(91, 95, 238, 0.03) 0%, transparent 70%)",
         }}
       />
       <div className="container-content w-full">
