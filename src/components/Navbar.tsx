@@ -4,11 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { useTheme } from "./ThemeProvider";
 
 const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#workflow", label: "Workflow" },
-  { href: "#contact", label: "Contact" },
+  { href: "/portfolio/#about", label: "About" },
+  { href: "/portfolio/#skills", label: "Skills" },
+  { href: "/portfolio/#projects", label: "Projects" },
+  { href: "/portfolio/#workflow", label: "Workflow" },
+  { href: "/portfolio/#contact", label: "Contact" },
   { href: "/portfolio/blog", label: "Blog" },
 ];
 
@@ -62,7 +62,7 @@ export function Navbar() {
     >
       <div className="container-content flex h-16 items-center justify-between">
         <a
-          href="#"
+          href="/portfolio/"
           className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--text-primary)]"
         >
           Sium Ahameed Bhuyan
@@ -74,7 +74,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               className={`nav-link ${
-                activeSection === link.href.slice(1) ? "nav-link-active" : ""
+                link.href.includes("#") && activeSection === link.href.split("#")[1] ? "nav-link-active" : ""
               }`}
             >
               {link.label}
