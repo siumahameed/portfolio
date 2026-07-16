@@ -19,6 +19,22 @@ export function Navbar() {
   const [playing, setPlaying] = useState(false);
   const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, toggle } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  const handleNav = (href: string) => {
+    setMobileOpen(false);
+    if (href.includes("#")) {
+      const sectionId = href.split("#")[1];
+      const isHome = window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio";
+      if (isHome) {
+        const el = document.getElementById(sectionId);
+        if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
+      }
+    }
+    window.location.href = href;
+  };
 
   const toggleMusic = () => {
     if (!audioRef.current) {
@@ -61,24 +77,24 @@ export function Navbar() {
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between">
-        <a
-          href="/portfolio/"
-          className="text-sm sm:text-lg font-semibold tracking-tight text-[var(--text-primary)]"
+        <button
+          onClick={() => handleNav("/portfolio/")}
+          className="text-left text-sm sm:text-lg font-semibold tracking-tight text-[var(--text-primary)]"
         >
           Sium Ahameed Bhuyan
-        </a>
+        </button>
 
         <nav className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
-            <a
+            <button
               key={link.href}
-              href={link.href}
-              className={`nav-link ${
-                link.href.includes("#") && activeSection === link.href.split("#")[1] ? "nav-link-active" : ""
+              onClick={() => handleNav(link.href)}
+              className={`nav-link text-left ${
+                mounted && link.href.includes("#") && activeSection === link.href.split("#")[1] ? "nav-link-active" : ""
               }`}
             >
               {link.label}
-            </a>
+            </button>
           ))}
 
           <button
@@ -150,14 +166,13 @@ export function Navbar() {
         <nav className="border-t border-[var(--border)] bg-[var(--bg-primary)] md:hidden">
           <div className="container-content flex flex-col gap-3 py-4">
             {navLinks.map((link) => (
-              <a
+              <button
                 key={link.href}
-                href={link.href}
-                onClick={() => setMobileOpen(false)}
-                className="text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+                onClick={() => handleNav(link.href)}
+                className="text-left text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
               >
                 {link.label}
-              </a>
+              </button>
             ))}
             <button
               onClick={toggleMusic}
