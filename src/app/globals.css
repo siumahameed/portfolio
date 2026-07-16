@@ -30,7 +30,7 @@
     --accent-border: #5B5FEE;
     --card-shadow: 0 0 0 1px rgba(255, 255, 255, 0.02);
     --card-shadow-hover: 0 2px 16px rgba(0, 0, 0, 0.3);
-    --grid-line: rgba(255, 255, 255, 0.015);
+    --grid-line: rgba(255, 255, 255, 0.005);
   }
 
   html {
