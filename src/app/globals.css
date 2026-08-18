@@ -10,8 +10,8 @@
     --text-primary: #09090B;
     --text-secondary: #71717A;
     --text-tertiary: #A1A1AA;
-    --border: rgba(0, 0, 0, 0.06);
-    --border-hover: rgba(0, 0, 0, 0.1);
+    --border: rgba(0, 0, 0, 0.1);
+    --border-hover: rgba(0, 0, 0, 0.16);
     --accent: #5B5FEE;
     --accent-hover: #4B4FD6;
     --accent-subtle: rgba(91, 95, 238, 0.12);
