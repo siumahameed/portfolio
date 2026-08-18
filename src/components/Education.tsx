@@ -1,8 +1,6 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "@/lib/useInView";
-import { motion } from "framer-motion";
+import { Reveal } from "@/lib/Reveal";
 import { GraduationCap } from "lucide-react";
 
 const relevantAreas = [
@@ -11,27 +9,15 @@ const relevantAreas = [
 ];
 
 export function Education() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
-
   return (
     <section className="section-padding">
-      <div ref={ref} className="container-content">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3 }}
-        >
+      <div className="container-content">
+        <Reveal>
           <p className="section-label mb-3">EDUCATION</p>
           <h2 className="section-title">Academic Foundation</h2>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          className="mt-10 max-w-2xl"
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3, delay: 0.05 }}
-        >
+        <Reveal delay={50} className="mt-10 max-w-2xl">
           <div className="card">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]">
@@ -55,7 +41,7 @@ export function Education() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

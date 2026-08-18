@@ -12,9 +12,12 @@ export function BackgroundSystem() {
     <>
       <AmbientGlow />
       <TechnicalGrid />
-      <DataNetwork />
-      <StatisticalMotifs />
-      <MathFormulas />
+      {/* Animated SVG layers are skipped on small screens for mobile performance */}
+      <div className="hidden md:block">
+        <DataNetwork />
+        <StatisticalMotifs />
+        <MathFormulas />
+      </div>
       <CursorSpotlight />
     </>
   );

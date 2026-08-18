@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useRef, useMemo } from "react";
-import { useInView } from "@/lib/useInView";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useMemo } from "react";
+import { Reveal } from "@/lib/Reveal";
 import { projectsData } from "@/lib/projects";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/lib/icons";
@@ -17,8 +16,6 @@ const filters = [
 
 export function Projects() {
   const [activeFilter, setActiveFilter] = useState<string>("all");
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
 
   const filtered = useMemo(
     () =>
@@ -33,56 +30,42 @@ export function Projects() {
 
   return (
     <section id="projects" className="section-padding">
-      <div ref={ref} className="container-content">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3 }}
-        >
+      <div className="container-content">
+        <Reveal>
           <p className="section-label mb-3">FEATURED WORK</p>
           <h2 className="section-title">Projects</h2>
           <p className="section-subtitle">
             Selected projects across machine learning, data analysis, and applications.
           </p>
-        </motion.div>
+        </Reveal>
 
         {/* Filters */}
-        <motion.div
-          className="mt-8 mb-10 flex flex-wrap gap-2"
-          initial={{ opacity: 0, y: 8 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.25, delay: 0.05 }}
-          role="group"
-          aria-label="Filter projects by category"
-        >
-          {filters.map((f) => (
-            <button
-              key={f.key}
-              onClick={() => setActiveFilter(f.key)}
-              aria-pressed={activeFilter === f.key}
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
-                activeFilter === f.key
-                  ? "bg-[var(--accent)] text-white"
-                  : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
-              }`}
-            >
-              {f.label}
-            </button>
-          ))}
-        </motion.div>
+        <Reveal delay={50} className="mt-8 mb-10 flex flex-wrap gap-2" style={{}}>
+          <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
+            {filters.map((f) => (
+              <button
+                key={f.key}
+                onClick={() => setActiveFilter(f.key)}
+                aria-pressed={activeFilter === f.key}
+                className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                  activeFilter === f.key
+                    ? "bg-[var(--accent)] text-white"
+                    : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
+                }`}
+              >
+                {f.label}
+              </button>
+            ))}
+          </div>
+        </Reveal>
 
         {/* Featured Projects - Large cards */}
         {featured.length > 0 && (
           <div className="space-y-4 mb-12">
             {featured.map((project, i) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 16 }}
-                animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.3, delay: 0.05 + i * 0.04 }}
-              >
+              <Reveal key={project.slug} delay={50 + i * 40}>
                 <FeaturedProjectCard project={project} index={i} />
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         )}
@@ -97,14 +80,9 @@ export function Projects() {
             </div>
             <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {archive.map((project, i) => (
-                <motion.div
-                  key={project.slug}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.25, delay: 0.06 + i * 0.03 }}
-                >
+                <Reveal key={project.slug} delay={60 + i * 30}>
                   <ArchiveProjectCard project={project} />
-                </motion.div>
+                </Reveal>
               ))}
             </div>
           </div>

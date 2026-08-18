@@ -1,8 +1,7 @@
 "use client";
 
-import { useRef, useMemo, useEffect, useState } from "react";
-import { useInView } from "@/lib/useInView";
-import { motion } from "framer-motion";
+import { useMemo, useEffect, useState } from "react";
+import { Reveal } from "@/lib/Reveal";
 import { ExternalLink } from "lucide-react";
 import { GithubIcon } from "@/lib/icons";
 
@@ -21,8 +20,6 @@ interface GitHubStats {
 }
 
 export function GitHubActivity() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
   const [stats, setStats] = useState<GitHubStats>({
     repos: null,
     followers: null,
@@ -98,22 +95,13 @@ export function GitHubActivity() {
 
   return (
     <section className="section-padding">
-      <div ref={ref} className="container-content">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3 }}
-        >
+      <div className="container-content">
+        <Reveal>
           <p className="section-label mb-3">OPEN SOURCE</p>
           <h2 className="section-title">GitHub Activity</h2>
-        </motion.div>
+        </Reveal>
 
-        <motion.div
-          className="mt-10"
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3, delay: 0.05 }}
-        >
+        <Reveal delay={50} className="mt-10">
           <div className="card">
             <div className="mb-6 overflow-x-auto scrollbar-hide">
               <p className="text-xs font-mono text-[var(--text-tertiary)] mb-3">
@@ -175,7 +163,7 @@ export function GitHubActivity() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );

@@ -1,29 +1,20 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "@/lib/useInView";
-import { motion } from "framer-motion";
+import { Reveal } from "@/lib/Reveal";
 import { experienceData } from "@/lib/experience";
 import { Briefcase } from "lucide-react";
 
 export function Experience() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
-
   return (
     <section id="experience" className="section-padding">
-      <div ref={ref} className="container-content">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3 }}
-        >
+      <div className="container-content">
+        <Reveal>
           <p className="section-label mb-3">EXPERIENCE</p>
           <h2 className="section-title">Where I&apos;ve Contributed</h2>
           <p className="section-subtitle">
             Leadership and collaborative roles that shaped how I approach problems.
           </p>
-        </motion.div>
+        </Reveal>
 
         <div className="mt-10 relative">
           {/* Timeline line */}
@@ -31,13 +22,7 @@ export function Experience() {
 
           <div className="space-y-6 md:space-y-8">
             {experienceData.map((exp, i) => (
-              <motion.div
-                key={exp.id}
-                className="relative flex gap-4 md:gap-8"
-                initial={{ opacity: 0, x: -12 }}
-                animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
-              >
+              <Reveal key={exp.id} direction="x" delay={50 + i * 50} className="relative flex gap-4 md:gap-8">
                 {/* Timeline dot */}
                 <div className="relative z-10 flex h-8 w-8 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]">
                   <Briefcase className="h-3.5 w-3.5 md:h-4 md:w-4 text-[var(--accent)]" />
@@ -68,7 +53,7 @@ export function Experience() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </Reveal>
             ))}
           </div>
         </div>

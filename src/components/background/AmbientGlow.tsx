@@ -5,7 +5,7 @@ export function AmbientGlow() {
     <div className="pointer-events-none fixed inset-0 z-0" aria-hidden="true">
       {/* Hero area - upper right, strongest */}
       <div
-        className="absolute"
+        className="glow-1 absolute"
         style={{
           top: "-10%",
           right: "-5%",
@@ -13,13 +13,12 @@ export function AmbientGlow() {
           height: "60%",
           background:
             "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)",
-          filter: "blur(100px)",
         }}
       />
 
-      {/* Projects area - left side, medium */}
+      {/* Projects area - left side, medium (desktop only) */}
       <div
-        className="absolute"
+        className="glow-2 absolute hidden md:block"
         style={{
           top: "30%",
           left: "-10%",
@@ -27,13 +26,12 @@ export function AmbientGlow() {
           height: "50%",
           background:
             "radial-gradient(ellipse at center, var(--accent-subtle) 0%, transparent 70%)",
-          filter: "blur(120px)",
         }}
       />
 
-      {/* Workflow area - center, subtle */}
+      {/* Workflow area - center, subtle (desktop only) */}
       <div
-        className="absolute"
+        className="glow-3 absolute hidden md:block"
         style={{
           top: "50%",
           left: "25%",
@@ -41,13 +39,12 @@ export function AmbientGlow() {
           height: "40%",
           background:
             "radial-gradient(ellipse at center, var(--accent-subtle) 0%, transparent 70%)",
-          filter: "blur(140px)",
         }}
       />
 
       {/* Contact area - bottom center, second strongest */}
       <div
-        className="absolute"
+        className="glow-4 absolute"
         style={{
           bottom: "-5%",
           left: "20%",
@@ -55,7 +52,6 @@ export function AmbientGlow() {
           height: "60%",
           background:
             "radial-gradient(ellipse at center, var(--accent-glow) 0%, transparent 70%)",
-          filter: "blur(110px)",
         }}
       />
     </div>

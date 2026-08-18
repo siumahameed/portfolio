@@ -3,7 +3,6 @@
 import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "./ThemeProvider";
 import { Menu, X, Sun, Moon, FileText } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
   { href: "/portfolio/#about", label: "About" },
@@ -130,52 +129,43 @@ export function Navbar() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            id="mobile-menu"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2, ease: "easeInOut" }}
-            className="border-t border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-xl md:hidden overflow-hidden"
-          >
-            <div className="container-content flex flex-col gap-1 py-4">
-              {navLinks.map((link, i) => {
-                const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
-                return (
-                  <motion.button
-                    key={link.href}
-                    initial={{ opacity: 0, x: -12 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.05 }}
-                    onClick={() => handleNav(link.href)}
-                    className={`text-left text-sm font-medium py-3 px-3 transition-colors ${
-                      isActive
-                        ? "text-[var(--accent)]"
-                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
-                    }`}
-                  >
-                    {link.label}
-                  </motion.button>
-                );
-              })}
-              <div className="h-px bg-[var(--border)] my-2" />
-              <motion.a
-                initial={{ opacity: 0, x: -12 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: navLinks.length * 0.05 }}
-                href="/portfolio/files/CV.pdf"
-                download="Sium_Ahameed_CV.pdf"
-                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        className={`md:hidden overflow-hidden border-t transition-all duration-200 ease-in-out ${
+          mobileOpen
+            ? "max-h-[480px] opacity-100 border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-xl"
+            : "max-h-0 opacity-0 border-transparent"
+        }`}
+      >
+        <div className="container-content flex flex-col gap-1 py-4">
+          {navLinks.map((link) => {
+            const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
+            return (
+              <button
+                key={link.href}
+                onClick={() => handleNav(link.href)}
+                className={`text-left text-sm font-medium py-3 px-3 transition-colors ${
+                  isActive
+                    ? "text-[var(--accent)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                }`}
               >
-                <FileText className="h-4 w-4" />
-                Resume
-              </motion.a>
-            </div>
-          </motion.nav>
-        )}
-      </AnimatePresence>
+                {link.label}
+              </button>
+            );
+          })}
+          <div className="h-px bg-[var(--border)] my-2" />
+          <a
+            href="/portfolio/files/CV.pdf"
+            download="Sium_Ahameed_CV.pdf"
+            className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
+          >
+            <FileText className="h-4 w-4" />
+            Resume
+          </a>
+        </div>
+      </nav>
     </header>
   );
 }

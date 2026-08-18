@@ -1,15 +1,10 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "@/lib/useInView";
-import { motion } from "framer-motion";
+import { Reveal } from "@/lib/Reveal";
 import { ArrowUpRight, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/lib/icons";
 
 export function Contact() {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
-
   return (
     <section id="contact" className="section-padding relative">
       {/* Gradient background */}
@@ -20,13 +15,8 @@ export function Contact() {
         }}
       />
 
-      <div ref={ref} className="container-content relative">
-        <motion.div
-          initial={{ opacity: 0, y: 12 }}
-          animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.3 }}
-          className="max-w-2xl"
-        >
+      <div className="container-content relative">
+        <Reveal className="max-w-2xl">
           <p className="text-xs font-mono text-[var(--accent)] uppercase tracking-wider mb-3">
             Let&apos;s connect
           </p>
@@ -109,7 +99,7 @@ export function Contact() {
               <Mail className="h-5 w-5" />
             </a>
           </div>
-        </motion.div>
+        </Reveal>
       </div>
     </section>
   );
