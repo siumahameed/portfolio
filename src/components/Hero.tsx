@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal } from "@/lib/Reveal";
-import { ArrowRight, Download, Mail, ChevronDown } from "lucide-react";
+import { ArrowRight, Download, Mail } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/lib/icons";
 
 export function Hero() {
@@ -16,14 +16,6 @@ export function Hero() {
           background: "radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%)",
         }}
       />
-
-      {/* Scroll hint */}
-      <div className="pointer-events-none absolute bottom-5 left-0 right-0 flex justify-center">
-        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.25em] text-[var(--text-tertiary)] opacity-60">
-          <span>Scroll</span>
-          <ChevronDown className="h-3.5 w-3.5 animate-bounce" />
-        </div>
-      </div>
 
       <div className="container-content w-full">
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">

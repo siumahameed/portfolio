@@ -63,13 +63,15 @@ export function Navbar() {
       <div className="container-content flex h-16 items-center justify-between">
         <a
           href="/portfolio/"
-          className="group flex items-center gap-1.5 text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-heading"
+          aria-label="sium - home"
+          className="group flex items-center text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-heading"
         >
-          sium
-          <span
-            aria-hidden="true"
-            className="inline-block h-2 w-2 rotate-45 rounded-[2px] bg-gradient-to-br from-[var(--accent)] via-fuchsia-500 to-amber-400 shadow-[0_0_10px_var(--accent-glow)] transition-transform duration-300 group-hover:rotate-[135deg]"
-          />
+          <span>s</span>
+          <span className="relative inline-block" aria-hidden="true">
+            <span className="block h-[0.5em] w-[0.24em] rounded-[0.06em] bg-current" />
+            <span className="absolute -top-[0.4em] left-1/2 -translate-x-1/2 h-[0.32em] w-[0.32em] rounded-full bg-gradient-to-br from-[var(--accent)] via-fuchsia-500 to-amber-400 shadow-[0_0_6px_var(--accent-glow)] transition-transform duration-300 group-hover:scale-125" />
+          </span>
+          <span>um</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-1">
