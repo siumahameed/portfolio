@@ -64,12 +64,15 @@ export function Contact() {
             </span>
           </div>
 
-          <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 font-mono text-xs text-[var(--text-tertiary)]">
-            <span>AI/ML Internships</span>
-            <span className="text-[var(--border)]">·</span>
-            <span>Research Collaborations</span>
-            <span className="text-[var(--border)]">·</span>
-            <span>Data Science Projects</span>
+          <div className="mt-4 flex flex-col items-start gap-2 font-mono text-xs text-[var(--text-tertiary)] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
+            {["AI/ML Internships", "Research Collaborations", "Data Science Projects"].map(
+              (item, i) => (
+                <span key={item} className="flex items-center gap-3">
+                  {i > 0 && <span className="hidden text-[var(--border)] sm:inline">·</span>}
+                  {item}
+                </span>
+              )
+            )}
           </div>
 
           <div className="mt-8 flex items-center gap-1">
