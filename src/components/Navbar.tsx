@@ -64,12 +64,12 @@ export function Navbar() {
         <a
           href="/portfolio/"
           aria-label="sium - home"
-          className="group flex items-center text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-heading"
+          className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-mono"
         >
           <span>s</span>
           <span className="relative inline-block" aria-hidden="true">
-            <span className="block h-[0.5em] w-[0.24em] rounded-[0.06em] bg-current" />
-            <span className="absolute -top-[0.4em] left-1/2 -translate-x-1/2 h-[0.32em] w-[0.32em] rounded-full bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125" />
+            <span className="block h-[0.5em] w-[0.2em] rounded-[0.04em] bg-current" />
+            <span className="absolute -top-[0.42em] left-1/2 -translate-x-1/2 h-[0.3em] w-[0.3em] rounded-[0.05em] bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125" />
           </span>
           <span>um</span>
         </a>
