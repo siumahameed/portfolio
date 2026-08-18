@@ -19,7 +19,7 @@ export function WhatIBuild() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-12">
           {whatIBuild.map((item, i) => {
             const Icon = icons[i] ?? BrainCircuit;
             return (

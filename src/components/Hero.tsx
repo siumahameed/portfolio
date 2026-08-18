@@ -85,47 +85,58 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Right: Terminal card */}
+          {/* Right: Terminal card (desktop) */}
           <Reveal direction="x" delay={150} className="hidden lg:flex justify-center">
-            <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl shadow-black/10">
-              {/* Terminal header */}
-              <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3">
-                <div className="h-3 w-3 rounded-full bg-red-400/80" />
-                <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
-                <div className="h-3 w-3 rounded-full bg-green-400/80" />
-                <span className="ml-2 text-xs text-[var(--text-tertiary)] font-mono">pipeline.py</span>
-              </div>
-              {/* Terminal content */}
-              <div className="p-5 font-mono text-xs space-y-1">
-                <p className="text-[var(--text-tertiary)]">$ whoami</p>
-                <p className="text-[var(--accent)]">sium-ahameed</p>
-                <p className="text-[var(--text-tertiary)] mt-3">$ focus</p>
-                <p className="text-[var(--text-secondary)]">Data Science</p>
-                <p className="text-[var(--text-secondary)]">Statistical Modeling</p>
-                <p className="text-[var(--text-tertiary)] mt-3">$ status</p>
-                <p className="text-[var(--accent)]">building<span className="animate-pulse">...</span></p>
-              </div>
-              {/* Pipeline bar at bottom */}
-              <div className="border-t border-[var(--border)] px-5 py-3">
-                <div className="flex items-center justify-between">
-                  {["DATA", "CLEAN", "EDA", "MODEL", "DEPLOY"].map((step, i) => (
-                    <div key={step} className="flex flex-col items-center gap-1.5">
-                      <div
-                        className="h-2 w-2 rounded-full"
-                        style={{
-                          background: "var(--accent)",
-                          opacity: 0.25 + (i / 5) * 0.75,
-                        }}
-                      />
-                      <span className="text-[9px] font-mono text-[var(--text-tertiary)]">{step}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <TerminalCard />
+          </Reveal>
+
+          {/* Terminal card (mobile) */}
+          <Reveal delay={200} className="mt-8 lg:hidden">
+            <TerminalCard />
           </Reveal>
         </div>
       </div>
     </section>
+  );
+}
+
+function TerminalCard() {
+  return (
+    <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl shadow-black/10">
+      {/* Terminal header */}
+      <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3">
+        <div className="h-3 w-3 rounded-full bg-red-400/80" />
+        <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
+        <div className="h-3 w-3 rounded-full bg-green-400/80" />
+        <span className="ml-2 text-xs text-[var(--text-tertiary)] font-mono">pipeline.py</span>
+      </div>
+      {/* Terminal content */}
+      <div className="p-5 font-mono text-xs space-y-1">
+        <p className="text-[var(--text-tertiary)]">$ whoami</p>
+        <p className="text-[var(--accent)]">sium-ahameed</p>
+        <p className="text-[var(--text-tertiary)] mt-3">$ focus</p>
+        <p className="text-[var(--text-secondary)]">Data Science</p>
+        <p className="text-[var(--text-secondary)]">Statistical Modeling</p>
+        <p className="text-[var(--text-tertiary)] mt-3">$ status</p>
+        <p className="text-[var(--accent)]">building<span className="animate-pulse">...</span></p>
+      </div>
+      {/* Pipeline bar at bottom */}
+      <div className="border-t border-[var(--border)] px-5 py-3">
+        <div className="flex items-center justify-between">
+          {["DATA", "CLEAN", "EDA", "MODEL", "DEPLOY"].map((step, i) => (
+            <div key={step} className="flex flex-col items-center gap-1.5">
+              <div
+                className="h-2 w-2 rounded-full"
+                style={{
+                  background: "var(--accent)",
+                  opacity: 0.25 + (i / 5) * 0.75,
+                }}
+              />
+              <span className="text-[9px] font-mono text-[var(--text-tertiary)]">{step}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
   );
 }

@@ -101,7 +101,7 @@ export function GitHubActivity() {
           <h2 className="section-title">GitHub Activity</h2>
         </Reveal>
 
-        <Reveal delay={50} className="mt-10">
+        <Reveal delay={50} className="mt-6 md:mt-10">
           <div className="card">
             <div className="mb-6 overflow-x-auto scrollbar-hide">
               <p className="text-xs font-mono text-[var(--text-tertiary)] mb-3">

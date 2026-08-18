@@ -40,7 +40,7 @@ export function Projects() {
         </Reveal>
 
         {/* Filters */}
-        <Reveal delay={50} className="mt-8 mb-10 flex flex-wrap gap-2" style={{}}>
+        <Reveal delay={50} className="mt-6 mb-8 md:mt-8 md:mb-10 flex flex-wrap gap-2" style={{}}>
           <div className="flex flex-wrap gap-2" role="group" aria-label="Filter projects by category">
             {filters.map((f) => (
               <button
@@ -61,7 +61,7 @@ export function Projects() {
 
         {/* Featured Projects - Large cards */}
         {featured.length > 0 && (
-          <div className="space-y-4 mb-12">
+          <div className="space-y-4 mb-10 md:mb-12">
             {featured.map((project, i) => (
               <Reveal key={project.slug} delay={50 + i * 40}>
                 <FeaturedProjectCard project={project} index={i} />
@@ -96,7 +96,7 @@ function FeaturedProjectCard({ project, index }: { project: (typeof projectsData
   return (
     <div className="card group relative overflow-hidden hover:border-[var(--accent)]/40 transition-all duration-300">
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="p-6 md:p-8">
+      <div className="p-5 md:p-8">
         <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
           <div className="flex-1">
             <div className="flex items-center gap-3 mb-3">

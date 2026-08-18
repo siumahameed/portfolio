@@ -26,7 +26,7 @@ export function Workflow() {
           </p>
         </Reveal>
 
-        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-12">
           {workflowSteps.map((step, i) => (
             <Reveal key={step.title} delay={40 + i * 40}>
               <div className="card group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40">

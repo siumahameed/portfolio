@@ -19,7 +19,7 @@ export function CurrentlyExploring() {
           </p>
         </Reveal>
 
-        <div className="mt-10 space-y-2">
+        <div className="mt-6 space-y-2 md:mt-10">
           {currentlyExploring.map((item, i) => (
             <Reveal key={item.topic} delay={40 + i * 30}>
               <button

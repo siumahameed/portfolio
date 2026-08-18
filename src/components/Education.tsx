@@ -17,7 +17,7 @@ export function Education() {
           <h2 className="section-title">Academic Foundation</h2>
         </Reveal>
 
-        <Reveal delay={50} className="mt-10 max-w-2xl">
+        <Reveal delay={50} className="mt-8 max-w-2xl md:mt-10">
           <div className="card">
             <div className="flex items-start gap-4">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]">

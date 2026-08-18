@@ -16,7 +16,7 @@ export function Experience() {
           </p>
         </Reveal>
 
-        <div className="mt-10 relative">
+        <div className="mt-8 relative md:mt-10">
           {/* Timeline line */}
           <div className="absolute left-4 md:left-5 top-0 bottom-0 w-px bg-[var(--border)]" />
 

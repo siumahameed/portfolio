@@ -24,7 +24,7 @@ export function Skills() {
         </Reveal>
 
         {/* Differentiator callout */}
-        <Reveal delay={50} className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5 flex flex-col sm:flex-row sm:items-center gap-4">
+        <Reveal delay={50} className="mt-6 md:mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5 flex flex-col sm:flex-row sm:items-center gap-4">
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-subtle)] text-[var(--accent)]">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
@@ -37,7 +37,7 @@ export function Skills() {
         </Reveal>
 
         {/* Skill group cards */}
-        <div className="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3 md:mt-8">
           {skillGroups.map((group, i) => {
             const color = groupColors[group.name] || "var(--accent)";
             return (

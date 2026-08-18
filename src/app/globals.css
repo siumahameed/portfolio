@@ -71,7 +71,7 @@
   }
 
   .section-padding {
-    @apply py-16 md:py-24;
+    @apply py-12 md:py-24;
   }
 
   .font-logo {
@@ -124,7 +124,7 @@
   }
 
   .card {
-    @apply rounded-xl border p-6 transition-all duration-300;
+    @apply rounded-xl border p-5 transition-all duration-300 md:p-6;
     border-color: var(--border);
     background: var(--bg-card);
   }
