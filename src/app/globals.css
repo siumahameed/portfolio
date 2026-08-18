@@ -16,7 +16,7 @@
     --accent-hover: #4B4FD6;
     --accent-subtle: rgba(91, 95, 238, 0.12);
     --accent-glow: rgba(91, 95, 238, 0.2);
-    --grid-line: rgba(0, 0, 0, 0.03);
+    --grid-line: rgba(0, 0, 0, 0.012);
     --noise-opacity: 0.025;
     --code-bg: #F4F4F5;
   }
