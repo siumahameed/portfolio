@@ -6,7 +6,7 @@ import { GithubIcon, LinkedinIcon } from "@/lib/icons";
 
 export function Hero() {
   return (
-    <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden pt-16 pb-12 md:pt-28 md:pb-20">
+    <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden pt-14 pb-10 md:pt-24 md:pb-16">
       {/* Background radial glow */}
       <div
         className="pointer-events-none absolute left-1/2 top-[-200px] -translate-x-1/2"
@@ -26,7 +26,7 @@ export function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--accent)] mb-6">
+              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--accent)] mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
                 Open to internships & research
               </span>
@@ -47,7 +47,7 @@ export function Hero() {
             </motion.h1>
 
             <motion.p
-              className="mt-6 max-w-lg text-lg text-[var(--text-secondary)] leading-relaxed"
+              className="mt-5 max-w-lg text-lg text-[var(--text-secondary)] leading-relaxed"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
