@@ -17,7 +17,7 @@ export function CurrentlyExploring() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">LEARNING</p>
           <h2 className="section-title">Currently Exploring</h2>
@@ -32,7 +32,7 @@ export function CurrentlyExploring() {
               key={item.topic}
               initial={{ opacity: 0, y: 8 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: 0.1 + i * 0.05 }}
+              transition={{ duration: 0.25, delay: 0.04 + i * 0.03 }}
             >
               <button
                 onClick={() => setExpanded(expanded === i ? null : i)}

@@ -24,7 +24,7 @@ export function Contact() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
           className="max-w-2xl"
         >
           <p className="text-xs font-mono text-[var(--accent)] uppercase tracking-wider mb-3">

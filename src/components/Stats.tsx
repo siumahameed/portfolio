@@ -25,7 +25,7 @@ export function Stats() {
               className="text-center"
               initial={{ opacity: 0, y: 12 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ duration: 0.25, delay: i * 0.05 }}
             >
               <p className="stat-value">{stat.value}</p>
               <p className="stat-label">{stat.label}</p>

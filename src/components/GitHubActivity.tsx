@@ -102,7 +102,7 @@ export function GitHubActivity() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">OPEN SOURCE</p>
           <h2 className="section-title">GitHub Activity</h2>
@@ -112,7 +112,7 @@ export function GitHubActivity() {
           className="mt-10"
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.1 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
         >
           <div className="card">
             <div className="mb-6 overflow-x-auto scrollbar-hide">

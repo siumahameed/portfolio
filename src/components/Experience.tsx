@@ -16,7 +16,7 @@ export function Experience() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">EXPERIENCE</p>
           <h2 className="section-title">Where I&apos;ve Contributed</h2>
@@ -36,7 +36,7 @@ export function Experience() {
                 className="relative flex gap-4 md:gap-8"
                 initial={{ opacity: 0, x: -12 }}
                 animate={isVisible ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.1 + i * 0.1 }}
+                transition={{ duration: 0.3, delay: 0.05 + i * 0.05 }}
               >
                 {/* Timeline dot */}
                 <div className="relative z-10 flex h-8 w-8 md:h-10 md:w-10 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)]">

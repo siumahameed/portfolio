@@ -16,7 +16,7 @@ export function About() {
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.3 }}
             >
               <p className="section-label mb-3">ABOUT</p>
               <h2 className="section-title">Where Statistics Meets ML</h2>
@@ -26,7 +26,7 @@ export function About() {
               className="mt-6 space-y-4"
               initial={{ opacity: 0, y: 12 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
             >
               <p className="text-[var(--text-secondary)] leading-relaxed text-base">
                 I&apos;m a Statistics student at Dhaka College. My background in statistics
@@ -52,7 +52,7 @@ export function About() {
             className="lg:col-span-2"
             initial={{ opacity: 0, y: 12 }}
             animate={isVisible ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.3, delay: 0.1 }}
           >
             {/* Journey */}
             <div className="card mb-4">

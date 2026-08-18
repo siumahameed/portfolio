@@ -37,7 +37,7 @@ export function Projects() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">FEATURED WORK</p>
           <h2 className="section-title">Projects</h2>
@@ -51,7 +51,7 @@ export function Projects() {
           className="mt-8 mb-10 flex flex-wrap gap-2"
           initial={{ opacity: 0, y: 8 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.4, delay: 0.1 }}
+          transition={{ duration: 0.25, delay: 0.05 }}
           role="group"
           aria-label="Filter projects by category"
         >
@@ -79,7 +79,7 @@ export function Projects() {
                 key={project.slug}
                 initial={{ opacity: 0, y: 16 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
+                transition={{ duration: 0.3, delay: 0.05 + i * 0.04 }}
               >
                 <FeaturedProjectCard project={project} index={i} />
               </motion.div>
@@ -101,7 +101,7 @@ export function Projects() {
                   key={project.slug}
                   initial={{ opacity: 0, y: 12 }}
                   animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
+                  transition={{ duration: 0.25, delay: 0.06 + i * 0.03 }}
                 >
                   <ArchiveProjectCard project={project} />
                 </motion.div>

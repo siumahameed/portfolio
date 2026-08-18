@@ -24,7 +24,7 @@ export function Hero() {
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+              transition={{ duration: 0.3, delay: 0.05 }}
             >
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--accent)] mb-3">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
@@ -36,7 +36,7 @@ export function Hero() {
               className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.1]"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
             >
               <span className="text-[var(--text-tertiary)] text-2xl sm:text-3xl lg:text-4xl font-normal block mb-2">Hi, I&apos;m</span>
               <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
@@ -50,7 +50,7 @@ export function Hero() {
               className="mt-5 max-w-lg text-lg text-[var(--text-secondary)] leading-relaxed"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
             >
               Building intelligent systems
               <br />
@@ -61,7 +61,7 @@ export function Hero() {
               className="mt-3 text-sm text-[var(--text-tertiary)] font-mono"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.35 }}
+              transition={{ duration: 0.3, delay: 0.18 }}
             >
               Statistics &times; Machine Learning &times; AI Engineering
             </motion.p>
@@ -70,7 +70,7 @@ export function Hero() {
               className="mt-8 flex flex-wrap gap-3"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
             >
               <a href="/portfolio/#projects" className="btn-primary">
                 View Work
@@ -90,7 +90,7 @@ export function Hero() {
               className="mt-8 flex items-center gap-1"
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
             >
               <a href="https://github.com/siumahameed" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="GitHub">
                 <GithubIcon className="h-5 w-5" />
@@ -109,7 +109,7 @@ export function Hero() {
             className="hidden lg:flex justify-center"
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.15 }}
           >
             <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl shadow-black/10">
               {/* Terminal header */}

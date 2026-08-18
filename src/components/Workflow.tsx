@@ -25,7 +25,7 @@ export function Workflow() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">HOW I BUILD</p>
           <h2 className="section-title">Engineering Approach</h2>
@@ -42,7 +42,7 @@ export function Workflow() {
               className="card group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40"
               initial={{ opacity: 0, y: 16 }}
               animate={isVisible ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
+              transition={{ duration: 0.3, delay: 0.04 + i * 0.04 }}
             >
               <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
 

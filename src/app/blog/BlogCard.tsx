@@ -17,7 +17,7 @@ export function BlogCard({ article, index }: { article: ArticleMeta; index: numb
       className="card group relative overflow-hidden hover:-translate-y-1 hover:border-[var(--accent)]/40 transition-all duration-300"
       initial={{ opacity: 0, y: 12 }}
       animate={isVisible ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.08 }}
+      transition={{ duration: 0.3, delay: index * 0.04 }}
     >
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
 

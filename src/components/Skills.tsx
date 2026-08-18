@@ -23,7 +23,7 @@ export function Skills() {
         <motion.div
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.3 }}
         >
           <p className="section-label mb-3">TECHNICAL STACK</p>
           <h2 className="section-title">Skills</h2>
@@ -37,7 +37,7 @@ export function Skills() {
           className="mt-8 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5 flex flex-col sm:flex-row sm:items-center gap-4"
           initial={{ opacity: 0, y: 12 }}
           animate={isVisible ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.05 }}
+          transition={{ duration: 0.3, delay: 0.05 }}
         >
           <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-[var(--accent-subtle)] text-[var(--accent)]">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
@@ -63,7 +63,7 @@ export function Skills() {
                 }}
                 initial={{ opacity: 0, y: 12 }}
                 animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
+                transition={{ duration: 0.25, delay: 0.04 + i * 0.04 }}
                 whileHover={{
                   boxShadow: `0 8px 32px rgba(0,0,0,0.08), 0 0 0 1px ${color}30`,
                 }}
