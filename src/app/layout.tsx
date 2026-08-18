@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono } from "next/font/google";
-import Script from "next/script";
+import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import { BackgroundLoader } from "@/components/BackgroundLoader";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -18,24 +18,39 @@ const jetbrainsMono = JetBrains_Mono({
   display: "swap",
 });
 
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
-  title: "Sium Ahameed — Machine Learning Enthusiast",
+  title: "Sium Ahameed | AI/ML Engineer & Data Scientist",
   description:
-    "Statistics undergraduate building intelligent ML solutions. Portfolio of Sium Ahameed — machine learning, deep learning, and data science projects.",
+    "Portfolio of Sium Ahameed, a Statistics undergraduate focused on machine learning, AI engineering, data science, and intelligent systems.",
   openGraph: {
-    title: "Sium Ahameed — Machine Learning Enthusiast",
+    title: "Sium Ahameed | AI/ML Engineer & Data Scientist",
     description:
-      "Statistics undergraduate building intelligent ML solutions. Explore projects in machine learning, deep learning, and data analysis.",
+      "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
     url: "https://siumahameed.github.io/portfolio/",
     siteName: "Sium Ahameed",
     locale: "en_US",
     type: "website",
+    images: [
+      {
+        url: "https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg",
+        width: 512,
+        height: 512,
+        alt: "Sium Ahameed Bhuyan",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sium Ahameed — Machine Learning Enthusiast",
+    title: "Sium Ahameed | AI/ML Engineer & Data Scientist",
     description:
-      "Statistics undergraduate building intelligent ML solutions.",
+      "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
+    images: ["https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg"],
   },
   robots: {
     index: true,
@@ -58,20 +73,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <div
-            className="pointer-events-none fixed inset-0"
-            style={{
-              backgroundImage:
-                "linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px)",
-              backgroundSize: "48px 48px",
-            }}
-          />
+          <BackgroundLoader />
           <Navbar />
-          <main>{children}</main>
+          <main className="relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>
       </body>

@@ -1,154 +1,155 @@
 "use client";
 
-import { useRef } from "react";
-import { useInView } from "@/lib/useInView";
+import { motion } from "framer-motion";
+import { ArrowRight, Download, Mail } from "lucide-react";
+import { GithubIcon, LinkedinIcon } from "@/lib/icons";
 
 export function Hero() {
-  const ref = useRef<HTMLElement>(null);
-  const isVisible = useInView(ref);
-
   return (
-    <section
-      ref={ref}
-      className="relative flex min-h-[calc(100vh-4rem)] items-center overflow-hidden pt-24 pb-24 md:pt-32 md:pb-32"
-    >
-      {/* Background Glow */}
+    <section className="relative flex min-h-[calc(100svh-4rem)] items-center overflow-hidden pt-16 pb-12 md:pt-28 md:pb-20">
+      {/* Background radial glow */}
       <div
-        className="pointer-events-none absolute left-1/2 top-[-100px] -translate-x-1/2"
+        className="pointer-events-none absolute left-1/2 top-[-200px] -translate-x-1/2"
         style={{
-          width: "800px",
-          height: "600px",
-          background: "radial-gradient(ellipse, rgba(91, 95, 238, 0.06) 0%, transparent 70%)",
+          width: "900px",
+          height: "700px",
+          background: "radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%)",
         }}
       />
-      {/* Background Orb */}
-      <div
-        className="pointer-events-none absolute bottom-[-40px] right-[10%]"
-        style={{
-          width: "300px",
-          height: "300px",
-          background: "radial-gradient(circle, rgba(91, 95, 238, 0.03) 0%, transparent 70%)",
-        }}
-      />
-      <div className="container-content w-full">
-        <div
-          className="grid gap-10 md:grid-cols-5 md:gap-16"
-          style={{
-            transform: isVisible ? "translateY(0)" : "translateY(8px)",
-            transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
-          }}
-        >
-          <div className="flex flex-col justify-center md:col-span-3">
-            <div className="divider-accent mb-6" />
-            <h1 className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl">
-              Sium Ahameed
-            </h1>
-            <p className="mt-4 text-lg text-[var(--text-secondary)] sm:text-xl">
-              Machine Learning Enthusiast
-            </p>
-            <p className="mt-6 max-w-lg text-[var(--text-secondary)] leading-relaxed">
-              Statistics undergraduate with a strong foundation in statistical
-              modeling and machine learning. Passionate about building
-              intelligent systems that transform complex data into meaningful
-              insights.
-            </p>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#projects" className="btn-primary">
-                View Projects
+      <div className="container-content w-full">
+        <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
+          {/* Left: Text */}
+          <div className="flex flex-col">
+            <motion.div
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+            >
+              <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3 py-1 text-xs font-medium text-[var(--accent)] mb-6">
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                Open to internships & research
+              </span>
+            </motion.div>
+
+            <motion.h1
+              className="text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.1]"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              <span className="text-[var(--text-tertiary)] text-2xl sm:text-3xl lg:text-4xl font-normal block mb-2">Hi, I&apos;m</span>
+              <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+                Sium Ahameed
+              </span>
+              <br />
+              <span className="text-[var(--text-secondary)]">Bhuyan</span>
+            </motion.h1>
+
+            <motion.p
+              className="mt-6 max-w-lg text-lg text-[var(--text-secondary)] leading-relaxed"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Building intelligent systems
+              <br />
+              from data to deployment.
+            </motion.p>
+
+            <motion.p
+              className="mt-3 text-sm text-[var(--text-tertiary)] font-mono"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.35 }}
+            >
+              Statistics &times; Machine Learning &times; AI Engineering
+            </motion.p>
+
+            <motion.div
+              className="mt-8 flex flex-wrap gap-3"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+            >
+              <a href="/portfolio/#projects" className="btn-primary">
+                View Work
+                <ArrowRight className="h-4 w-4" />
               </a>
               <a
                 href="/portfolio/files/CV.pdf"
                 download="Sium_Ahameed_CV.pdf"
-                className="btn-ghost gap-1.5"
+                className="btn-secondary"
               >
-                <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
-                </svg>
+                <Download className="h-4 w-4" />
                 Resume
               </a>
-            </div>
+            </motion.div>
 
-
+            <motion.div
+              className="mt-8 flex items-center gap-1"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+            >
+              <a href="https://github.com/siumahameed" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="GitHub">
+                <GithubIcon className="h-5 w-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/sium11/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="LinkedIn">
+                <LinkedinIcon className="h-5 w-5" />
+              </a>
+              <a href="mailto:siumahameed2003@gmail.com" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="Email">
+                <Mail className="h-5 w-5" />
+              </a>
+            </motion.div>
           </div>
 
-          <div className="flex items-center justify-center md:col-span-2 md:justify-end">
-            <div className="w-full card p-6 md:p-8">
-              <div className="flex items-start gap-5 md:gap-6">
-                <div className="h-28 w-28 md:h-32 md:w-32 shrink-0 overflow-hidden rounded-2xl border-[3px] border-[var(--accent)]/30 shadow-lg shadow-[var(--accent)]/5">
-                  <img
-                    src="/portfolio/images/profile.jpg.jpeg"
-                    alt="Sium Ahameed"
-                    className="h-full w-full object-cover"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = "none";
-                    }}
-                  />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <h3 className="text-lg md:text-xl font-semibold text-[var(--text-primary)]">
-                    Sium Ahameed Bhuyan
-                  </h3>
-                  <p className="text-sm md:text-base text-[var(--text-secondary)]">
-                    Machine Learning Enthusiast
-                  </p>
-                  <div className="mt-3 md:mt-4 space-y-1.5 md:space-y-2">
-                    <DetailRow icon={
-                      <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
-                      </svg>
-                    } label="Location" value="Dhaka, Bangladesh" />
-                    <DetailRow icon={
-                      <svg className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M4.26 10.147a60.438 60.438 0 0 0-.491 6.347A48.62 48.62 0 0 1 12 20.904a48.62 48.62 0 0 1 8.232-4.41 60.46 60.46 0 0 0-.491-6.347m-15.482 0a50.636 50.636 0 0 0-2.658-.813A59.906 59.906 0 0 1 12 3.493a59.903 59.903 0 0 1 10.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.717 50.717 0 0 1 12 13.489a50.702 50.702 0 0 1 7.74-3.342" />
-                      </svg>
-                    } label="Education" value="BSc in Statistics" sub="Dhaka College" />
-                  </div>
-                </div>
+          {/* Right: Terminal card */}
+          <motion.div
+            className="hidden lg:flex justify-center"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+          >
+            <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl shadow-black/10">
+              {/* Terminal header */}
+              <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3">
+                <div className="h-3 w-3 rounded-full bg-red-400/80" />
+                <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
+                <div className="h-3 w-3 rounded-full bg-green-400/80" />
+                <span className="ml-2 text-xs text-[var(--text-tertiary)] font-mono">pipeline.py</span>
               </div>
-
-              <div className="mt-4 md:mt-5 grid grid-cols-2 gap-2 md:gap-3 border-t border-[var(--border)] pt-4 md:pt-5">
-                <CompactRow icon={
-                  <svg className="h-3.5 w-3.5 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="m10.5 21 5.25-11.25L21 21m-9-3h7.5M3 5.621a48.474 48.474 0 0 1 6-.371m0 0c1.12 0 2.233.038 3.334.114M9 5.25V3m3.334 2.364C11.176 10.658 7.69 15.08 3 17.502m9.334-12.138c.896.061 1.785.147 2.666.257m-4.589 8.495a18.023 18.023 0 0 1-3.827-5.802" />
-                  </svg>
-                } label="Languages" value="English, Bengali" />
-                <CompactRow icon={
-                  <svg className="h-3.5 w-3.5 text-[var(--accent)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z" />
-                  </svg>
-                } label="Availability" value="Open to Work" />
+              {/* Terminal content */}
+              <div className="p-5 font-mono text-xs space-y-1">
+                <p className="text-[var(--text-tertiary)]">$ whoami</p>
+                <p className="text-[var(--accent)]">sium-ahameed</p>
+                <p className="text-[var(--text-tertiary)] mt-3">$ focus</p>
+                <p className="text-[var(--text-secondary)]">Data Science</p>
+                <p className="text-[var(--text-secondary)]">Statistical Modeling</p>
+                <p className="text-[var(--text-tertiary)] mt-3">$ status</p>
+                <p className="text-[var(--accent)]">building<span className="animate-pulse">...</span></p>
+              </div>
+              {/* Pipeline bar at bottom */}
+              <div className="border-t border-[var(--border)] px-5 py-3">
+                <div className="flex items-center justify-between">
+                  {["DATA", "CLEAN", "EDA", "MODEL", "DEPLOY"].map((step, i) => (
+                    <div key={step} className="flex flex-col items-center gap-1.5">
+                      <div
+                        className="h-2 w-2 rounded-full"
+                        style={{
+                          background: "var(--accent)",
+                          opacity: 0.25 + (i / 5) * 0.75,
+                        }}
+                      />
+                      <span className="text-[9px] font-mono text-[var(--text-tertiary)]">{step}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
-  );
-}
-
-function DetailRow({ icon, label, value, sub }: { icon: React.ReactNode; label: string; value: string; sub?: string }) {
-  return (
-    <div className="flex items-start gap-2.5">
-      {icon}
-      <div>
-        <p className="text-[11px] font-medium uppercase tracking-wider text-[var(--text-secondary)]">{label}</p>
-        <p className="text-sm text-[var(--text-primary)]">{value}</p>
-        {sub && <p className="text-xs text-[var(--text-secondary)]">{sub}</p>}
-      </div>
-    </div>
-  );
-}
-
-function CompactRow({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
-  return (
-    <div className="flex items-start gap-2.5">
-      <div className="mt-0.5">{icon}</div>
-      <div>
-        <p className="text-[11px] font-medium uppercase tracking-wider text-[var(--text-secondary)]">{label}</p>
-        <p className="text-xs text-[var(--text-primary)]">{value}</p>
-      </div>
-    </div>
   );
 }

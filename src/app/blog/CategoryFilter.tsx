@@ -1,25 +1,14 @@
 "use client";
 
-import { useState } from "react";
-
-export function CategoryFilter({ categories }: { categories: string[] }) {
-  const [active, setActive] = useState("All");
-  const basePath = "/portfolio";
-
-  const handleClick = (cat: string) => {
-    setActive(cat);
-    const cards = document.querySelectorAll("#blog-grid > div");
-    cards.forEach((card) => {
-      const badge = card.querySelector(".badge");
-      if (!badge) return;
-      if (cat === "All" || badge.textContent === cat) {
-        (card as HTMLElement).style.display = "flex";
-      } else {
-        (card as HTMLElement).style.display = "none";
-      }
-    });
-  };
-
+export function CategoryFilter({
+  categories,
+  active,
+  onChange,
+}: {
+  categories: string[];
+  active: string;
+  onChange: (cat: string) => void;
+}) {
   const allFilters = ["All", ...categories];
 
   return (
@@ -27,11 +16,12 @@ export function CategoryFilter({ categories }: { categories: string[] }) {
       {allFilters.map((cat) => (
         <button
           key={cat}
-          onClick={() => handleClick(cat)}
-          className={`inline-flex items-center rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-200 ${
+          onClick={() => onChange(cat)}
+          aria-pressed={active === cat}
+          className={`inline-flex items-center rounded-lg px-4 py-2 text-xs font-medium transition-all duration-200 ${
             active === cat
               ? "bg-[var(--accent)] text-white"
-              : "bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border)]"
+              : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
           }`}
         >
           {cat}

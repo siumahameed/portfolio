@@ -1,13 +1,14 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "./ThemeProvider";
+import { Menu, X, Sun, Moon, FileText } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const navLinks = [
   { href: "/portfolio/#about", label: "About" },
-  { href: "/portfolio/#skills", label: "Skills" },
   { href: "/portfolio/#projects", label: "Projects" },
-  { href: "/portfolio/#workflow", label: "Workflow" },
+  { href: "/portfolio/#experience", label: "Experience" },
   { href: "/portfolio/#contact", label: "Contact" },
   { href: "/portfolio/blog", label: "Blog" },
 ];
@@ -16,43 +17,27 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [playing, setPlaying] = useState(false);
-  const audioRef = useRef<HTMLAudioElement | null>(null);
   const { theme, toggle } = useTheme();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => { setMounted(true); }, []);
 
-  const handleNav = (href: string) => {
+  const handleNav = useCallback((href: string) => {
     setMobileOpen(false);
     if (href.includes("#")) {
       const sectionId = href.split("#")[1];
-      const isHome = window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio";
+      const isHome = window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio" || window.location.pathname === "/";
       if (isHome) {
         const el = document.getElementById(sectionId);
         if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
       }
     }
     window.location.href = href;
-  };
-
-  const toggleMusic = () => {
-    if (!audioRef.current) {
-      audioRef.current = new Audio("/portfolio/files/music.mp3");
-      audioRef.current.loop = true;
-    }
-    if (playing) {
-      audioRef.current.pause();
-    } else {
-      audioRef.current.play();
-    }
-    setPlaying(!playing);
-  };
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 20);
-
       const sections = document.querySelectorAll("section[id]");
       let current = "";
       sections.forEach((section) => {
@@ -70,128 +55,127 @@ export function Navbar() {
 
   return (
     <header
-      className={`fixed inset-x-0 top-0 z-50 transition-all duration-200 ${
+      className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--border)] bg-[var(--bg-primary)]/90 shadow-sm backdrop-blur-md"
-          : "bg-[var(--bg-primary)]/50 backdrop-blur-sm"
+          ? "border-b border-[var(--border)] backdrop-blur-xl bg-[var(--bg-primary)]/80"
+          : "bg-transparent"
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between">
-        <button
-          onClick={() => handleNav("/portfolio/")}
-          className="text-left text-sm sm:text-lg font-semibold tracking-tight text-[var(--text-primary)]"
+        <a
+          href="/portfolio/"
+          className="text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-heading"
         >
-          Sium Ahameed Bhuyan
-        </button>
+          sium<span className="text-[var(--accent)]">.</span>
+        </a>
 
-        <nav className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <button
-              key={link.href}
-              onClick={() => handleNav(link.href)}
-              className={`nav-link text-left ${
-                mounted && link.href.includes("#") && activeSection === link.href.split("#")[1] ? "nav-link-active" : ""
-              }`}
-            >
-              {link.label}
-            </button>
-          ))}
-
-          <button
-            onClick={toggleMusic}
-            className="btn-primary text-xs gap-1.5"
-          >
-            {playing ? (
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-              </svg>
-            ) : (
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
-              </svg>
-            )}
-            Music
-          </button>
-
-          <button
-            onClick={toggle}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border)] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            {theme === "dark" ? (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
-          </button>
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => {
+            const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
+            return (
+              <button
+                key={link.href}
+                onClick={() => handleNav(link.href)}
+                className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 ${
+                  isActive
+                    ? "text-[var(--accent)]"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                }`}
+              >
+                {link.label}
+                {isActive && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-4 rounded-full bg-[var(--accent)]" />
+                )}
+              </button>
+            );
+          })}
         </nav>
 
-        <div className="flex items-center gap-3 md:hidden">
+        <div className="hidden md:flex items-center gap-1">
+          <a
+            href="/portfolio/files/CV.pdf"
+            download="Sium_Ahameed_CV.pdf"
+            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+          >
+            <FileText className="h-3.5 w-3.5" />
+            Resume
+          </a>
+          <div className="w-px h-4 bg-[var(--border)] mx-1" />
           <button
             onClick={toggle}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border)] text-[var(--text-secondary)]"
+            className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            {theme === "dark" ? (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-              </svg>
-            ) : (
-              <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-              </svg>
-            )}
+            {mounted && theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+          </button>
+        </div>
+
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={toggle}
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-8 w-8 items-center justify-center rounded-md border border-[var(--border)] text-[var(--text-secondary)]"
+            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
             aria-label="Toggle menu"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
           >
-            <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              {mobileOpen ? (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
-              ) : (
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-              )}
-            </svg>
+            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
 
-      {mobileOpen && (
-        <nav className="border-t border-[var(--border)] bg-[var(--bg-primary)] md:hidden">
-          <div className="container-content flex flex-col gap-3 py-4">
-            {navLinks.map((link) => (
-              <button
-                key={link.href}
-                onClick={() => handleNav(link.href)}
-                className="text-left text-sm text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+      <AnimatePresence>
+        {mobileOpen && (
+          <motion.nav
+            id="mobile-menu"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2, ease: "easeInOut" }}
+            className="border-t border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-xl md:hidden overflow-hidden"
+          >
+            <div className="container-content flex flex-col gap-1 py-4">
+              {navLinks.map((link, i) => {
+                const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
+                return (
+                  <motion.button
+                    key={link.href}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: i * 0.05 }}
+                    onClick={() => handleNav(link.href)}
+                    className={`text-left text-sm font-medium py-3 px-3 transition-colors ${
+                      isActive
+                        ? "text-[var(--accent)]"
+                        : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    }`}
+                  >
+                    {link.label}
+                  </motion.button>
+                );
+              })}
+              <div className="h-px bg-[var(--border)] my-2" />
+              <motion.a
+                initial={{ opacity: 0, x: -12 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.05 }}
+                href="/portfolio/files/CV.pdf"
+                download="Sium_Ahameed_CV.pdf"
+                className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
               >
-                {link.label}
-              </button>
-            ))}
-            <button
-              onClick={toggleMusic}
-              className="btn-primary text-xs self-start gap-1.5"
-            >
-              {playing ? (
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 5.25v13.5m-7.5-13.5v13.5" />
-                </svg>
-              ) : (
-                <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
-                </svg>
-              )}
-              Music
-            </button>
-          </div>
-        </nav>
-      )}
+                <FileText className="h-4 w-4" />
+                Resume
+              </motion.a>
+            </div>
+          </motion.nav>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

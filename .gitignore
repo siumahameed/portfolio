@@ -1,4 +1,6 @@
 node_modules/
 .next/
 
+dev-server.log
+
 next-env.d.ts

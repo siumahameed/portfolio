@@ -2,14 +2,17 @@
 
 import { useState, useRef, useMemo } from "react";
 import { useInView } from "@/lib/useInView";
+import { motion, AnimatePresence } from "framer-motion";
 import { projectsData } from "@/lib/projects";
-import { Section } from "./Section";
+import { ExternalLink } from "lucide-react";
+import { GithubIcon } from "@/lib/icons";
 
 const filters = [
   { key: "all", label: "All" },
   { key: "ml", label: "ML" },
-  { key: "eda", label: "EDA" },
-  { key: "app", label: "Apps" },
+  { key: "nlp", label: "NLP" },
+  { key: "data", label: "Data Science" },
+  { key: "app", label: "Applications" },
 ] as const;
 
 export function Projects() {
@@ -25,155 +28,185 @@ export function Projects() {
     [activeFilter]
   );
 
+  const featured = useMemo(() => filtered.filter((p) => p.featured), [filtered]);
+  const archive = useMemo(() => filtered.filter((p) => !p.featured), [filtered]);
+
   return (
-    <Section id="projects">
-      <div className="mb-12">
-        <h2 className="section-title">Projects</h2>
-        <p className="section-subtitle">
-          Selected projects across machine learning, data analysis, and
-          applications.
-        </p>
-      </div>
+    <section id="projects" className="section-padding">
+      <div ref={ref} className="container-content">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5 }}
+        >
+          <p className="section-label mb-3">FEATURED WORK</p>
+          <h2 className="section-title">Projects</h2>
+          <p className="section-subtitle">
+            Selected projects across machine learning, data analysis, and applications.
+          </p>
+        </motion.div>
 
-      {/* Filters */}
-      <div
-        className="mb-8 flex flex-wrap gap-2"
-        role="tablist"
-        aria-label="Filter projects by category"
-      >
-        {filters.map((f) => (
-          <button
-            key={f.key}
-            onClick={() => setActiveFilter(f.key)}
-            role="tab"
-            aria-selected={activeFilter === f.key}
-            className={`rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-200 ${
-              activeFilter === f.key
-                ? "bg-[var(--accent)] text-white"
-                : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
-            }`}
-          >
-            {f.label}
-          </button>
-        ))}
-      </div>
+        {/* Filters */}
+        <motion.div
+          className="mt-8 mb-10 flex flex-wrap gap-2"
+          initial={{ opacity: 0, y: 8 }}
+          animate={isVisible ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.4, delay: 0.1 }}
+          role="group"
+          aria-label="Filter projects by category"
+        >
+          {filters.map((f) => (
+            <button
+              key={f.key}
+              onClick={() => setActiveFilter(f.key)}
+              aria-pressed={activeFilter === f.key}
+              className={`rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200 ${
+                activeFilter === f.key
+                  ? "bg-[var(--accent)] text-white"
+                  : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
+              }`}
+            >
+              {f.label}
+            </button>
+          ))}
+        </motion.div>
 
-      {/* Grid */}
-      <div
-        ref={ref}
-        className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"
-        style={{
-          transform: isVisible ? "translateY(0)" : "translateY(8px)",
-          transition: "transform 0.6s cubic-bezier(0.22, 1, 0.36, 1)",
-        }}
-      >
-        {filtered.map((project, i) => (
-          <ProjectCard key={project.title} project={project} index={i} />
-        ))}
+        {/* Featured Projects - Large cards */}
+        {featured.length > 0 && (
+          <div className="space-y-4 mb-12">
+            {featured.map((project, i) => (
+              <motion.div
+                key={project.slug}
+                initial={{ opacity: 0, y: 16 }}
+                animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.5, delay: 0.15 + i * 0.08 }}
+              >
+                <FeaturedProjectCard project={project} index={i} />
+              </motion.div>
+            ))}
+          </div>
+        )}
+
+        {/* Archive Projects - Smaller grid */}
+        {archive.length > 0 && (
+          <div>
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-px flex-1 bg-[var(--border)]" />
+              <p className="section-label">PROJECT ARCHIVE</p>
+              <div className="h-px flex-1 bg-[var(--border)]" />
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {archive.map((project, i) => (
+                <motion.div
+                  key={project.slug}
+                  initial={{ opacity: 0, y: 12 }}
+                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.4, delay: 0.2 + i * 0.05 }}
+                >
+                  <ArchiveProjectCard project={project} />
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
-    </Section>
+    </section>
   );
 }
 
-const categoryMeta: Record<string, { icon: string; label: string }> = {
-  ml: { icon: "⟁", label: "Machine Learning" },
-  eda: { icon: "⬡", label: "EDA" },
-  app: { icon: "⎔", label: "Application" },
-};
-
-function ProjectCard({
-  project,
-  index,
-}: {
-  project: (typeof projectsData)[0];
-  index: number;
-}) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
-  const meta = categoryMeta[project.category] ?? { icon: "◆", label: project.category };
-
+function FeaturedProjectCard({ project, index }: { project: (typeof projectsData)[0]; index: number }) {
   return (
-    <div
-      ref={ref}
-      className="group relative flex flex-col overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--bg-primary)] p-5 transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-[var(--accent)]/5 hover:border-[var(--accent)]/30"
-      style={{
-        transform: isVisible ? "translateY(0)" : "translateY(8px)",
-        transition: `transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) ${index * 40}ms, box-shadow 0.3s ease, border-color 0.3s ease`,
-      }}
-    >
-      {/* Top accent bar */}
-      <div className="absolute inset-x-0 top-0 h-[3px] bg-[var(--accent)] opacity-60" />
-
-      {/* Subtle corner glow */}
-      <div className="pointer-events-none absolute -right-10 -top-10 h-20 w-20 rounded-full bg-[var(--accent)]/5 blur-xl transition-opacity duration-300 group-hover:opacity-100 opacity-0" />
-
-      <div className="mb-3 flex items-center gap-2">
-        <span className="flex h-6 w-6 items-center justify-center rounded-md bg-[var(--accent-subtle)] text-xs text-[var(--accent)]">
-          {meta.icon}
-        </span>
-        <span className="badge">{meta.label}</span>
-      </div>
-
-      <h3 className="text-base font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors duration-200">
-        {project.title}
-      </h3>
-
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-[var(--text-secondary)]">
-        {project.desc}
-      </p>
-
-      <div className="mt-4 flex flex-wrap gap-1.5">
-        {project.tags.map((tag) => (
-          <span key={tag} className="tag">
-            {tag}
-          </span>
-        ))}
-      </div>
-
-      <div className="mt-4 flex items-center justify-between pt-3 border-t border-[var(--border)]">
-        <div className="flex items-center gap-4">
-          {project.github && (
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener"
-              className="group/link flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--accent)]"
-            >
-              <svg className="h-3.5 w-3.5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z" />
-              </svg>
-              Code
-            </a>
-          )}
-          {project.live && (
-            <a
-              href={project.live}
-              target="_blank"
-              rel="noopener"
-              className="group/link flex items-center gap-1 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--accent)]"
-            >
-              <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
-              </svg>
-              Demo
-            </a>
-          )}
+    <div className="card group relative overflow-hidden hover:border-[var(--accent)]/40 transition-all duration-300">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="p-6 md:p-8">
+        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
+          <div className="flex-1">
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-3xl font-bold font-mono text-[var(--accent)] opacity-30">
+                {String(index + 1).padStart(2, "0")}
+              </span>
+              <div className="flex flex-wrap gap-1.5">
+                {project.tags.slice(0, 4).map((tag) => (
+                  <span key={tag} className="tag text-[10px]">{tag}</span>
+                ))}
+              </div>
+            </div>
+            <h3 className="text-xl font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
+              {project.title}
+            </h3>
+            <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+              {project.description}
+            </p>
+            {project.metrics && (
+              <div className="mt-4 flex flex-wrap gap-4">
+                {project.metrics.map((m) => (
+                  <div key={m.label}>
+                    <p className="text-xs text-[var(--text-tertiary)] font-mono">{m.label}</p>
+                    <p className="text-sm font-semibold text-[var(--text-primary)]">{m.value}</p>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="flex items-center gap-3 md:ml-6">
+            {project.live && (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary text-xs"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Live Demo
+              </a>
+            )}
+            {project.github && (
+              <a
+                href={project.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-secondary text-xs"
+              >
+                <GithubIcon className="h-3.5 w-3.5" />
+                GitHub
+              </a>
+            )}
+          </div>
         </div>
-        <span className="text-[10px] font-mono text-[var(--text-secondary)]/40">{String(index + 1).padStart(2, "0")}</span>
       </div>
     </div>
   );
 }
 
-function badgeLabel(category: string) {
-  switch (category) {
-    case "ml":
-      return "Machine Learning";
-    case "eda":
-      return "EDA";
-    case "app":
-      return "Application";
-    default:
-      return category;
-  }
+function ArchiveProjectCard({ project }: { project: (typeof projectsData)[0] }) {
+  return (
+    <div className="card group relative overflow-hidden hover:-translate-y-1 hover:border-[var(--accent)]/40 transition-all duration-300">
+      <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
+      <div className="p-5">
+        <h3 className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors font-heading">
+          {project.title}
+        </h3>
+        <p className="mt-1.5 text-xs text-[var(--text-secondary)] leading-relaxed line-clamp-2">
+          {project.description}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-1">
+          {project.tags.slice(0, 3).map((tag) => (
+            <span key={tag} className="text-[10px] font-mono text-[var(--text-tertiary)]">{tag}</span>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-2">
+          {project.github && (
+            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1.5 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
+              GitHub ↗
+            </a>
+          )}
+          {project.live && (
+            <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1.5 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
+              Live ↗
+            </a>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
