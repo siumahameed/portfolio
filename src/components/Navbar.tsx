@@ -71,7 +71,7 @@ export function Navbar() {
             i
             <span
               aria-hidden="true"
-              className="absolute left-1/2 h-[0.3em] w-[0.3em] -translate-x-1/2 rounded-full bg-gradient-to-br from-[var(--accent)] via-fuchsia-500 to-amber-400 shadow-[0_0_6px_var(--accent-glow)] transition-transform duration-300 group-hover:scale-125"
+              className="absolute left-1/2 h-[0.3em] w-[0.3em] -translate-x-1/2 rounded-full bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125"
               style={{ top: "0.1em" }}
             />
           </span>
