@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useTheme } from "./ThemeProvider";
-import { Menu, X, Sun, Moon, FileText } from "lucide-react";
+import { Menu, X, Sun, Moon, FileText, Sparkles } from "lucide-react";
 
 const navLinks = [
   { href: "/portfolio/#about", label: "About" },
@@ -64,14 +64,17 @@ export function Navbar() {
         <a
           href="/portfolio/"
           aria-label="sium - home"
-          className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-mono"
+          className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-logo"
         >
           <span>s</span>
           <span className="relative inline-block" aria-hidden="true">
-            <span className="block h-[0.5em] w-[0.2em] rounded-[0.04em] bg-current" />
-            <span className="absolute -top-[0.42em] left-1/2 -translate-x-1/2 h-[0.3em] w-[0.3em] rounded-[0.05em] bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125" />
+            <span className="block h-[0.55em] w-[0.18em] rounded-[0.04em] bg-current" />
+            <span className="absolute -top-[0.45em] left-1/2 -translate-x-1/2 h-[0.34em] w-[0.34em] rounded-full bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125" />
           </span>
           <span>um</span>
+          <span className="ml-1.5 self-center text-[var(--accent)]" aria-hidden="true">
+            <Sparkles className="h-[0.85em] w-[0.85em] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
+          </span>
         </a>
 
         <nav className="hidden md:flex items-center gap-1">

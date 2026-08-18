@@ -74,6 +74,10 @@
     @apply py-16 md:py-24;
   }
 
+  .font-logo {
+    font-family: var(--font-exo2);
+  }
+
   .section-label {
     @apply text-xs font-medium uppercase tracking-[0.2em] text-[var(--accent)];
     font-family: var(--font-jetbrains);

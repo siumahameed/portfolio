@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter, JetBrains_Mono, Space_Grotesk, Exo_2 } from "next/font/google";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
@@ -21,6 +21,12 @@ const jetbrainsMono = JetBrains_Mono({
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   variable: "--font-space-grotesk",
+  display: "swap",
+});
+
+const exo2 = Exo_2({
+  subsets: ["latin"],
+  variable: "--font-exo2",
   display: "swap",
 });
 
@@ -73,7 +79,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} font-sans antialiased`}
+        className={`${inter.variable} ${jetbrainsMono.variable} ${spaceGrotesk.variable} ${exo2.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
         <ThemeProvider>
