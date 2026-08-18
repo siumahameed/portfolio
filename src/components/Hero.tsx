@@ -29,8 +29,8 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-2 text-4xl font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05]">
-                <span className="text-[var(--text-tertiary)] text-2xl sm:text-3xl lg:text-4xl font-normal block mb-1.5">Hi, I&apos;m</span>
+              <h1 className="mt-3 text-[2.5rem] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05]">
+                <span className="text-[var(--text-tertiary)] text-2xl sm:text-3xl lg:text-4xl font-normal block mb-2">Hi, I&apos;m</span>
                 <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
                   Sium Ahameed
                 </span>
@@ -40,7 +40,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={150}>
-              <p className="mt-4 max-w-lg text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+              <p className="mt-5 max-w-lg text-lg sm:text-xl text-[var(--text-secondary)] leading-relaxed">
                 Building intelligent systems
                 <br />
                 from data to deployment.
@@ -48,13 +48,13 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={180}>
-              <p className="mt-2.5 text-sm text-[var(--text-tertiary)] font-mono">
+              <p className="mt-3 text-sm text-[var(--text-tertiary)] font-mono">
                 Statistics &times; Machine Learning &times; AI Engineering
               </p>
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-wrap gap-3">
                 <a href="/portfolio/#projects" className="btn-primary">
                   View Work
                   <ArrowRight className="h-4 w-4" />
@@ -71,14 +71,14 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={250}>
-              <div className="mt-5 flex items-center gap-1">
-                <a href="https://github.com/siumahameed" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="GitHub">
+              <div className="mt-6 flex items-center gap-1">
+                <a href="https://github.com/siumahameed" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="GitHub">
                   <GithubIcon className="h-5 w-5" />
                 </a>
-                <a href="https://www.linkedin.com/in/sium11/" target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="LinkedIn">
+                <a href="https://www.linkedin.com/in/sium11/" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="LinkedIn">
                   <LinkedinIcon className="h-5 w-5" />
                 </a>
-                <a href="mailto:siumahameed2003@gmail.com" className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="Email">
+                <a href="mailto:siumahameed2003@gmail.com" className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="Email">
                   <Mail className="h-5 w-5" />
                 </a>
               </div>
