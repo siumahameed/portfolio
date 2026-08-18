@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, type ReactNode, type CSSProperties } from "react";
+import { useRef, type ReactNode, type CSSProperties } from "react";
 import { useInView } from "@/lib/useInView";
 
 export function Reveal({
@@ -18,17 +18,8 @@ export function Reveal({
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref);
-  const [mobile, setMobile] = useState(false);
 
-  useEffect(() => {
-    const mq = window.matchMedia("(max-width: 767px)");
-    const update = () => setMobile(mq.matches);
-    update();
-    mq.addEventListener("change", update);
-    return () => mq.removeEventListener("change", update);
-  }, []);
-
-  const effectiveDelay = mobile ? Math.round(delay * 0.4) : delay;
+  const effectiveDelay = Math.round(delay * 0.35);
 
   return (
     <div

@@ -272,7 +272,7 @@ main > section {
 }
 .reveal,
 .reveal-x {
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 .reveal[data-visible="true"],
 .reveal-x[data-visible="true"] {
@@ -283,7 +283,7 @@ main > section {
 @media (max-width: 767px) {
   .reveal,
   .reveal-x {
-    transition-duration: 0.2s;
+    transition-duration: 0.1s;
   }
 }
 
