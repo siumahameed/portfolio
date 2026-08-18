@@ -16,7 +16,7 @@ export function useInView(ref: RefObject<HTMLElement | null>): boolean {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.01, rootMargin: "0px 0px 12% 0px" }
+      { threshold: 0.01, rootMargin: "0px 0px 25% 0px" }
     );
 
     observer.observe(el);
