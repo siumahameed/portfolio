@@ -65,7 +65,7 @@ export function Navbar() {
           href="/portfolio/"
           className="text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-heading"
         >
-          sium<span className="text-[var(--accent)]">.</span>
+          sium<span className="bg-gradient-to-r from-[var(--accent)] via-fuchsia-500 to-amber-400 bg-clip-text text-transparent">.</span>
         </a>
 
         <nav className="hidden md:flex items-center gap-1">
