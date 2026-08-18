@@ -1,8 +1,8 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useInView } from "@/lib/useInView";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { workflowSteps } from "@/lib/skills";
 
 const stepDetails: Record<string, string[]> = {
@@ -18,12 +18,9 @@ const stepDetails: Record<string, string[]> = {
 export function Workflow() {
   const ref = useRef<HTMLDivElement>(null);
   const isVisible = useInView(ref);
-  const [activeStep, setActiveStep] = useState<string | null>(null);
-
-  const getDetails = (title: string) => stepDetails[title.toUpperCase()] ?? [];
 
   return (
-    <section className="section-padding">
+    <section id="how-i-build" className="section-padding">
       <div ref={ref} className="container-content">
         <motion.div
           initial={{ opacity: 0, y: 12 }}
@@ -38,71 +35,40 @@ export function Workflow() {
           </p>
         </motion.div>
 
-        <div className="mt-12">
-          {/* Pipeline visualization */}
-          <div className="relative overflow-x-auto scrollbar-hide pb-2">
-            <div className="flex items-center gap-2 md:gap-0 min-w-max">
-              {workflowSteps.map((step, i) => (
-                <motion.div
-                  key={step.title}
-                  className="flex items-center"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={isVisible ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.4, delay: 0.1 + i * 0.06 }}
-                >
-                  <button
-                    className={`group relative flex flex-col items-center gap-2 rounded-xl border px-4 py-3 transition-all duration-300 ${
-                      activeStep === step.title
-                        ? "border-[var(--accent)] bg-[var(--accent-subtle)]"
-                        : "border-[var(--border)] bg-[var(--bg-card)] hover:border-[var(--accent)]/40 hover:bg-[var(--accent-subtle)]"
-                    }`}
-                    onMouseEnter={() => setActiveStep(step.title)}
-                    onMouseLeave={() => setActiveStep(null)}
-                    onClick={() => setActiveStep(activeStep === step.title ? null : step.title)}
-                    aria-expanded={activeStep === step.title}
-                  >
-                    <span className="text-[10px] font-mono text-[var(--text-tertiary)]">{step.number}</span>
-                    <span className={`text-sm font-medium font-heading ${activeStep === step.title ? "text-[var(--accent)]" : "text-[var(--text-primary)]"}`}>
-                      {step.title}
-                    </span>
-                  </button>
-                  {i < workflowSteps.length - 1 && (
-                    <div className="mx-1">
-                      <svg className="h-4 w-4 text-[var(--border)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                      </svg>
-                    </div>
-                  )}
-                </motion.div>
-              ))}
-            </div>
-          </div>
+        <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {workflowSteps.map((step, i) => (
+            <motion.div
+              key={step.title}
+              className="card group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40"
+              initial={{ opacity: 0, y: 16 }}
+              animate={isVisible ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.1 + i * 0.07 }}
+            >
+              <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
 
-          {/* Detail panel */}
-          <AnimatePresence mode="wait">
-            {activeStep && getDetails(activeStep).length > 0 && (
-              <motion.div
-                key={activeStep}
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                transition={{ duration: 0.2 }}
-                className="overflow-hidden"
-              >
-                <div className="mt-4 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] p-5">
-                  <p className="text-xs font-mono text-[var(--accent)] mb-2">{activeStep}</p>
-                  <ul className="space-y-1">
-                    {getDetails(activeStep).map((detail) => (
-                      <li key={detail} className="flex items-center gap-2 text-sm text-[var(--text-secondary)]">
-                        <span className="h-1 w-1 rounded-full bg-[var(--accent)]" />
-                        {detail}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
+              <div className="flex items-start justify-between">
+                <span className="text-3xl font-bold font-mono text-[var(--accent)] opacity-20 group-hover:opacity-40 transition-opacity">
+                  {step.number}
+                </span>
+                <span className="text-[10px] font-mono text-[var(--text-tertiary)]">
+                  {i + 1} / {workflowSteps.length}
+                </span>
+              </div>
+
+              <h3 className="mt-3 text-lg font-semibold text-[var(--text-primary)] font-heading">
+                {step.title}
+              </h3>
+              <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
+                {step.description}
+              </p>
+
+              <div className="mt-4 flex flex-wrap gap-1.5 border-t border-[var(--border)] pt-3">
+                {(stepDetails[step.title.toUpperCase()] ?? []).map((detail) => (
+                  <span key={detail} className="tag text-[10px]">{detail}</span>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
