@@ -5,11 +5,11 @@ import { useTheme } from "./ThemeProvider";
 import { Menu, X, Sun, Moon, FileText, Sparkles } from "lucide-react";
 
 const navLinks = [
-  { href: "/portfolio/#about", label: "About" },
-  { href: "/portfolio/#projects", label: "Projects" },
-  { href: "/portfolio/#experience", label: "Experience" },
-  { href: "/portfolio/#contact", label: "Contact" },
-  { href: "/portfolio/blog", label: "Blog" },
+  { href: "/#about", label: "About" },
+  { href: "/#projects", label: "Projects" },
+  { href: "/#experience", label: "Experience" },
+  { href: "/#contact", label: "Contact" },
+  { href: "/blog", label: "Blog" },
 ];
 
 export function Navbar() {
@@ -25,7 +25,7 @@ export function Navbar() {
     setMobileOpen(false);
     if (href.includes("#")) {
       const sectionId = href.split("#")[1];
-      const isHome = window.location.pathname === "/portfolio/" || window.location.pathname === "/portfolio" || window.location.pathname === "/";
+      const isHome = window.location.pathname === "/" || window.location.pathname === "";
       if (isHome) {
         const el = document.getElementById(sectionId);
         if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
@@ -62,7 +62,7 @@ export function Navbar() {
     >
       <div className="container-content flex h-16 items-center justify-between">
         <a
-          href="/portfolio/"
+          href="/"
           aria-label="sium - home"
           className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-logo"
         >
@@ -101,7 +101,7 @@ export function Navbar() {
 
         <div className="hidden md:flex items-center gap-1">
           <a
-            href="/portfolio/files/CV.pdf"
+            href="/files/CV.pdf"
             download="Sium_Ahameed_CV.pdf"
             className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
           >
@@ -166,7 +166,7 @@ export function Navbar() {
           })}
           <div className="h-px bg-[var(--border)] my-2" />
           <a
-            href="/portfolio/files/CV.pdf"
+            href="/files/CV.pdf"
             download="Sium_Ahameed_CV.pdf"
             className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
           >

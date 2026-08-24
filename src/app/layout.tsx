@@ -38,13 +38,13 @@ export const metadata: Metadata = {
     title: "Sium Ahameed | AI/ML Engineer & Data Scientist",
     description:
       "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
-    url: "https://siumahameed.github.io/portfolio/",
+    url: "https://siumahameed.me/",
     siteName: "Sium Ahameed",
     locale: "en_US",
     type: "website",
     images: [
       {
-        url: "https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg",
+        url: "https://siumahameed.me/images/profile.jpg.jpeg",
         width: 512,
         height: 512,
         alt: "Sium Ahameed Bhuyan",
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     title: "Sium Ahameed | AI/ML Engineer & Data Scientist",
     description:
       "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
-    images: ["https://siumahameed.github.io/portfolio/images/profile.jpg.jpeg"],
+    images: ["https://siumahameed.me/images/profile.jpg.jpeg"],
   },
   robots: {
     index: true,
