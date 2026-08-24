@@ -23,7 +23,7 @@ export function Hero() {
           <div className="flex flex-col">
             <Reveal delay={50}>
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3.5 py-1.5 text-xs font-medium text-[var(--accent)] mb-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)] animate-pulse" />
+                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
                 Open to internships & research
               </span>
             </Reveal>
@@ -31,7 +31,7 @@ export function Hero() {
             <Reveal delay={100}>
               <h1 className="mt-2 text-[2.75rem] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05]">
                 <span className="text-[var(--text-tertiary)] text-[1.75rem] sm:text-3xl lg:text-4xl font-normal block mb-2.5">Hi, I&apos;m</span>
-                <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent animate-gradient">
+                <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent">
                   Sium Ahameed
                 </span>
                 <br />
@@ -118,7 +118,7 @@ function TerminalCard() {
         <p className="text-[var(--text-secondary)]">Data Science</p>
         <p className="text-[var(--text-secondary)]">Statistical Modeling</p>
         <p className="text-[var(--text-tertiary)] mt-3">$ status</p>
-        <p className="text-[var(--accent)]">building<span className="animate-pulse">...</span></p>
+        <p className="text-[var(--accent)]">building...</p>
       </div>
       {/* Pipeline bar at bottom */}
       <div className="border-t border-[var(--border)] px-5 py-3">

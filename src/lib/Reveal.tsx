@@ -1,7 +1,6 @@
 "use client";
 
-import { useRef, type ReactNode, type CSSProperties } from "react";
-import { useInView } from "@/lib/useInView";
+import { type ReactNode, type CSSProperties } from "react";
 
 export function Reveal({
   children,
@@ -16,17 +15,10 @@ export function Reveal({
   direction?: "y" | "x";
   style?: CSSProperties;
 }) {
-  const ref = useRef<HTMLDivElement>(null);
-  const isVisible = useInView(ref);
-
-  const effectiveDelay = Math.round(delay * 0.35);
-
   return (
     <div
-      ref={ref}
-      className={`${direction === "y" ? "reveal" : "reveal-x"} ${className}`}
-      data-visible={isVisible || undefined}
-      style={{ ...style, transitionDelay: isVisible ? `${effectiveDelay}ms` : undefined }}
+      className={className}
+      style={style}
     >
       {children}
     </div>
