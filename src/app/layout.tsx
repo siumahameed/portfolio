@@ -31,15 +31,15 @@ const exo2 = Exo_2({
 });
 
 export const metadata: Metadata = {
-  title: "Sium Ahameed Bhuyan | AI/ML Engineer & Data Scientist",
+  title: "Sium Ahameed - AI/ML and Data Science",
   description:
-    "Portfolio of Sium Ahameed Bhuyan, a Statistics undergraduate focused on machine learning, AI engineering, data science, and intelligent systems.",
+    "Portfolio of Sium Ahameed, a Statistics undergraduate focused on machine learning, AI engineering, data science, and intelligent systems.",
   openGraph: {
-    title: "Sium Ahameed Bhuyan | AI/ML Engineer & Data Scientist",
+    title: "Sium Ahameed - AI/ML and Data Science",
     description:
       "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
     url: "https://siumahameed.me/",
-    siteName: "Sium Ahameed Bhuyan",
+    siteName: "Sium Ahameed",
     locale: "en_US",
     type: "website",
     images: [
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Sium Ahameed Bhuyan | AI/ML Engineer & Data Scientist",
+    title: "Sium Ahameed - AI/ML and Data Science",
     description:
       "Building intelligent systems from data to deployment. Machine learning, AI engineering, and data science.",
     images: ["https://siumahameed.me/images/profile.jpg.jpeg"],
