@@ -21,21 +21,26 @@ export function Navbar() {
 
   useEffect(() => { setMounted(true); }, []);
 
-  const handleNav = useCallback((href: string) => {
-    setMobileOpen(false);
-    if (href.includes("#")) {
-      const sectionId = href.split("#")[1];
-      const isHome = window.location.pathname === "/" || window.location.pathname === "";
-      if (isHome) {
-        const el = document.getElementById(sectionId);
-        if (el) { el.scrollIntoView({ behavior: "smooth" }); return; }
+  const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (!href.includes("#")) return;
+    const sectionId = href.split("#")[1];
+    const isHome = window.location.pathname === "/" || window.location.pathname === "";
+    if (isHome) {
+      const el = document.getElementById(sectionId);
+      if (el) {
+        e.preventDefault();
+        setMobileOpen(false);
+        const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+        el.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
+        window.history.replaceState(null, "", `#${sectionId}`);
       }
     }
-    window.location.href = href;
   }, []);
 
   useEffect(() => {
-    const handleScroll = () => {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
       setScrolled(window.scrollY > 20);
       const sections = document.querySelectorAll("section[id]");
       let current = "";
@@ -47,16 +52,32 @@ export function Navbar() {
       });
       setActiveSection(current);
     };
+    const handleScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
 
+    update();
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [mobileOpen]);
 
   return (
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--border)] backdrop-blur-xl bg-[var(--bg-primary)]/80"
+          ? "border-b border-[var(--border)] backdrop-blur-sm bg-[var(--bg-primary)]/90"
           : "bg-transparent"
       }`}
     >
@@ -77,13 +98,15 @@ export function Navbar() {
           </span>
         </a>
 
-        <nav className="hidden md:flex items-center gap-1">
+        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
           {navLinks.map((link) => {
             const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
             return (
-              <button
+              <a
                 key={link.href}
-                onClick={() => handleNav(link.href)}
+                href={link.href}
+                onClick={(e) => handleAnchorClick(e, link.href)}
+                aria-current={isActive ? "true" : undefined}
                 className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 ${
                   isActive
                     ? "text-[var(--accent)]"
@@ -92,9 +115,9 @@ export function Navbar() {
               >
                 {link.label}
                 {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-4 rounded-full bg-[var(--accent)]" />
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-4 rounded-full bg-[var(--accent)]" aria-hidden="true" />
                 )}
-              </button>
+              </a>
             );
           })}
         </nav>
@@ -105,16 +128,16 @@ export function Navbar() {
             download="Sium_Ahameed_CV.pdf"
             className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
           >
-            <FileText className="h-3.5 w-3.5" />
+            <FileText className="h-3.5 w-3.5" aria-hidden="true" />
             Resume
           </a>
-          <div className="w-px h-4 bg-[var(--border)] mx-1" />
+          <div className="w-px h-4 bg-[var(--border)] mx-1" aria-hidden="true" />
           <button
             onClick={toggle}
             className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            {mounted && theme === "dark" ? <Sun className="h-4 w-4" /> : <Moon className="h-4 w-4" />}
+            {mounted && theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
           </button>
         </div>
 
@@ -124,16 +147,16 @@ export function Navbar() {
             className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
-            {mounted && theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            {mounted && theme === "dark" ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
           </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
             className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
-            aria-label="Toggle menu"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-5 w-5" aria-hidden="true" /> : <Menu className="h-5 w-5" aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -141,19 +164,23 @@ export function Navbar() {
       <nav
         id="mobile-menu"
         aria-label="Mobile navigation"
+        inert={!mobileOpen}
         className={`md:hidden overflow-hidden border-t transition-all duration-200 ease-in-out ${
           mobileOpen
-            ? "max-h-[480px] opacity-100 border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-xl"
-            : "max-h-0 opacity-0 border-transparent"
+            ? "max-h-[70svh] overflow-y-auto opacity-100 border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-sm"
+            : "max-h-0 opacity-0 border-transparent invisible"
         }`}
       >
         <div className="container-content flex flex-col gap-1 py-4">
           {navLinks.map((link) => {
             const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
             return (
-              <button
+              <a
                 key={link.href}
-                onClick={() => handleNav(link.href)}
+                href={link.href}
+                onClick={(e) => handleAnchorClick(e, link.href)}
+                aria-current={isActive ? "true" : undefined}
+                tabIndex={mobileOpen ? 0 : -1}
                 className={`text-left text-sm font-medium py-3 px-3 transition-colors ${
                   isActive
                     ? "text-[var(--accent)]"
@@ -161,16 +188,17 @@ export function Navbar() {
                 }`}
               >
                 {link.label}
-              </button>
+              </a>
             );
           })}
-          <div className="h-px bg-[var(--border)] my-2" />
+          <div className="h-px bg-[var(--border)] my-2" aria-hidden="true" />
           <a
             href="/files/CV.pdf"
             download="Sium_Ahameed_CV.pdf"
+            tabIndex={mobileOpen ? 0 : -1}
             className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
           >
-            <FileText className="h-4 w-4" />
+            <FileText className="h-4 w-4" aria-hidden="true" />
             Resume
           </a>
         </div>

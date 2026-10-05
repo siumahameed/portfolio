@@ -18,66 +18,64 @@ export interface Article extends ArticleMeta {
 
 const articlesDir = path.join(process.cwd(), "src", "content", "articles");
 
-export function getAllArticles(): ArticleMeta[] {
+let cachedArticles: Article[] | null = null;
+
+function isValidMeta(data: Record<string, unknown>, file: string): data is Record<string, string> {
+  const required = ["slug", "title", "excerpt", "category", "date", "readingTime"];
+  for (const key of required) {
+    if (typeof data[key] !== "string" || !(data[key] as string).trim()) {
+      console.warn(`[articles] Skipping ${file}: missing/invalid frontmatter "${key}"`);
+      return false;
+    }
+  }
+  return true;
+}
+
+function loadArticles(): Article[] {
+  if (cachedArticles) return cachedArticles;
   if (!fs.existsSync(articlesDir)) return [];
 
   const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".md"));
 
-  const articles = files.map((file) => {
-    const raw = fs.readFileSync(path.join(articlesDir, file), "utf-8");
-    const { data } = matter(raw);
-    return {
-      slug: data.slug,
-      title: data.title,
-      excerpt: data.excerpt,
-      category: data.category,
-      date: data.date,
-      readingTime: data.readingTime,
-      cover: data.cover || "",
-    };
-  });
-
-  return articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
-}
-
-export function getArticleBySlug(slug: string): Article | null {
-  if (!fs.existsSync(articlesDir)) return null;
-
-  const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".md"));
-
+  const articles: Article[] = [];
   for (const file of files) {
     const raw = fs.readFileSync(path.join(articlesDir, file), "utf-8");
     const { data, content } = matter(raw);
-    if (data.slug === slug) {
-      return {
-        slug: data.slug,
-        title: data.title,
-        excerpt: data.excerpt,
-        category: data.category,
-        date: data.date,
-        readingTime: data.readingTime,
-        cover: data.cover || "",
-        content,
-      };
-    }
+    if (!isValidMeta(data as Record<string, unknown>, file)) continue;
+    articles.push({
+      slug: data.slug as string,
+      title: data.title as string,
+      excerpt: data.excerpt as string,
+      category: data.category as string,
+      date: data.date as string,
+      readingTime: data.readingTime as string,
+      cover: (data.cover as string) || "",
+      content,
+    });
   }
 
-  return null;
+  cachedArticles = articles.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  return cachedArticles;
+}
+
+function toMeta(a: Article): ArticleMeta {
+  const { content: _content, ...meta } = a;
+  void _content;
+  return meta;
+}
+
+export function getAllArticles(): ArticleMeta[] {
+  return loadArticles().map(toMeta);
+}
+
+export function getArticleBySlug(slug: string): Article | null {
+  return loadArticles().find((a) => a.slug === slug) ?? null;
 }
 
 export function getAllSlugs(): string[] {
-  if (!fs.existsSync(articlesDir)) return [];
-
-  const files = fs.readdirSync(articlesDir).filter((f) => f.endsWith(".md"));
-
-  return files.map((file) => {
-    const raw = fs.readFileSync(path.join(articlesDir, file), "utf-8");
-    const { data } = matter(raw);
-    return data.slug;
-  });
+  return loadArticles().map((a) => a.slug);
 }
 
 export function getAllCategories(): string[] {
-  const articles = getAllArticles();
-  return [...new Set(articles.map((a) => a.category))].sort();
+  return [...new Set(loadArticles().map((a) => a.category))].sort();
 }

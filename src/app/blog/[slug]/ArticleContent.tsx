@@ -2,10 +2,25 @@
 
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import python from "react-syntax-highlighter/dist/esm/languages/prism/python";
+import javascript from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
+import typescript from "react-syntax-highlighter/dist/esm/languages/prism/typescript";
+import bash from "react-syntax-highlighter/dist/esm/languages/prism/bash";
+import json from "react-syntax-highlighter/dist/esm/languages/prism/json";
+import markdown from "react-syntax-highlighter/dist/esm/languages/prism/markdown";
 import type { Article } from "@/lib/articles";
 import type { Components } from "react-markdown";
+
+SyntaxHighlighter.registerLanguage("python", python);
+SyntaxHighlighter.registerLanguage("javascript", javascript);
+SyntaxHighlighter.registerLanguage("js", javascript);
+SyntaxHighlighter.registerLanguage("typescript", typescript);
+SyntaxHighlighter.registerLanguage("ts", typescript);
+SyntaxHighlighter.registerLanguage("bash", bash);
+SyntaxHighlighter.registerLanguage("json", json);
+SyntaxHighlighter.registerLanguage("markdown", markdown);
 
 const components: Components = {
   code({ className, children, ...props }) {
@@ -85,14 +100,14 @@ export function ArticleContent({ article }: { article: Article }) {
     <article>
       <div className="mb-10">
         <span className="badge mb-4 inline-block">{article.category}</span>
-        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl font-heading">
+        <h1 className="text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl font-heading text-balance">
           {article.title}
         </h1>
         <div className="mt-4 flex items-center gap-3 text-sm text-[var(--text-tertiary)]">
           <span>{article.date}</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--text-tertiary)]" />
+          <span className="h-1 w-1 rounded-full bg-[var(--text-tertiary)]" aria-hidden="true" />
           <span>{article.readingTime}</span>
-          <span className="h-1 w-1 rounded-full bg-[var(--text-tertiary)]" />
+          <span className="h-1 w-1 rounded-full bg-[var(--text-tertiary)]" aria-hidden="true" />
           <span>Sium Ahameed</span>
         </div>
       </div>

@@ -5,8 +5,6 @@ import type { ArticleMeta } from "@/lib/articles";
 import { ArrowRight } from "lucide-react";
 
 export function BlogCard({ article, index }: { article: ArticleMeta; index: number }) {
-  const basePath = "/portfolio";
-
   return (
     <Reveal delay={index * 40}>
       <article className="card group relative overflow-hidden hover:-translate-y-1 hover:border-[var(--accent)]/40 transition-all duration-300">
@@ -32,7 +30,7 @@ export function BlogCard({ article, index }: { article: ArticleMeta; index: numb
               <span>{article.readingTime}</span>
             </div>
             <a
-              href={`${basePath}/blog/${article.slug}`}
+              href={`/blog/${article.slug}`}
               className="inline-flex items-center gap-1 text-xs font-medium text-[var(--accent)] transition-colors hover:text-[var(--accent-hover)]"
             >
               Read

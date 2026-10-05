@@ -21,6 +21,15 @@ export function CursorSpotlight() {
       targetRef.current = { x: e.clientX, y: e.clientY };
     };
 
+    const onVisibility = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(rafRef.current);
+        rafRef.current = 0;
+      } else if (!rafRef.current) {
+        rafRef.current = requestAnimationFrame(animate);
+      }
+    };
+
     const animate = () => {
       const lerp = 0.12;
       posRef.current.x += (targetRef.current.x - posRef.current.x) * lerp;
@@ -33,11 +42,14 @@ export function CursorSpotlight() {
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    document.addEventListener("visibilitychange", onVisibility);
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", onMove);
+      document.removeEventListener("visibilitychange", onVisibility);
       cancelAnimationFrame(rafRef.current);
+      rafRef.current = 0;
     };
   }, []);
 

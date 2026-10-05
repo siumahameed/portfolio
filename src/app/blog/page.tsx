@@ -1,5 +1,20 @@
 import { getAllArticles, getAllCategories } from "@/lib/articles";
 import { BlogContent } from "./BlogContent";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Blog - Notes from the Lab | Sium Ahameed",
+  description:
+    "Articles about AI, machine learning, data science, and everything I'm learning while building real-world projects.",
+  alternates: { canonical: "https://siumahameed.me/blog" },
+  openGraph: {
+    title: "Blog - Notes from the Lab | Sium Ahameed",
+    description:
+      "Articles about AI, machine learning, data science, and everything I'm learning while building real-world projects.",
+    url: "https://siumahameed.me/blog",
+    type: "website",
+  },
+};
 
 export default function BlogPage() {
   const articles = getAllArticles();

@@ -9,6 +9,7 @@ export function Hero() {
     <section className="relative flex min-h-[100svh] items-start overflow-hidden pt-[4.5rem] pb-10 md:min-h-[calc(100svh-4rem)] md:items-center md:pt-24 md:pb-16">
       {/* Background radial glow */}
       <div
+        aria-hidden="true"
         className="pointer-events-none absolute left-1/2 top-[-200px] -translate-x-1/2"
         style={{
           width: "900px",
@@ -29,7 +30,7 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={100}>
-              <h1 className="mt-2 text-[2.75rem] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05]">
+              <h1 className="mt-2 text-[clamp(2.25rem,8vw,2.75rem)] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05] text-balance">
                 <span className="text-[var(--text-tertiary)] text-[1.75rem] sm:text-3xl lg:text-4xl font-normal block mb-2.5">Hi, I&apos;m</span>
                 <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent">
                   Sium Ahameed
@@ -54,17 +55,17 @@ export function Hero() {
             </Reveal>
 
             <Reveal delay={200}>
-              <div className="mt-7 flex flex-wrap gap-3">
-                <a href="/portfolio/#projects" className="btn-primary px-6 py-3 text-[15px]">
+              <div className="mt-7 flex min-w-0 flex-wrap gap-3">
+                <a href="#projects" className="btn-primary px-6 py-3 text-[15px]">
                   View Work
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
-                  href="/portfolio/files/CV.pdf"
+                  href="/files/CV.pdf"
                   download="Sium_Ahameed_CV.pdf"
                   className="btn-secondary px-6 py-3 text-[15px]"
                 >
-                  <Download className="h-4 w-4" />
+                  <Download className="h-4 w-4" aria-hidden="true" />
                   Resume
                 </a>
               </div>
@@ -104,7 +105,7 @@ function TerminalCard() {
   return (
     <div className="w-full max-w-sm rounded-xl border border-[var(--border)] bg-[var(--bg-card)] overflow-hidden shadow-2xl shadow-black/10">
       {/* Terminal header */}
-      <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3">
+      <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-3" aria-hidden="true">
         <div className="h-3 w-3 rounded-full bg-red-400/80" />
         <div className="h-3 w-3 rounded-full bg-yellow-400/80" />
         <div className="h-3 w-3 rounded-full bg-green-400/80" />
@@ -121,7 +122,7 @@ function TerminalCard() {
         <p className="text-[var(--accent)]">building...</p>
       </div>
       {/* Pipeline bar at bottom */}
-      <div className="border-t border-[var(--border)] px-5 py-3">
+      <div className="border-t border-[var(--border)] px-5 py-3" aria-hidden="true">
         <div className="flex items-center justify-between">
           {["DATA", "CLEAN", "EDA", "MODEL", "DEPLOY"].map((step, i) => (
             <div key={step} className="flex flex-col items-center gap-1.5">

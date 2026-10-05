@@ -79,8 +79,8 @@ export function GitHubActivity() {
 
   const contributionGraph = useMemo(() => {
     const rand = seededRandom(42);
-    return Array.from({ length: 52 }, (_, week) =>
-      Array.from({ length: 7 }, (_, day) => {
+    return Array.from({ length: 52 }, () =>
+      Array.from({ length: 7 }, () => {
         const intensity = rand();
         return intensity < 0.3
           ? "var(--bg-secondary)"

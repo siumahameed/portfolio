@@ -39,9 +39,9 @@ export function About() {
           <Reveal delay={100} className="lg:col-span-2">
             {/* Journey */}
             <div className="card mb-4">
-              <p className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
+              <h3 className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
                 My Journey
-              </p>
+              </h3>
               <div className="space-y-2">
                 {["Statistics", "Data Analysis", "Machine Learning", "AI Engineering", "Building Intelligent Systems"].map((step, i) => (
                   <div key={step} className="flex items-center gap-3">
@@ -49,7 +49,7 @@ export function About() {
                       {i + 1}
                     </span>
                     <span className="text-sm text-[var(--text-secondary)]">{step}</span>
-                    {i < 4 && <span className="ml-auto text-[var(--text-tertiary)]">→</span>}
+                    {i < 4 && <span className="ml-auto text-[var(--text-tertiary)]" aria-hidden="true">→</span>}
                   </div>
                 ))}
               </div>
@@ -57,9 +57,9 @@ export function About() {
 
             {/* Quick Facts */}
             <div className="card">
-              <p className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
+              <h3 className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
                 Quick Facts
-              </p>
+              </h3>
               <div className="space-y-3">
                 <FactRow label="Name" value="Sium Ahameed Bhuyan" />
                 <FactRow label="Education" value="BSc in Statistics" />

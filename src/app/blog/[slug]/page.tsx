@@ -17,9 +17,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const article = getArticleBySlug(slug);
   if (!article) return {};
 
+  const url = `https://siumahameed.me/blog/${slug}`;
   return {
     title: `${article.title} | Sium Ahameed`,
     description: article.excerpt,
+    alternates: { canonical: url },
+    openGraph: {
+      title: `${article.title} | Sium Ahameed`,
+      description: article.excerpt,
+      url,
+      type: "article",
+    },
+    twitter: {
+      card: "summary",
+      title: `${article.title} | Sium Ahameed`,
+      description: article.excerpt,
+    },
   };
 }
 
@@ -38,7 +51,7 @@ export default async function ArticlePage({ params }: Props) {
 
         <div className="mt-12 border-t border-[var(--border)] pt-8 text-center">
           <a
-            href="/portfolio/blog"
+            href="/blog"
             className="btn-secondary inline-flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />

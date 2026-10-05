@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 
 function seededRandom(seed: number) {
   let s = seed;
@@ -11,6 +11,16 @@ function seededRandom(seed: number) {
 }
 
 export function DataNetwork() {
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    setReducedMotion(mq.matches);
+    const onChange = (e: MediaQueryListEvent) => setReducedMotion(e.matches);
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
+
   const { layers, connections, floatingNodes } = useMemo(() => {
     const rand = seededRandom(777);
 
@@ -71,7 +81,7 @@ export function DataNetwork() {
               strokeWidth="0.08"
               opacity="0.3"
             />
-            {conn.pulse && (
+            {conn.pulse && !reducedMotion && (
               <circle r="0.25" fill="currentColor" opacity="0.7">
                 <animateMotion
                   dur="5s"
@@ -88,6 +98,7 @@ export function DataNetwork() {
           layer.nodes.map((y, ni) => (
             <g key={`n-${li}-${ni}`}>
               <circle cx={layer.x} cy={y} r="0.5" fill="currentColor" opacity="0.6" />
+              {!reducedMotion && (
               <circle cx={layer.x} cy={y} r="0.5" fill="none" stroke="currentColor" strokeWidth="0.05">
                 <animate
                   attributeName="r"
@@ -104,6 +115,7 @@ export function DataNetwork() {
                   repeatCount="indefinite"
                 />
               </circle>
+              )}
             </g>
           ))
         )}
@@ -117,7 +129,7 @@ export function DataNetwork() {
               fill="currentColor"
               opacity="0.3"
             />
-            {node.pulse && (
+            {node.pulse && !reducedMotion && (
               <circle
                 cx={node.x}
                 cy={node.y}

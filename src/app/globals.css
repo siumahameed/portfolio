@@ -8,12 +8,12 @@
     --bg-secondary: #F4F4F5;
     --bg-card: #FFFFFF;
     --text-primary: #09090B;
-    --text-secondary: #71717A;
-    --text-tertiary: #A1A1AA;
+    --text-secondary: #52525B;
+    --text-tertiary: #52525B;
     --border: rgba(0, 0, 0, 0.1);
     --border-hover: rgba(0, 0, 0, 0.16);
-    --accent: #5B5FEE;
-    --accent-hover: #4B4FD6;
+    --accent: #4B4FD6;
+    --accent-hover: #3F43C6;
     --accent-subtle: rgba(91, 95, 238, 0.12);
     --accent-glow: rgba(91, 95, 238, 0.2);
     --grid-line: rgba(0, 0, 0, 0.012);
@@ -26,8 +26,8 @@
     --bg-secondary: #0D0F12;
     --bg-card: #111318;
     --text-primary: #F5F7FA;
-    --text-secondary: #A1A7B3;
-    --text-tertiary: #6B7280;
+    --text-secondary: #C2C8D1;
+    --text-tertiary: #9CA3AF;
     --border: rgba(255, 255, 255, 0.06);
     --border-hover: rgba(255, 255, 255, 0.1);
     --accent: #38BDF8;
@@ -60,9 +60,34 @@
     color: var(--accent);
   }
 
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
   * {
     border-color: var(--border);
   }
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 100;
+  background: var(--accent);
+  color: white;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  transition: top 0.2s ease;
+}
+.skip-link:focus-visible {
+  top: 1rem;
+  outline: 2px solid white;
+  outline-offset: 2px;
 }
 
 @layer components {
@@ -269,5 +294,12 @@ main > section {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

@@ -13,11 +13,11 @@ const groupColors: Record<string, string> = {
 
 export function Skills() {
   return (
-    <section className="section-padding">
+    <section id="skills" aria-labelledby="skills-heading" className="section-padding">
       <div className="container-content">
         <Reveal>
           <p className="section-label mb-3">TECHNICAL STACK</p>
-          <h2 className="section-title">Skills</h2>
+          <h2 id="skills-heading" className="section-title">Skills</h2>
           <p className="section-subtitle">
             Technologies and tools I work with across the ML pipeline.
           </p>
@@ -31,7 +31,7 @@ export function Skills() {
             </svg>
           </div>
           <div>
-            <p className="text-sm font-semibold text-[var(--text-primary)] font-heading">Where statistics meets machine learning</p>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] font-heading">Where statistics meets machine learning</h3>
             <p className="text-sm text-[var(--text-secondary)] mt-0.5">My stats background means I don&apos;t treat models as black boxes. I care about assumptions, inference, and whether a model actually works.</p>
           </div>
         </Reveal>
@@ -58,18 +58,18 @@ export function Skills() {
                       >
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <p className="text-sm font-semibold text-[var(--text-primary)] font-heading">
+                      <h3 className="text-sm font-semibold text-[var(--text-primary)] font-heading">
                         {group.name}
-                      </p>
+                      </h3>
                     </div>
 
                     {/* Categories */}
                     <div className="space-y-3">
                       {group.categories.map((cat) => (
                         <div key={cat.name}>
-                          <p className="text-[10px] font-mono text-[var(--text-tertiary)] mb-1.5 uppercase tracking-wider">
+                          <h4 className="text-[10px] font-mono text-[var(--text-tertiary)] mb-1.5 uppercase tracking-wider">
                             {cat.name}
-                          </p>
+                          </h4>
                           <div className="flex flex-wrap gap-1.5">
                             {cat.skills.map((skill) => (
                               <span

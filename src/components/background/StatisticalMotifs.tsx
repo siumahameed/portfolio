@@ -1,8 +1,37 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
+
+const HEATMAP_MATRIX = [
+  [1.0, 0.8, 0.3, 0.1],
+  [0.8, 1.0, 0.5, 0.2],
+  [0.3, 0.5, 1.0, 0.7],
+  [0.1, 0.2, 0.7, 1.0],
+];
+const HEATMAP_LABELS = ["x₁", "x₂", "x₃", "x₄"];
+const NN_LAYERS = [
+  { x: 30, ys: [35, 55, 75, 95, 115] },
+  { x: 95, ys: [35, 55, 75, 95, 115] },
+  { x: 160, ys: [45, 65, 85, 105] },
+  { x: 225, ys: [65, 85] },
+];
 
 export function StatisticalMotifs() {
+  const nnLines = useMemo(() => {
+    const lines: React.JSX.Element[] = [];
+    for (let l = 0; l < NN_LAYERS.length - 1; l++) {
+      const from = NN_LAYERS[l];
+      const to = NN_LAYERS[l + 1];
+      from.ys.forEach((fy, fi) => {
+        to.ys.forEach((ty, ti) => {
+          lines.push(
+            <line key={`c${l}-${fi}-${ti}`} x1={from.x} y1={fy} x2={to.x} y2={ty} stroke="currentColor" strokeWidth="0.4" opacity="0.25" />
+          );
+        });
+      });
+    }
+    return lines;
+  }, []);
   return (
     <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
 
@@ -70,18 +99,11 @@ export function StatisticalMotifs() {
         viewBox="0 0 180 180"
       >
         {(() => {
-          const matrix = [
-            [1.0, 0.8, 0.3, 0.1],
-            [0.8, 1.0, 0.5, 0.2],
-            [0.3, 0.5, 1.0, 0.7],
-            [0.1, 0.2, 0.7, 1.0],
-          ];
-          const labels = ["x₁", "x₂", "x₃", "x₄"];
           const cellSize = 35;
           const offset = 25;
           return (
             <>
-              {matrix.map((row, i) =>
+              {HEATMAP_MATRIX.map((row, i) =>
                 row.map((val, j) => (
                   <rect
                     key={`${i}-${j}`}
@@ -95,10 +117,10 @@ export function StatisticalMotifs() {
                   />
                 ))
               )}
-              {labels.map((label, i) => (
+              {HEATMAP_LABELS.map((label, i) => (
                 <text key={`l${i}`} x={offset + i * cellSize + cellSize / 2 - 1} y={offset - 6} textAnchor="middle" fill="var(--axis-color)" fontSize="8" fontFamily="monospace" opacity="0.5">{label}</text>
               ))}
-              {labels.map((label, i) => (
+              {HEATMAP_LABELS.map((label, i) => (
                 <text key={`r${i}`} x={offset - 10} y={offset + i * cellSize + cellSize / 2 + 3} textAnchor="middle" fill="var(--axis-color)" fontSize="8" fontFamily="monospace" opacity="0.5">{label}</text>
               ))}
             </>
@@ -160,27 +182,7 @@ export function StatisticalMotifs() {
             <circle key={`n${li}-${ni}`} cx={layer.x} cy={y} r="4" fill="currentColor" opacity="0.5" />
           ))
         )}
-        {(() => {
-          const layers = [
-            { x: 30, ys: [35, 55, 75, 95, 115] },
-            { x: 95, ys: [35, 55, 75, 95, 115] },
-            { x: 160, ys: [45, 65, 85, 105] },
-            { x: 225, ys: [65, 85] },
-          ];
-          const lines: React.JSX.Element[] = [];
-          for (let l = 0; l < layers.length - 1; l++) {
-            const from = layers[l];
-            const to = layers[l + 1];
-            from.ys.forEach((fy, fi) => {
-              to.ys.forEach((ty, ti) => {
-                lines.push(
-                  <line key={`c${l}-${fi}-${ti}`} x1={from.x} y1={fy} x2={to.x} y2={ty} stroke="currentColor" strokeWidth="0.4" opacity="0.25" />
-                );
-              });
-            });
-          }
-          return lines;
-        })()}
+        {nnLines}
         <text x="125" y="150" textAnchor="middle" fill="currentColor" fontSize="8" fontFamily="monospace" opacity="0.5">deep neural network</text>
       </svg>
 

@@ -97,8 +97,8 @@ function FeaturedProjectCard({ project, index }: { project: (typeof projectsData
     <div className="card group relative overflow-hidden hover:border-[var(--accent)]/40 transition-all duration-300">
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
       <div className="p-5 md:p-8">
-        <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-4">
-          <div className="flex-1">
+        <div className="flex min-w-0 flex-col md:flex-row md:items-start md:justify-between gap-4">
+          <div className="min-w-0 flex-1">
             <div className="flex items-center gap-3 mb-3">
               <span className="text-3xl font-bold font-mono text-[var(--accent)] opacity-30">
                 {String(index + 1).padStart(2, "0")}
@@ -109,10 +109,10 @@ function FeaturedProjectCard({ project, index }: { project: (typeof projectsData
                 ))}
               </div>
             </div>
-            <h3 className="text-xl font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
+            <h3 className="break-words text-xl font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
               {project.title}
             </h3>
-            <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+            <p className="mt-2 break-words text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl">
               {project.description}
             </p>
             {project.metrics && (
