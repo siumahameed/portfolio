@@ -24,8 +24,8 @@ export function Hero() {
           <div className="flex flex-col">
             <Reveal instant>
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3.5 py-1.5 text-xs font-medium text-[var(--accent)] mb-2">
-                <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
-                Open to internships & research
+                <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+                Working on DataTistics &middot; Open to research & internships
               </span>
             </Reveal>
 
@@ -114,7 +114,7 @@ function TerminalCard() {
         <p className="text-[var(--text-secondary)]">Data Science</p>
         <p className="text-[var(--text-secondary)]">Statistical Modeling</p>
         <p className="text-[var(--text-tertiary)] mt-3">$ status</p>
-        <p className="text-[var(--accent)]">building...</p>
+        <p className="text-[var(--accent)]">building @ DataTistics</p>
       </div>
       {/* Pipeline bar at bottom */}
       <div className="border-t border-[var(--border)] px-5 py-3" aria-hidden="true">

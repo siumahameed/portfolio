@@ -10,6 +10,19 @@ export interface Experience {
 
 export const experienceData: Experience[] = [
   {
+    id: "datatistics",
+    title: "AI / ML Developer",
+    organization: "DataTistics",
+    period: "2026 - Present",
+    year: "2026",
+    description: [
+      "Engineering a SaaS platform with 47 automated statistical tests and AI-powered executive report generation",
+      "Integrated Groq LLMs for automated forecasting, probability analysis, and business trend synthesis",
+      "Supported 5,000+ students, academic researchers, and businesses with instant automated insights",
+    ],
+    tags: ["FastAPI", "Python", "LLMs", "Scikit-learn", "PostgreSQL"],
+  },
+  {
     id: "management-trainee",
     title: "Management Trainee",
     organization: "YSSE",

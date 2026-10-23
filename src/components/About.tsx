@@ -28,9 +28,7 @@ export function About() {
                   from a textbook.
                 </p>
                 <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-                  Right now I&apos;m looking for an internship or research collaboration where
-                  I can work on real ML systems with people who know more than me. I learn
-                  fastest when there is something real at stake.
+                  Right now, I&apos;m actively working on <a href="https://datatistics.app" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] underline underline-offset-2 hover:text-[var(--accent-hover)] font-medium">DataTistics</a>—an automated statistical analysis and AI reporting platform serving 5,000+ users. In parallel, I&apos;m seeking ML internships and research collaborations where I can contribute to production-grade systems alongside experienced teams.
                 </p>
               </div>
             </Reveal>
@@ -62,6 +60,7 @@ export function About() {
               </h3>
               <div className="space-y-3">
                 <FactRow label="Name" value="Sium Ahameed Bhuyan" />
+                <FactRow label="Current Project" value="DataTistics (Building & Scaling)" />
                 <FactRow label="Education" value="BSc in Statistics" />
                 <FactRow label="Location" value="Dhaka, Bangladesh" />
                 <FactRow label="Focus" value="ML / AI Engineering / Data Science" />

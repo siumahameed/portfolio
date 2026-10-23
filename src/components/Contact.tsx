@@ -26,7 +26,7 @@ export function Contact() {
             <span className="text-[var(--accent)]">Let&apos;s talk.</span>
           </h2>
           <p className="mt-5 text-base leading-relaxed text-[var(--text-secondary)]">
-            I&apos;m open to AI/ML internships, research collaborations,
+            Currently working on DataTistics while open to AI/ML internships, research collaborations,
             freelance projects, and opportunities to build data-driven
             products.
           </p>
