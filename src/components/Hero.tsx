@@ -10,7 +10,7 @@ export function Hero() {
       {/* Background radial glow */}
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute left-1/2 top-[-200px] -translate-x-1/2"
+        className="pointer-events-none absolute left-1/2 top-[-200px] -translate-x-1/2 will-change-transform"
         style={{
           width: "900px",
           height: "700px",
@@ -22,14 +22,14 @@ export function Hero() {
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-center">
           {/* Left: Text */}
           <div className="flex flex-col">
-            <Reveal delay={50}>
+            <Reveal instant>
               <span className="inline-flex items-center gap-2 rounded-full border border-[var(--accent)]/20 bg-[var(--accent-subtle)] px-3.5 py-1.5 text-xs font-medium text-[var(--accent)] mb-2">
                 <span className="h-1.5 w-1.5 rounded-full bg-[var(--accent)]" />
                 Open to internships & research
               </span>
             </Reveal>
 
-            <Reveal delay={100}>
+            <Reveal instant>
               <h1 className="mt-2 text-[clamp(2.25rem,8vw,2.75rem)] font-bold tracking-tight text-[var(--text-primary)] sm:text-5xl lg:text-6xl font-heading leading-[1.05] text-balance">
                 <span className="text-[var(--text-tertiary)] text-[1.75rem] sm:text-3xl lg:text-4xl font-normal block mb-2.5">Hi, I&apos;m</span>
                 <span className="bg-gradient-to-r from-[var(--accent)] via-[var(--text-primary)] to-[var(--accent)] bg-[length:200%_auto] bg-clip-text text-transparent">
@@ -40,7 +40,7 @@ export function Hero() {
               </h1>
             </Reveal>
 
-            <Reveal delay={150}>
+            <Reveal instant>
               <p className="mt-5 max-w-lg text-lg sm:text-xl text-[var(--text-secondary)] leading-relaxed">
                 Building intelligent systems
                 <br />
@@ -48,13 +48,13 @@ export function Hero() {
               </p>
             </Reveal>
 
-            <Reveal delay={180}>
+            <Reveal instant>
               <p className="mt-3 text-[15px] text-[var(--text-tertiary)] font-mono">
                 Statistics &times; Machine Learning &times; AI Engineering
               </p>
             </Reveal>
 
-            <Reveal delay={200}>
+            <Reveal instant>
               <div className="mt-7 flex min-w-0 flex-wrap gap-3">
                 <a href="#projects" className="btn-primary px-6 py-3 text-[15px]">
                   View Work
@@ -71,7 +71,7 @@ export function Hero() {
               </div>
             </Reveal>
 
-            <Reveal delay={250}>
+            <Reveal instant>
               <div className="mt-6 flex items-center gap-1">
                 <a href="https://github.com/siumahameed" target="_blank" rel="noopener noreferrer" className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]" aria-label="GitHub">
                   <GithubIcon className="h-5 w-5" />
@@ -86,13 +86,8 @@ export function Hero() {
             </Reveal>
           </div>
 
-          {/* Right: Terminal card (desktop) */}
-          <Reveal direction="x" delay={150} className="hidden lg:flex justify-center">
-            <TerminalCard />
-          </Reveal>
-
-          {/* Terminal card (mobile) */}
-          <Reveal delay={200} className="mt-8 lg:hidden">
+          {/* Right: Terminal card (single responsive render) */}
+          <Reveal direction="x" instant className="flex justify-center mt-8 lg:mt-0">
             <TerminalCard />
           </Reveal>
         </div>

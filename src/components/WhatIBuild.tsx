@@ -14,8 +14,7 @@ export function WhatIBuild() {
           <p className="section-label mb-3">WHAT I BUILD</p>
           <h2 className="section-title">Engineering Intelligence</h2>
           <p className="section-subtitle">
-            Where statistical reasoning meets intelligent systems. I care about uncertainty,
-            assumptions, inference, and whether a model actually provides reliable evidence.
+            From exploratory data science to deployed machine learning systems, practical AI workflows, and reproducible pipelines.
           </p>
         </Reveal>
 

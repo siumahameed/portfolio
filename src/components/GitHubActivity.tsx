@@ -21,9 +21,9 @@ interface GitHubStats {
 
 export function GitHubActivity() {
   const [stats, setStats] = useState<GitHubStats>({
-    repos: null,
-    followers: null,
-    languages: [],
+    repos: 15,
+    followers: 0,
+    languages: ["Python", "Jupyter Notebook", "JavaScript"],
   });
 
   useEffect(() => {

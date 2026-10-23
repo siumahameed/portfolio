@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
 import { Menu, X, Sun, Moon, FileText, Sparkles } from "lucide-react";
 
@@ -22,7 +23,10 @@ export function Navbar() {
   useEffect(() => { setMounted(true); }, []);
 
   const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    if (!href.includes("#")) return;
+    if (!href.includes("#")) {
+      setMobileOpen(false);
+      return;
+    }
     const sectionId = href.split("#")[1];
     const isHome = window.location.pathname === "/" || window.location.pathname === "";
     if (isHome) {
@@ -34,6 +38,8 @@ export function Navbar() {
         el.scrollIntoView({ behavior: reduced ? "auto" : "smooth" });
         window.history.replaceState(null, "", `#${sectionId}`);
       }
+    } else {
+      setMobileOpen(false);
     }
   }, []);
 
@@ -82,7 +88,7 @@ export function Navbar() {
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between">
-        <a
+        <Link
           href="/"
           aria-label="sium - home"
           className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-logo"
@@ -96,11 +102,25 @@ export function Navbar() {
           <span className="ml-1.5 self-center text-[var(--accent)]" aria-hidden="true">
             <Sparkles className="h-[0.85em] w-[0.85em] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
           </span>
-        </a>
+        </Link>
 
         <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
           {navLinks.map((link) => {
             const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
+            const isBlogLink = link.href === "/blog";
+
+            if (isBlogLink) {
+              return (
+                <Link
+                  key={link.href}
+                  href="/blog"
+                  className="relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+
             return (
               <a
                 key={link.href}
@@ -174,6 +194,22 @@ export function Navbar() {
         <div className="container-content flex flex-col gap-1 py-4">
           {navLinks.map((link) => {
             const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
+            const isBlogLink = link.href === "/blog";
+
+            if (isBlogLink) {
+              return (
+                <Link
+                  key={link.href}
+                  href="/blog"
+                  onClick={() => setMobileOpen(false)}
+                  tabIndex={mobileOpen ? 0 : -1}
+                  className="text-left text-sm font-medium py-3 px-3 transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                >
+                  {link.label}
+                </Link>
+              );
+            }
+
             return (
               <a
                 key={link.href}

@@ -1,7 +1,7 @@
 ---
-title: "Building StatWise — An Automated Statistical Reporting Platform"
+title: "Building DataTistics — An Automated Statistical Reporting Platform"
 slug: building-statwise
-excerpt: "How I built a SaaS platform that turns raw CSV/Excel data into comprehensive statistical reports with just a few clicks."
+excerpt: "How I built DataTistics (originally StatWise), a SaaS platform that turns raw CSV/Excel data into comprehensive statistical reports with just a few clicks."
 category: "Project Walkthroughs"
 date: "2026-06-10"
 readingTime: "8 min read"
@@ -83,7 +83,7 @@ Generating well-formatted PDFs programmatically is harder than it looks. I spent
 
 ## Results
 
-StatWise is live and processing reports for a handful of small businesses. The average report generates in under 30 seconds for datasets under 50k rows.
+DataTistics (launched originally as StatWise) is live at [datatistics.app](https://datatistics.app/) and processing reports for thousands of users and small businesses. The average report generates in under 30 seconds for datasets under 50k rows.
 
 ---
 

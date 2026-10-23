@@ -17,23 +17,48 @@ export function CursorSpotlight() {
     ).matches;
     if (prefersReduced) return;
 
-    const onMove = (e: MouseEvent) => {
-      targetRef.current = { x: e.clientX, y: e.clientY };
-    };
-
-    const onVisibility = () => {
-      if (document.hidden) {
-        cancelAnimationFrame(rafRef.current);
-        rafRef.current = 0;
-      } else if (!rafRef.current) {
+    const startAnimation = () => {
+      if (!rafRef.current) {
         rafRef.current = requestAnimationFrame(animate);
       }
     };
 
+    const onMove = (e: MouseEvent) => {
+      targetRef.current = { x: e.clientX, y: e.clientY };
+      startAnimation();
+    };
+
+    const onVisibility = () => {
+      if (document.hidden) {
+        if (rafRef.current) {
+          cancelAnimationFrame(rafRef.current);
+          rafRef.current = 0;
+        }
+      } else {
+        const dx = targetRef.current.x - posRef.current.x;
+        const dy = targetRef.current.y - posRef.current.y;
+        if (Math.hypot(dx, dy) > 0.5) {
+          startAnimation();
+        }
+      }
+    };
+
     const animate = () => {
+      const dx = targetRef.current.x - posRef.current.x;
+      const dy = targetRef.current.y - posRef.current.y;
+
+      if (Math.hypot(dx, dy) < 0.2) {
+        posRef.current.x = targetRef.current.x;
+        posRef.current.y = targetRef.current.y;
+        spotlight.style.setProperty("--sx", `${posRef.current.x}px`);
+        spotlight.style.setProperty("--sy", `${posRef.current.y}px`);
+        rafRef.current = 0;
+        return;
+      }
+
       const lerp = 0.12;
-      posRef.current.x += (targetRef.current.x - posRef.current.x) * lerp;
-      posRef.current.y += (targetRef.current.y - posRef.current.y) * lerp;
+      posRef.current.x += dx * lerp;
+      posRef.current.y += dy * lerp;
 
       spotlight.style.setProperty("--sx", `${posRef.current.x}px`);
       spotlight.style.setProperty("--sy", `${posRef.current.y}px`);
@@ -43,7 +68,6 @@ export function CursorSpotlight() {
 
     window.addEventListener("mousemove", onMove, { passive: true });
     document.addEventListener("visibilitychange", onVisibility);
-    rafRef.current = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener("mousemove", onMove);

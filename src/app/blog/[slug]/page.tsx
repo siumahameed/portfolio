@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getAllSlugs, getArticleBySlug } from "@/lib/articles";
 import { ArticleContent } from "./ArticleContent";
@@ -50,13 +51,13 @@ export default async function ArticlePage({ params }: Props) {
         <ArticleContent article={article} />
 
         <div className="mt-12 border-t border-[var(--border)] pt-8 text-center">
-          <a
+          <Link
             href="/blog"
             className="btn-secondary inline-flex items-center gap-2"
           >
             <ArrowLeft className="h-4 w-4" />
             Back to Blog
-          </a>
+          </Link>
         </div>
       </div>
     </div>

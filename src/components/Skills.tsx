@@ -31,8 +31,8 @@ export function Skills() {
             </svg>
           </div>
           <div>
-            <h3 className="text-sm font-semibold text-[var(--text-primary)] font-heading">Where statistics meets machine learning</h3>
-            <p className="text-sm text-[var(--text-secondary)] mt-0.5">My stats background means I don&apos;t treat models as black boxes. I care about assumptions, inference, and whether a model actually works.</p>
+            <h3 className="text-sm font-semibold text-[var(--text-primary)] font-heading">Statistical rigor meets practical engineering</h3>
+            <p className="text-sm text-[var(--text-secondary)] mt-0.5">I don&apos;t treat algorithms as black boxes. Understanding underlying distributions, bias-variance tradeoffs, and feature significance helps me build models that hold up in production.</p>
           </div>
         </Reveal>
 

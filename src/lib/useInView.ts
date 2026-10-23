@@ -1,14 +1,25 @@
 import { useState, useEffect, useRef, type RefObject } from "react";
 
-export function useInView(ref: RefObject<HTMLElement | null>): boolean {
-  const [isVisible, setIsVisible] = useState(false);
-  const hasBeenVisible = useRef(false);
+export function useInView(
+  ref: RefObject<HTMLElement | null>,
+  options?: { rootMargin?: string; initial?: boolean }
+): boolean {
+  const [isVisible, setIsVisible] = useState(options?.initial ?? false);
+  const hasBeenVisible = useRef(options?.initial ?? false);
 
   useEffect(() => {
     const el = ref.current;
-    if (!el) return;
+    if (!el || hasBeenVisible.current) return;
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setIsVisible(true);
+      hasBeenVisible.current = true;
+      return;
+    }
+
+    // Immediately reveal elements already inside or near viewport on mount
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100 && rect.bottom > -100) {
       setIsVisible(true);
       hasBeenVisible.current = true;
       return;
@@ -22,12 +33,12 @@ export function useInView(ref: RefObject<HTMLElement | null>): boolean {
           observer.unobserve(el);
         }
       },
-      { threshold: 0.01, rootMargin: "0px 0px 5% 0px" }
+      { threshold: 0.01, rootMargin: options?.rootMargin ?? "200px 0px 100px 0px" }
     );
 
     observer.observe(el);
     return () => observer.disconnect();
-  }, [ref]);
+  }, [ref, options?.rootMargin]);
 
   return isVisible;
 }

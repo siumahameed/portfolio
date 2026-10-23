@@ -94,62 +94,60 @@ export function Projects() {
 
 function FeaturedProjectCard({ project, index }: { project: (typeof projectsData)[0]; index: number }) {
   return (
-    <div className="card group relative overflow-hidden hover:border-[var(--accent)]/40 transition-all duration-300">
+    <div className="card group relative overflow-hidden hover:border-[var(--accent)]/40 transition-all duration-300 !p-6 md:!p-8">
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="p-5 md:p-8">
-        <div className="flex min-w-0 flex-col md:flex-row md:items-start md:justify-between gap-4">
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-3 mb-3">
-              <span className="text-3xl font-bold font-mono text-[var(--accent)] opacity-30">
-                {String(index + 1).padStart(2, "0")}
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {project.tags.slice(0, 4).map((tag) => (
-                  <span key={tag} className="tag text-[10px]">{tag}</span>
-                ))}
-              </div>
+      <div className="flex min-w-0 flex-col md:flex-row md:items-start md:justify-between gap-4">
+        <div className="min-w-0 flex-1">
+          <div className="flex items-center gap-3 mb-3">
+            <span className="text-3xl font-bold font-mono text-[var(--accent)] opacity-30">
+              {String(index + 1).padStart(2, "0")}
+            </span>
+            <div className="flex flex-wrap gap-1.5">
+              {project.tags.slice(0, 4).map((tag) => (
+                <span key={tag} className="tag text-[10px]">{tag}</span>
+              ))}
             </div>
-            <h3 className="break-words text-xl font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
-              {project.title}
-            </h3>
-            <p className="mt-2 break-words text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl">
-              {project.description}
-            </p>
-            {project.metrics && (
-              <div className="mt-4 flex flex-wrap gap-4">
-                {project.metrics.map((m) => (
-                  <div key={m.label}>
-                    <p className="text-xs text-[var(--text-tertiary)] font-mono">{m.label}</p>
-                    <p className="text-sm font-semibold text-[var(--text-primary)]">{m.value}</p>
-                  </div>
-                ))}
-              </div>
-            )}
           </div>
-          <div className="flex items-center gap-3 md:ml-6">
-            {project.live && (
-              <a
-                href={project.live}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-primary text-xs"
-              >
-                <ExternalLink className="h-3.5 w-3.5" />
-                Live Demo
-              </a>
-            )}
-            {project.github && (
-              <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-secondary text-xs"
-              >
-                <GithubIcon className="h-3.5 w-3.5" />
-                GitHub
-              </a>
-            )}
-          </div>
+          <h3 className="break-words text-xl font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
+            {project.title}
+          </h3>
+          <p className="mt-2 break-words text-sm text-[var(--text-secondary)] leading-relaxed max-w-2xl">
+            {project.description}
+          </p>
+          {project.metrics && (
+            <div className="mt-4 flex flex-wrap gap-4">
+              {project.metrics.map((m) => (
+                <div key={m.label}>
+                  <p className="text-xs text-[var(--text-tertiary)] font-mono">{m.label}</p>
+                  <p className="text-sm font-semibold text-[var(--text-primary)]">{m.value}</p>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-3 md:ml-6">
+          {project.live && (
+            <a
+              href={project.live}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary text-xs"
+            >
+              <ExternalLink className="h-3.5 w-3.5" />
+              Live Demo
+            </a>
+          )}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary text-xs"
+            >
+              <GithubIcon className="h-3.5 w-3.5" />
+              GitHub
+            </a>
+          )}
         </div>
       </div>
     </div>
@@ -158,9 +156,9 @@ function FeaturedProjectCard({ project, index }: { project: (typeof projectsData
 
 function ArchiveProjectCard({ project }: { project: (typeof projectsData)[0] }) {
   return (
-    <div className="card group relative overflow-hidden hover:-translate-y-1 hover:border-[var(--accent)]/40 transition-all duration-300">
+    <div className="card group relative overflow-hidden hover:-translate-y-1 hover:border-[var(--accent)]/40 transition-all duration-300 flex flex-col justify-between">
       <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
-      <div className="p-5">
+      <div>
         <h3 className="text-sm font-semibold text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors font-heading">
           {project.title}
         </h3>
@@ -172,18 +170,18 @@ function ArchiveProjectCard({ project }: { project: (typeof projectsData)[0] }) 
             <span key={tag} className="text-[10px] font-mono text-[var(--text-tertiary)]">{tag}</span>
           ))}
         </div>
-        <div className="mt-3 flex items-center gap-2">
-          {project.github && (
-            <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1.5 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
-              GitHub ↗
-            </a>
-          )}
-          {project.live && (
-            <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1.5 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
-              Live ↗
-            </a>
-          )}
-        </div>
+      </div>
+      <div className="mt-4 flex items-center gap-2 border-t border-[var(--border)] pt-2.5">
+        {project.github && (
+          <a href={project.github} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
+            GitHub ↗
+          </a>
+        )}
+        {project.live && (
+          <a href={project.live} target="_blank" rel="noopener noreferrer" className="inline-flex items-center rounded-md px-2 py-1 text-xs text-[var(--text-tertiary)] transition-colors hover:text-[var(--accent)] hover:bg-[var(--accent-subtle)]">
+            Live ↗
+          </a>
+        )}
       </div>
     </div>
   );

@@ -203,7 +203,7 @@ export function StatisticalMotifs() {
             <line x1={bp.x} y1={bp.q3} x2={bp.x} y2={bp.max} stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
             <line x1={bp.x - 6} y1={bp.min} x2={bp.x + 6} y2={bp.min} stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
             <line x1={bp.x - 6} y1={bp.max} x2={bp.x + 6} y2={bp.max} stroke="currentColor" strokeWidth="0.8" opacity="0.5" />
-            <rect x={bp.x - 12} y={bp.q3} width="24" height={bp.q1 - bp.q3} fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="0.8" />
+            <rect x={bp.x - 12} y={bp.q1} width="24" height={bp.q3 - bp.q1} fill="currentColor" opacity="0.15" stroke="currentColor" strokeWidth="0.8" />
             <line x1={bp.x - 12} y1={bp.median} x2={bp.x + 12} y2={bp.median} stroke="currentColor" strokeWidth="1.2" opacity="0.8" />
           </g>
         ))}

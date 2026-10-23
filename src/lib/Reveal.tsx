@@ -9,21 +9,25 @@ export function Reveal({
   delay = 0,
   direction = "y",
   style,
+  instant = false,
 }: {
   children: ReactNode;
   className?: string;
   delay?: number;
   direction?: "y" | "x";
   style?: CSSProperties;
+  instant?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
-  const visible = useInView(ref);
+  const visible = useInView(ref, { initial: instant });
 
-  const translate = visible
+  const isShown = instant || visible;
+
+  const translate = isShown
     ? "translate(0, 0)"
     : direction === "x"
-      ? "translate(16px, 0)"
-      : "translate(0, 16px)";
+      ? "translate(14px, 0)"
+      : "translate(0, 14px)";
 
   return (
     <div
@@ -31,9 +35,12 @@ export function Reveal({
       className={className}
       style={{
         ...style,
-        opacity: visible ? 1 : 0,
+        opacity: isShown ? 1 : 0,
         transform: translate,
-        transition: `opacity 0.6s ease ${delay}ms, transform 0.6s ease ${delay}ms`,
+        transition: instant
+          ? undefined
+          : `opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1) ${delay}ms`,
+        willChange: isShown ? "auto" : "opacity, transform",
       }}
     >
       {children}

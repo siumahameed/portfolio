@@ -276,15 +276,10 @@
   }
 }
 
-main > section {
-  content-visibility: auto;
-  contain-intrinsic-size: auto 900px;
-}
-
-.glow-1 { filter: blur(100px); }
-.glow-2 { filter: blur(120px); }
-.glow-3 { filter: blur(140px); }
-.glow-4 { filter: blur(110px); }
+.glow-1 { filter: blur(100px); transform: translateZ(0); will-change: transform; contain: paint; }
+.glow-2 { filter: blur(120px); transform: translateZ(0); will-change: transform; contain: paint; }
+.glow-3 { filter: blur(140px); transform: translateZ(0); will-change: transform; contain: paint; }
+.glow-4 { filter: blur(110px); transform: translateZ(0); will-change: transform; contain: paint; }
 
 @media (max-width: 767px) {
   .glow-1 { filter: blur(60px); }
