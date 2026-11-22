@@ -1,52 +1,90 @@
 "use client";
 
 import { Reveal } from "@/lib/Reveal";
-import { BrainCircuit, ChartColumn, Bot, ServerCog, ArrowUpRight } from "lucide-react";
-import { whatIBuild } from "@/lib/skills";
+import { Brain, LineChart, Cpu, Layers } from "lucide-react";
 
-const icons = [BrainCircuit, ChartColumn, Bot, ServerCog];
+const pillars = [
+  {
+    number: "01",
+    title: "Predictive Machine Learning",
+    description:
+      "Developing supervised & unsupervised models with feature selection, hyperparameter tuning, and robust cross-validation.",
+    skills: ["Scikit-learn", "XGBoost", "Feature Engineering", "ROC-AUC / F1"],
+    icon: Brain,
+  },
+  {
+    number: "02",
+    title: "Statistical Data Science",
+    description:
+      "Extracting dependable signals from noisy observational data via hypothesis testing, regression diagnostics, and EDA.",
+    skills: ["Pandas", "SciPy", "Hypothesis Testing", "Time Series Analysis"],
+    icon: LineChart,
+  },
+  {
+    number: "03",
+    title: "AI & LLM Workflows",
+    description:
+      "Integrating state-of-the-art LLMs (Groq, Llama 3) for automated report generation, conversational agents, and domain reasoning.",
+    skills: ["Groq API", "RAG Systems", "Prompt Pipelines", "Structured Output"],
+    icon: Cpu,
+  },
+  {
+    number: "04",
+    title: "Full-Stack ML Systems",
+    description:
+      "Shipping complete, maintainable applications from Python backends to interactive dashboards, databases, and automated reporting.",
+    skills: ["FastAPI", "PostgreSQL", "Supabase", "Docker / Cloud"],
+    icon: Layers,
+  },
+];
 
 export function WhatIBuild() {
   return (
     <section id="what-i-build" className="section-padding">
       <div className="container-content">
         <Reveal>
-          <p className="section-label mb-3">WHAT I BUILD</p>
-          <h2 className="section-title">Engineering Intelligence</h2>
-          <p className="section-subtitle">
-            From exploratory data science to deployed machine learning systems, practical AI workflows, and reproducible pipelines.
-          </p>
+          <div className="flex flex-col">
+            <span className="section-label mb-2">CORE COMPETENCIES</span>
+            <h2 className="section-title">Engineering Intelligence</h2>
+            <p className="section-subtitle">
+              From mathematical statistics and exploratory data science to deployed machine learning systems and AI-powered products.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4 md:mt-12">
-          {whatIBuild.map((item, i) => {
-            const Icon = icons[i] ?? BrainCircuit;
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {pillars.map((item, i) => {
+            const Icon = item.icon;
             return (
-              <Reveal key={item.number} delay={50 + i * 50}>
-                <div className="card group relative overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-[var(--accent)]/40">
-                  <div className="absolute inset-x-0 top-0 h-[2px] bg-[var(--accent)] opacity-0 group-hover:opacity-100 transition-opacity" />
+              <Reveal key={item.number} delay={i * 60}>
+                <div className="card group relative flex flex-col justify-between h-full p-6 transition-all duration-300 hover:border-[var(--border-hover)] hover:-translate-y-1">
+                  <div>
+                    <div className="flex items-center justify-between mb-4">
+                      <div className="flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--accent)] transition-colors group-hover:border-[var(--border-hover)]">
+                        <Icon className="h-5 w-5" />
+                      </div>
+                      <span className="font-mono text-xs font-bold text-[var(--text-tertiary)]">
+                        {item.number}
+                      </span>
+                    </div>
 
-                  {/* Corner watermark */}
-                  <span className="pointer-events-none absolute -right-1 -top-3 text-5xl font-bold font-mono text-[var(--accent)] opacity-[0.07] transition-opacity duration-300 group-hover:opacity-[0.15]">
-                    {item.number}
-                  </span>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)] font-heading group-hover:text-[var(--accent)] transition-colors">
+                      {item.title}
+                    </h3>
 
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--accent-subtle)] text-[var(--accent)] transition-transform duration-300 group-hover:scale-105">
-                    <Icon className="h-5 w-5" />
+                    <p className="mt-2.5 text-sm text-[var(--text-secondary)] leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
 
-                  <h3 className="mt-4 text-lg font-semibold text-[var(--text-primary)] font-heading">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm text-[var(--text-secondary)] leading-relaxed">
-                    {item.description}
-                  </p>
-
-                  <div className="mt-4 flex items-center justify-between border-t border-[var(--border)] pt-3">
-                    <span className="text-[10px] font-mono text-[var(--text-tertiary)]">
-                      {item.number} / 04
-                    </span>
-                    <ArrowUpRight className="h-3.5 w-3.5 text-[var(--accent)] opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
+                  <div className="mt-6 pt-4 border-t border-[var(--border)]">
+                    <div className="flex flex-wrap gap-1.5">
+                      {item.skills.map((skill) => (
+                        <span key={skill} className="tag text-[10px]">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
               </Reveal>

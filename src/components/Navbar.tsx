@@ -3,11 +3,12 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
-import { Menu, X, Sun, Moon, FileText, Sparkles } from "lucide-react";
+import { Menu, X, Sun, Moon, FileText, ArrowUpRight, Search } from "lucide-react";
 
 const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
+  { href: "/#skills", label: "Skills" },
   { href: "/#experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },
   { href: "/blog", label: "Blog" },
@@ -20,7 +21,9 @@ export function Navbar() {
   const { theme, toggle } = useTheme();
   const [mounted, setMounted] = useState(false);
 
-  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const handleAnchorClick = useCallback((e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.includes("#")) {
@@ -52,7 +55,7 @@ export function Navbar() {
       let current = "";
       sections.forEach((section) => {
         const top = section.getBoundingClientRect().top;
-        if (top < 200) {
+        if (top < 220) {
           current = section.id;
         }
       });
@@ -83,28 +86,32 @@ export function Navbar() {
     <header
       className={`fixed inset-x-0 top-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "border-b border-[var(--border)] backdrop-blur-sm bg-[var(--bg-primary)]/90"
+          ? "border-b border-[var(--border)] bg-[var(--bg-primary)]/85 backdrop-blur-md shadow-sm"
           : "bg-transparent"
       }`}
     >
       <div className="container-content flex h-16 items-center justify-between">
+        {/* Brand identity */}
         <Link
           href="/"
-          aria-label="sium - home"
-          className="group flex items-baseline text-left text-xl font-bold tracking-tight text-[var(--text-primary)] font-logo"
+          aria-label="Sium Ahameed - Home"
+          className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <span>s</span>
-          <span className="relative inline-block" aria-hidden="true">
-            <span className="block h-[0.55em] w-[0.18em] rounded-[0.04em] bg-current" />
-            <span className="absolute -top-[0.45em] left-1/2 -translate-x-1/2 h-[0.34em] w-[0.34em] rounded-full bg-[var(--accent)] transition-transform duration-300 group-hover:scale-125" />
-          </span>
-          <span>um</span>
-          <span className="ml-1.5 self-center text-[var(--accent)]" aria-hidden="true">
-            <Sparkles className="h-[0.85em] w-[0.85em] transition-transform duration-300 group-hover:rotate-12 group-hover:scale-110" />
-          </span>
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-xs font-mono font-bold text-[var(--accent)] shadow-sm transition-transform group-hover:scale-105">
+            SA
+          </div>
+          <div className="flex flex-col">
+            <span className="text-sm font-bold tracking-tight text-[var(--text-primary)] font-heading leading-none">
+              Sium Ahameed
+            </span>
+            <span className="text-[11px] font-mono text-[var(--text-tertiary)] leading-tight mt-0.5">
+              ML &times; Statistics
+            </span>
+          </div>
         </Link>
 
-        <nav className="hidden md:flex items-center gap-1" aria-label="Primary">
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1 rounded-full border border-[var(--border)] bg-[var(--bg-card)]/80 px-3 py-1 backdrop-blur-md shadow-sm" aria-label="Primary">
           {navLinks.map((link) => {
             const isActive = mounted && link.href.includes("#") && activeSection === link.href.split("#")[1];
             const isBlogLink = link.href === "/blog";
@@ -114,7 +121,7 @@ export function Navbar() {
                 <Link
                   key={link.href}
                   href="/blog"
-                  className="relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="px-3 py-1.5 text-xs font-medium rounded-full transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 >
                   {link.label}
                 </Link>
@@ -127,51 +134,70 @@ export function Navbar() {
                 href={link.href}
                 onClick={(e) => handleAnchorClick(e, link.href)}
                 aria-current={isActive ? "true" : undefined}
-                className={`relative px-3 py-1.5 text-sm font-medium transition-colors duration-200 ${
+                className={`relative px-3 py-1.5 text-xs font-medium rounded-full transition-all duration-200 ${
                   isActive
-                    ? "text-[var(--accent)]"
+                    ? "bg-[var(--accent)] text-white shadow-xs"
                     : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
                 }`}
               >
                 {link.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] w-4 rounded-full bg-[var(--accent)]" aria-hidden="true" />
-                )}
               </a>
             );
           })}
         </nav>
 
-        <div className="hidden md:flex items-center gap-1">
+        {/* Right side CTAs */}
+        <div className="hidden md:flex items-center gap-2">
           <a
             href="/files/CV.pdf"
             download="Sium_Ahameed_CV.pdf"
-            className="flex items-center gap-1.5 rounded-lg px-3 py-1.5 text-xs font-medium text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+            className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-3 py-1.5 text-xs font-medium text-[var(--text-primary)] transition-all duration-200 hover:border-[var(--border-hover)] hover:bg-[var(--bg-card-subtle)] shadow-xs"
           >
-            <FileText className="h-3.5 w-3.5" aria-hidden="true" />
+            <FileText className="h-3.5 w-3.5 text-[var(--accent)]" aria-hidden="true" />
             Resume
           </a>
+
+          <a
+            href="#contact"
+            onClick={(e) => handleAnchorClick(e, "/#contact")}
+            className="inline-flex items-center gap-1 rounded-lg bg-[var(--accent)] px-3 py-1.5 text-xs font-medium text-white transition-all duration-200 hover:bg-[var(--accent-hover)] shadow-xs"
+          >
+            Connect
+            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
+          </a>
+
           <div className="w-px h-4 bg-[var(--border)] mx-1" aria-hidden="true" />
+
+          <button
+            onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }))}
+            className="flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-2.5 py-1.5 text-xs font-mono text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+            aria-label="Open Command Menu"
+          >
+            <Search className="h-3 w-3 text-[var(--accent)]" />
+            <span className="hidden lg:inline text-[10px]">⌘K</span>
+          </button>
+
           <button
             onClick={toggle}
-            className="flex h-8 w-8 items-center justify-center rounded-lg text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)]"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
+          >
+            {mounted && theme === "dark" ? <Sun className="h-3.5 w-3.5" aria-hidden="true" /> : <Moon className="h-3.5 w-3.5" aria-hidden="true" />}
+          </button>
+        </div>
+
+        {/* Mobile controls */}
+        <div className="flex items-center gap-1 md:hidden">
+          <button
+            onClick={toggle}
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)]"
             aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
           >
             {mounted && theme === "dark" ? <Sun className="h-4 w-4" aria-hidden="true" /> : <Moon className="h-4 w-4" aria-hidden="true" />}
           </button>
-        </div>
-
-        <div className="flex items-center gap-1 md:hidden">
-          <button
-            onClick={toggle}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
-            aria-label={`Switch to ${theme === "dark" ? "light" : "dark"} mode`}
-          >
-            {mounted && theme === "dark" ? <Sun className="h-5 w-5" aria-hidden="true" /> : <Moon className="h-5 w-5" aria-hidden="true" />}
-          </button>
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="flex h-11 w-11 items-center justify-center rounded-lg text-[var(--text-secondary)]"
+            className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-secondary)]"
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
@@ -181,13 +207,14 @@ export function Navbar() {
         </div>
       </div>
 
+      {/* Mobile dropdown */}
       <nav
         id="mobile-menu"
         aria-label="Mobile navigation"
         inert={!mobileOpen}
         className={`md:hidden overflow-hidden border-t transition-all duration-200 ease-in-out ${
           mobileOpen
-            ? "max-h-[70svh] overflow-y-auto opacity-100 border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-sm"
+            ? "max-h-[80svh] overflow-y-auto opacity-100 border-[var(--border)] bg-[var(--bg-primary)]/95 backdrop-blur-md shadow-lg"
             : "max-h-0 opacity-0 border-transparent invisible"
         }`}
       >
@@ -203,7 +230,7 @@ export function Navbar() {
                   href="/blog"
                   onClick={() => setMobileOpen(false)}
                   tabIndex={mobileOpen ? 0 : -1}
-                  className="text-left text-sm font-medium py-3 px-3 transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                  className="text-left text-sm font-medium py-2.5 px-3 rounded-lg transition-colors text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
                 >
                   {link.label}
                 </Link>
@@ -217,10 +244,10 @@ export function Navbar() {
                 onClick={(e) => handleAnchorClick(e, link.href)}
                 aria-current={isActive ? "true" : undefined}
                 tabIndex={mobileOpen ? 0 : -1}
-                className={`text-left text-sm font-medium py-3 px-3 transition-colors ${
+                className={`text-left text-sm font-medium py-2.5 px-3 rounded-lg transition-colors ${
                   isActive
-                    ? "text-[var(--accent)]"
-                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    ? "bg-[var(--accent)] text-white font-semibold"
+                    : "text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:bg-[var(--bg-secondary)]"
                 }`}
               >
                 {link.label}
@@ -228,15 +255,26 @@ export function Navbar() {
             );
           })}
           <div className="h-px bg-[var(--border)] my-2" aria-hidden="true" />
-          <a
-            href="/files/CV.pdf"
-            download="Sium_Ahameed_CV.pdf"
-            tabIndex={mobileOpen ? 0 : -1}
-            className="flex items-center gap-2 text-sm text-[var(--text-secondary)] py-2 px-3"
-          >
-            <FileText className="h-4 w-4" aria-hidden="true" />
-            Resume
-          </a>
+          <div className="flex gap-2 pt-1">
+            <a
+              href="/files/CV.pdf"
+              download="Sium_Ahameed_CV.pdf"
+              tabIndex={mobileOpen ? 0 : -1}
+              className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-sm font-medium text-[var(--text-primary)] py-2.5 px-3"
+            >
+              <FileText className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
+              Resume
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => handleAnchorClick(e, "/#contact")}
+              tabIndex={mobileOpen ? 0 : -1}
+              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-[var(--accent)] text-sm font-medium text-white py-2.5 px-3"
+            >
+              Contact
+              <ArrowUpRight className="h-4 w-4" />
+            </a>
+          </div>
         </div>
       </nav>
     </header>

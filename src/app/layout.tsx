@@ -5,6 +5,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { BackgroundLoader } from "@/components/BackgroundLoader";
+import { CommandPalette } from "@/components/CommandPalette";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -123,6 +124,7 @@ export default function RootLayout({
           </a>
           <BackgroundLoader />
           <Navbar />
+          <CommandPalette />
           <main id="main-content" className="relative z-10">{children}</main>
           <Footer />
         </ThemeProvider>

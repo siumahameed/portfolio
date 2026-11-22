@@ -18,10 +18,10 @@ export function CategoryFilter({
           key={cat}
           onClick={() => onChange(cat)}
           aria-pressed={active === cat}
-          className={`inline-flex items-center rounded-lg px-4 py-2 text-xs font-medium transition-all duration-200 ${
+          className={`inline-flex items-center rounded-lg px-3.5 py-1.5 text-xs font-semibold transition-all duration-200 ${
             active === cat
-              ? "bg-[var(--accent)] text-white"
-              : "border border-[var(--border)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
+              ? "bg-[var(--accent)] text-white shadow-xs"
+              : "border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
           }`}
         >
           {cat}

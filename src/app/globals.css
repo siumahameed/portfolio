@@ -5,38 +5,38 @@
 @layer base {
   :root {
     --bg-primary: #FAFAFA;
-    --bg-secondary: #F4F4F5;
+    --bg-secondary: #F3F4F6;
     --bg-card: #FFFFFF;
-    --text-primary: #09090B;
-    --text-secondary: #52525B;
-    --text-tertiary: #52525B;
-    --border: rgba(0, 0, 0, 0.1);
-    --border-hover: rgba(0, 0, 0, 0.16);
-    --accent: #4B4FD6;
-    --accent-hover: #3F43C6;
-    --accent-subtle: rgba(91, 95, 238, 0.12);
-    --accent-glow: rgba(91, 95, 238, 0.2);
-    --grid-line: rgba(0, 0, 0, 0.012);
-    --noise-opacity: 0.025;
-    --code-bg: #F4F4F5;
+    --bg-card-subtle: #F9FAFB;
+    --text-primary: #0F172A;
+    --text-secondary: #475569;
+    --text-tertiary: #64748B;
+    --border: rgba(15, 23, 42, 0.08);
+    --border-hover: rgba(37, 99, 235, 0.35);
+    --accent: #2563EB;
+    --accent-hover: #1D4ED8;
+    --accent-subtle: rgba(37, 99, 235, 0.08);
+    --accent-glow: rgba(37, 99, 235, 0.15);
+    --grid-line: rgba(15, 23, 42, 0.04);
+    --code-bg: #F1F5F9;
   }
 
   .dark {
-    --bg-primary: #08090B;
-    --bg-secondary: #0D0F12;
-    --bg-card: #111318;
-    --text-primary: #F5F7FA;
-    --text-secondary: #C2C8D1;
-    --text-tertiary: #9CA3AF;
-    --border: rgba(255, 255, 255, 0.06);
-    --border-hover: rgba(255, 255, 255, 0.1);
+    --bg-primary: #090A0F;
+    --bg-secondary: #0F121C;
+    --bg-card: #131722;
+    --bg-card-subtle: #171C2B;
+    --text-primary: #F8FAFC;
+    --text-secondary: #94A3B8;
+    --text-tertiary: #64748B;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-hover: rgba(56, 189, 248, 0.35);
     --accent: #38BDF8;
     --accent-hover: #7DD3FC;
-    --accent-subtle: rgba(56, 189, 248, 0.08);
-    --accent-glow: rgba(56, 189, 248, 0.15);
-    --grid-line: rgba(255, 255, 255, 0.015);
-    --noise-opacity: 0.02;
-    --code-bg: #0D0F12;
+    --accent-subtle: rgba(56, 189, 248, 0.09);
+    --accent-glow: rgba(56, 189, 248, 0.18);
+    --grid-line: rgba(255, 255, 255, 0.03);
+    --code-bg: #0C0F17;
   }
 
   html {
@@ -49,21 +49,22 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: clip;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   section[id] {
-    scroll-margin-top: 4.5rem;
+    scroll-margin-top: 5rem;
   }
 
   ::selection {
-    background: var(--accent-subtle);
-    color: var(--accent);
+    background: var(--accent);
+    color: #FFFFFF;
   }
 
   :focus-visible {
     outline: 2px solid var(--accent);
     outline-offset: 2px;
-    border-radius: 4px;
+    border-radius: 6px;
   }
 
   * {
@@ -78,7 +79,7 @@
   z-index: 100;
   background: var(--accent);
   color: white;
-  padding: 0.625rem 1rem;
+  padding: 0.625rem 1.25rem;
   border-radius: 0.5rem;
   font-size: 0.875rem;
   font-weight: 600;
@@ -92,55 +93,49 @@
 
 @layer components {
   .container-content {
-    @apply mx-auto max-w-[1200px] px-5 sm:px-8;
+    @apply mx-auto max-w-[1240px] px-5 sm:px-8;
   }
 
   .section-padding {
-    @apply py-12 md:py-24;
-  }
-
-  .font-logo {
-    font-family: var(--font-exo2);
+    @apply py-16 md:py-24;
   }
 
   .section-label {
-    @apply text-xs font-medium uppercase tracking-[0.2em] text-[var(--accent)];
-    font-family: var(--font-jetbrains);
+    @apply inline-flex items-center gap-2 text-xs font-mono font-semibold uppercase tracking-[0.2em] text-[var(--accent)];
   }
 
   .section-title {
-    @apply text-3xl font-bold tracking-tight text-[var(--text-primary)] sm:text-4xl;
-    font-family: var(--font-space-grotesk);
+    @apply text-3xl font-extrabold tracking-tight text-[var(--text-primary)] sm:text-4xl md:text-5xl font-heading;
   }
 
   .section-subtitle {
-    @apply mt-3 text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed;
+    @apply mt-3 text-base sm:text-lg text-[var(--text-secondary)] max-w-2xl leading-relaxed;
   }
 
   .btn-primary {
-    @apply inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-sm font-semibold transition-all duration-200 shadow-sm;
     background: var(--accent);
     color: white;
   }
   .btn-primary:hover {
     background: var(--accent-hover);
     transform: translateY(-1px);
-    box-shadow: 0 4px 12px var(--accent-glow);
+    box-shadow: 0 4px 16px var(--accent-glow);
   }
 
   .btn-secondary {
-    @apply inline-flex items-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-medium transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border px-5 py-2.5 text-sm font-semibold transition-all duration-200 bg-[var(--bg-card)];
     border-color: var(--border);
     color: var(--text-primary);
   }
   .btn-secondary:hover {
-    border-color: var(--accent);
-    color: var(--accent);
+    border-color: var(--border-hover);
+    background: var(--bg-card-subtle);
     transform: translateY(-1px);
   }
 
   .btn-ghost {
-    @apply inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-medium transition-all duration-200;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-medium transition-all duration-200;
     color: var(--text-secondary);
   }
   .btn-ghost:hover {
@@ -155,89 +150,64 @@
   }
 
   .card-hover {
-    @apply card hover:-translate-y-1;
-    box-shadow: 0 0 0 1px var(--border);
+    @apply card transition-all duration-300;
   }
   .card-hover:hover {
-    border-color: var(--accent);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.06), 0 0 0 1px var(--accent);
+    border-color: var(--border-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.08);
   }
 
   .dark .card-hover:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3), 0 0 0 1px var(--accent);
+    box-shadow: 0 12px 30px -10px rgba(0, 0, 0, 0.4), 0 0 0 1px var(--border-hover);
   }
 
   .tag {
-    @apply inline-flex items-center rounded-md px-2.5 py-1 text-xs font-medium;
+    @apply inline-flex items-center rounded-md px-2.5 py-1 text-xs font-mono font-medium;
     background: var(--bg-secondary);
     color: var(--text-secondary);
     border: 1px solid var(--border);
   }
 
-  .nav-link {
-    @apply text-sm font-medium transition-colors duration-200;
-    color: var(--text-secondary);
-  }
-  .nav-link:hover {
-    color: var(--text-primary);
-  }
-  .nav-link-active {
-    color: var(--text-primary);
+  .badge {
+    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid var(--border-hover);
   }
 
   .stat-value {
-    @apply text-3xl font-bold tracking-tight sm:text-4xl;
-    font-family: var(--font-space-grotesk);
-    color: var(--text-primary);
+    @apply text-3xl font-extrabold tracking-tight sm:text-4xl font-heading text-[var(--text-primary)];
   }
 
   .stat-label {
-    @apply mt-1 text-sm;
-    color: var(--text-secondary);
+    @apply mt-1 text-sm font-medium text-[var(--text-secondary)];
   }
 
-  .divider-accent {
-    @apply w-10 h-[3px] rounded-full;
-    background: var(--accent);
-  }
-
-  .badge {
-    @apply inline-flex items-center rounded-full px-3 py-1 text-xs font-medium;
-    color: var(--accent);
-    background: var(--accent-subtle);
-    border: 1px solid color-mix(in srgb, var(--accent) 20%, transparent);
+  .glass-panel {
+    @apply backdrop-blur-md bg-[var(--bg-card)]/80 border border-[var(--border)];
   }
 
   .prose-custom h1 {
-    @apply text-3xl font-bold tracking-tight;
-    font-family: var(--font-space-grotesk);
-    color: var(--text-primary);
+    @apply text-3xl font-bold tracking-tight text-[var(--text-primary)] font-heading;
   }
   .prose-custom h2 {
-    @apply mt-10 mb-4 text-xl font-bold;
-    font-family: var(--font-space-grotesk);
-    color: var(--text-primary);
+    @apply mt-10 mb-4 text-xl font-bold text-[var(--text-primary)] font-heading;
   }
   .prose-custom h3 {
-    @apply mt-8 mb-3 text-lg font-semibold;
-    font-family: var(--font-space-grotesk);
-    color: var(--text-primary);
+    @apply mt-8 mb-3 text-lg font-semibold text-[var(--text-primary)] font-heading;
   }
   .prose-custom p {
-    @apply mb-4 text-base leading-relaxed;
-    color: var(--text-secondary);
+    @apply mb-4 text-base leading-relaxed text-[var(--text-secondary)];
   }
   .prose-custom ul {
-    @apply mb-4 list-disc space-y-1.5 pl-5 text-base;
-    color: var(--text-secondary);
+    @apply mb-4 list-disc space-y-1.5 pl-5 text-base text-[var(--text-secondary)];
   }
   .prose-custom ol {
-    @apply mb-4 list-decimal space-y-1.5 pl-5 text-base;
-    color: var(--text-secondary);
+    @apply mb-4 list-decimal space-y-1.5 pl-5 text-base text-[var(--text-secondary)];
   }
   .prose-custom li {
-    @apply text-base leading-relaxed;
-    color: var(--text-secondary);
+    @apply text-base leading-relaxed text-[var(--text-secondary)];
   }
   .prose-custom blockquote {
     @apply my-6 border-l-[3px] py-3 pl-5 pr-4 italic rounded-r-lg;
@@ -246,19 +216,13 @@
     color: var(--text-secondary);
   }
   .prose-custom hr {
-    @apply my-10;
-    border-color: var(--border);
+    @apply my-10 border-[var(--border)];
   }
   .prose-custom a {
-    @apply underline underline-offset-2;
-    color: var(--accent);
-  }
-  .prose-custom a:hover {
-    color: var(--accent-hover);
+    @apply underline underline-offset-2 text-[var(--accent)] hover:underline;
   }
   .prose-custom strong {
-    @apply font-semibold;
-    color: var(--text-primary);
+    @apply font-semibold text-[var(--text-primary)];
   }
 }
 
@@ -274,16 +238,6 @@
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-}
-
-.glow-1 { filter: blur(100px); transform: translateZ(0); will-change: transform; contain: paint; }
-.glow-2 { filter: blur(120px); transform: translateZ(0); will-change: transform; contain: paint; }
-.glow-3 { filter: blur(140px); transform: translateZ(0); will-change: transform; contain: paint; }
-.glow-4 { filter: blur(110px); transform: translateZ(0); will-change: transform; contain: paint; }
-
-@media (max-width: 767px) {
-  .glow-1 { filter: blur(60px); }
-  .glow-4 { filter: blur(60px); }
 }
 
 @media (prefers-reduced-motion: reduce) {

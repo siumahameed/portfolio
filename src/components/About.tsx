@@ -1,85 +1,135 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal } from "@/lib/Reveal";
+import { Check, MapPin } from "lucide-react";
 
 export function About() {
   return (
-    <section id="about" className="section-padding">
+    <section id="about" className="section-padding bg-[var(--bg-card-subtle)]/40 border-y border-[var(--border)]">
       <div className="container-content">
-        <div className="grid gap-6 lg:gap-10 lg:grid-cols-5">
-          <div className="lg:col-span-3 max-w-prose">
+        <div className="grid gap-12 lg:grid-cols-12 items-center">
+          {/* Left Column: Profile Card & Quick Bio (5 cols) */}
+          <div className="lg:col-span-5 flex flex-col items-center sm:items-start">
             <Reveal>
-              <p className="section-label mb-3">ABOUT</p>
-              <h2 className="section-title">Where Statistics Meets ML</h2>
-            </Reveal>
+              <div className="card w-full max-w-md p-6 text-left border-[var(--border)] shadow-md">
+                <div className="flex items-center gap-4">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-xl border-2 border-[var(--border)] shadow-sm">
+                    <Image
+                      src="/images/profile.jpg"
+                      alt="Sium Ahameed Bhuyan"
+                      fill
+                      className="object-cover"
+                      sizes="80px"
+                      priority
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-[var(--text-primary)] font-heading">
+                      Sium Ahameed Bhuyan
+                    </h3>
+                    <p className="text-xs font-mono text-[var(--accent)] font-medium">
+                      ML Developer &middot; Statistics Major
+                    </p>
+                    <div className="flex items-center gap-1.5 text-xs text-[var(--text-tertiary)] mt-1.5">
+                      <MapPin className="h-3.5 w-3.5 text-[var(--text-secondary)]" />
+                      Dhaka, Bangladesh
+                    </div>
+                  </div>
+                </div>
 
-            <Reveal delay={50}>
-              <div className="mt-6 space-y-4">
-                <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-                  I&apos;m a Statistics student at Dhaka College. My background in statistics
-                  influences how I approach machine learning. I care about uncertainty,
-                  assumptions, inference, evaluation, and whether a model actually provides
-                  reliable evidence rather than simply producing a high score.
-                </p>
-                <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-                  I got into AI because I wanted to find patterns that matter. Projects
-                  later, I&apos;ve built text classifiers, data pipelines, full-stack AI apps.
-                  Some shipped, some flopped. Each one taught me something I could not get
-                  from a textbook.
-                </p>
-                <p className="text-[var(--text-secondary)] leading-relaxed text-base">
-                  Right now, I&apos;m actively working on <a href="https://datatistics.app" target="_blank" rel="noopener noreferrer" className="text-[var(--accent)] underline underline-offset-2 hover:text-[var(--accent-hover)] font-medium">DataTistics</a>—an automated statistical analysis and AI reporting platform serving 5,000+ users. In parallel, I&apos;m seeking ML internships and research collaborations where I can contribute to production-grade systems alongside experienced teams.
-                </p>
+                <div className="mt-5 space-y-2.5 pt-4 border-t border-[var(--border)] text-xs">
+                  <div className="flex items-center justify-between">
+                    <span className="text-[var(--text-tertiary)] font-mono">Current Focus:</span>
+                    <span className="font-semibold text-[var(--text-primary)]">DataTistics SaaS &amp; ML Research</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[var(--text-tertiary)] font-mono">Degree:</span>
+                    <span className="font-semibold text-[var(--text-primary)]">BSc in Statistics (CGPA: 3.36)</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[var(--text-tertiary)] font-mono">Certifications:</span>
+                    <span className="font-semibold text-[var(--text-primary)]">DeepLearning.AI &middot; Coursera</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[var(--text-tertiary)] font-mono">Expected Grad:</span>
+                    <span className="font-semibold text-[var(--text-primary)]">June 2027</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-[var(--text-tertiary)] font-mono">Status:</span>
+                    <span className="font-semibold text-emerald-500 flex items-center gap-1">
+                      <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Open to Opportunities
+                    </span>
+                  </div>
+                </div>
+
+                <div className="mt-5 pt-4 border-t border-[var(--border)]">
+                  <div className="text-[11px] font-mono uppercase text-[var(--text-tertiary)] mb-2">
+                    Core Technical Strengths
+                  </div>
+                  <div className="flex flex-wrap gap-1.5">
+                    {["Statistical Modeling", "FastAPI", "XGBoost", "Groq AI", "Pandas", "PostgreSQL"].map((tag) => (
+                      <span key={tag} className="tag text-[10px]">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </Reveal>
           </div>
 
-          <Reveal delay={100} className="lg:col-span-2">
-            {/* Journey */}
-            <div className="card mb-4">
-              <h3 className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
-                My Journey
-              </h3>
-              <div className="space-y-2">
-                {["Statistics", "Data Analysis", "Machine Learning", "AI Engineering", "Building Intelligent Systems"].map((step, i) => (
-                  <div key={step} className="flex items-center gap-3">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[var(--border)] bg-[var(--bg-card)] text-[10px] font-mono text-[var(--accent)]">
-                      {i + 1}
-                    </span>
-                    <span className="text-sm text-[var(--text-secondary)]">{step}</span>
-                    {i < 4 && <span className="ml-auto text-[var(--text-tertiary)]" aria-hidden="true">→</span>}
+          {/* Right Column: In-depth Story & Values (7 cols) */}
+          <div className="lg:col-span-7">
+            <Reveal>
+              <span className="section-label mb-2">ABOUT ME</span>
+              <h2 className="section-title">Where Statistics Meets Machine Learning</h2>
+            </Reveal>
+
+            <Reveal delay={60}>
+              <div className="mt-6 space-y-4 text-base sm:text-lg text-[var(--text-secondary)] leading-relaxed">
+                <p>
+                  I am a Statistics undergraduate at Dhaka College with a deep passion for building practical, reproducible machine learning systems.
+                </p>
+                <p>
+                  Many developers treat machine learning as a black box—importing models without questioning underlying distributions or assumptions. My training in statistics shapes every step of my engineering process: I prioritize hypothesis testing, error analysis, cross-validation integrity, and understanding confidence intervals over naive benchmark chasing.
+                </p>
+                <p>
+                  To solve the barrier of complex data analysis for non-programmers, I created{" "}
+                  <a
+                    href="https://datatistics.app"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold text-[var(--accent)] underline underline-offset-4"
+                  >
+                    DataTistics
+                  </a>
+                  . It has grown to support over 5,000 students, researchers, and small businesses with 47 automated statistical routines and instant AI-synthesized PDF reports.
+                </p>
+              </div>
+            </Reveal>
+
+            {/* Value checklist */}
+            <Reveal delay={120}>
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {[
+                  "Rigorous hypothesis testing and p-value validation",
+                  "Fast, low-latency APIs powered by FastAPI & Python",
+                  "AI report synthesis with Groq LLM integration",
+                  "Pragmatic approach: baseline first, complexity when justified",
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-2.5">
+                    <div className="mt-1 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[var(--accent-subtle)] text-[var(--accent)]">
+                      <Check className="h-3 w-3" />
+                    </div>
+                    <span className="text-sm font-medium text-[var(--text-primary)]">{item}</span>
                   </div>
                 ))}
               </div>
-            </div>
-
-            {/* Quick Facts */}
-            <div className="card">
-              <h3 className="text-[10px] font-mono text-[var(--accent)] mb-3 uppercase tracking-wider">
-                Quick Facts
-              </h3>
-              <div className="space-y-3">
-                <FactRow label="Name" value="Sium Ahameed Bhuyan" />
-                <FactRow label="Current Project" value="DataTistics (Building & Scaling)" />
-                <FactRow label="Education" value="BSc in Statistics" />
-                <FactRow label="Location" value="Dhaka, Bangladesh" />
-                <FactRow label="Focus" value="ML / AI Engineering / Data Science" />
-              </div>
-            </div>
-          </Reveal>
+            </Reveal>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function FactRow({ label, value }: { label: string; value: string }) {
-  return (
-    <div>
-      <p className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-tertiary)]">
-        {label}
-      </p>
-      <p className="text-sm text-[var(--text-primary)]">{value}</p>
-    </div>
   );
 }

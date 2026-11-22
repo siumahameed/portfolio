@@ -1,107 +1,260 @@
 "use client";
 
+import { useState, useEffect } from "react";
 import { Reveal } from "@/lib/Reveal";
-import { ArrowUpRight, Mail } from "lucide-react";
-import { GithubIcon, LinkedinIcon } from "@/lib/icons";
+import { ArrowUpRight, Mail, Copy, Check, MessageSquare, MapPin, Clock, FileText, Send } from "lucide-react";
+import { GithubIcon, LinkedinIcon, KaggleIcon } from "@/lib/icons";
+
+const contactTopics = [
+  {
+    label: "ML Internship (Summer 2027)",
+    waMsg: "Hi Sium! I saw your portfolio and would like to discuss a Machine Learning Internship opportunity.",
+    emailSubj: "Machine Learning Internship Opportunity",
+  },
+  {
+    label: "Statistical / AI Research",
+    waMsg: "Hi Sium! I am interested in collaborating on statistical modeling or ML research with you.",
+    emailSubj: "Research Collaboration Inquiry",
+  },
+  {
+    label: "DataTistics / AI Platforms",
+    waMsg: "Hi Sium! I tried DataTistics and would love to talk about building intelligent data tools.",
+    emailSubj: "DataTistics & AI Platform Discussion",
+  },
+  {
+    label: "General Discussion",
+    waMsg: "Hi Sium! I came across your work in ML and statistics and wanted to connect.",
+    emailSubj: "Portfolio Connection & Introduction",
+  },
+];
 
 export function Contact() {
+  const [copied, setCopied] = useState(false);
+  const [selectedTopicIdx, setSelectedTopicIdx] = useState(0);
+  const [dhakaTime, setDhakaTime] = useState("");
+
+  useEffect(() => {
+    const updateTime = () => {
+      try {
+        const now = new Date();
+        const formatted = new Intl.DateTimeFormat("en-US", {
+          timeZone: "Asia/Dhaka",
+          hour: "numeric",
+          minute: "numeric",
+          second: "numeric",
+          hour12: true,
+        }).format(now);
+        setDhakaTime(formatted);
+      } catch {
+        setDhakaTime("UTC+6");
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const copyEmail = () => {
+    navigator.clipboard.writeText("siumahameed2003@gmail.com");
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const activeTopic = contactTopics[selectedTopicIdx];
+  const waUrl = `https://wa.me/8801571076708?text=${encodeURIComponent(activeTopic.waMsg)}`;
+  const emailUrl = `mailto:siumahameed2003@gmail.com?subject=${encodeURIComponent(activeTopic.emailSubj)}&body=${encodeURIComponent(activeTopic.waMsg)}`;
+
   return (
-    <section id="contact" className="section-padding relative">
-      {/* Gradient background */}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background: "linear-gradient(180deg, transparent 0%, var(--accent-subtle) 100%)",
-        }}
-      />
+    <section id="contact" className="section-padding">
+      <div className="container-content">
+        <div className="grid gap-12 lg:grid-cols-12 items-start">
+          {/* Left Column: Heading & Topic Selector (7 cols) */}
+          <div className="lg:col-span-7">
+            <Reveal>
+              <span className="section-label mb-2">GET IN TOUCH</span>
+              <h2 className="section-title">
+                Let&apos;s Build Something Intelligent Together
+              </h2>
+              <p className="section-subtitle mt-4">
+                Whether you&apos;re looking for an ML engineering intern, exploring a research collaboration in statistical modeling, or seeking advice on full-stack AI data platforms—my inbox is open.
+              </p>
+            </Reveal>
 
-      <div className="container-content relative">
-        <Reveal className="max-w-2xl">
-          <p className="text-xs font-mono text-[var(--accent)] uppercase tracking-wider mb-3">
-            Let&apos;s connect
-          </p>
-          <h2 className="font-heading text-3xl font-bold leading-tight tracking-tight text-[var(--text-primary)] sm:text-4xl lg:text-5xl">
-            Got a project in mind?
-            <br />
-            <span className="text-[var(--accent)]">Let&apos;s talk.</span>
-          </h2>
-          <p className="mt-5 text-base leading-relaxed text-[var(--text-secondary)]">
-            Currently working on DataTistics while open to AI/ML internships, research collaborations,
-            freelance projects, and opportunities to build data-driven
-            products.
-          </p>
+            {/* Quick Topic Selector */}
+            <Reveal delay={40} className="mt-8">
+              <span className="text-xs font-mono uppercase tracking-wider text-[var(--text-tertiary)] block mb-2.5">
+                Select inquiry topic to tailor your message:
+              </span>
+              <div className="flex flex-wrap gap-2">
+                {contactTopics.map((topic, i) => (
+                  <button
+                    key={topic.label}
+                    onClick={() => setSelectedTopicIdx(i)}
+                    className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
+                      selectedTopicIdx === i
+                        ? "bg-[var(--accent)] text-white font-semibold shadow-xs"
+                        : "border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)]"
+                    }`}
+                  >
+                    {topic.label}
+                  </button>
+                ))}
+              </div>
+            </Reveal>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            <a
-              href="https://wa.me/8801571076708?text=Hi%20Sium!%20I%20found%20your%20portfolio%20and%20would%20like%20to%20connect."
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:opacity-90 hover:translate-y-[-1px]"
-            >
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-              Message on WhatsApp
-              <ArrowUpRight className="h-4 w-4" />
-            </a>
-            <a
-              href="mailto:siumahameed2003@gmail.com"
-              className="inline-flex items-center gap-2 rounded-lg border border-[var(--border)] px-6 py-3 text-sm font-medium text-[var(--text-secondary)] transition-all duration-300 hover:text-[var(--text-primary)] hover:border-[var(--accent)]/30"
-            >
-              <Mail className="h-4 w-4" />
-              Send an Email
-            </a>
+            {/* Action Buttons */}
+            <Reveal delay={70}>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <a
+                  href={waUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary px-5 py-3 text-sm inline-flex items-center gap-2"
+                >
+                  <MessageSquare className="h-4 w-4" />
+                  Chat on WhatsApp
+                  <ArrowUpRight className="h-4 w-4" />
+                </a>
+
+                <a
+                  href={emailUrl}
+                  className="btn-secondary px-5 py-3 text-sm inline-flex items-center gap-2"
+                >
+                  <Send className="h-4 w-4 text-[var(--accent)]" />
+                  Compose Email
+                </a>
+
+                <button
+                  onClick={copyEmail}
+                  className="btn-secondary px-4 py-3 text-sm inline-flex items-center gap-2"
+                >
+                  {copied ? (
+                    <>
+                      <Check className="h-4 w-4 text-emerald-500" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4 text-[var(--text-tertiary)]" />
+                      Copy Address
+                    </>
+                  )}
+                </button>
+              </div>
+            </Reveal>
+
+            {/* Availability status beacon */}
+            <Reveal delay={100}>
+              <div className="mt-8 p-4 rounded-xl border border-[var(--border)] bg-[var(--bg-card)] max-w-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2.5">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500" />
+                    </span>
+                    <span className="text-xs font-mono font-bold uppercase tracking-wider text-[var(--text-primary)]">
+                      Current Availability
+                    </span>
+                  </div>
+                  <span className="text-[11px] font-mono text-emerald-600 dark:text-emerald-400 font-semibold">
+                    Open for Summer 2027
+                  </span>
+                </div>
+                <p className="mt-2 text-xs text-[var(--text-secondary)] leading-relaxed">
+                  Open for Machine Learning internships (Summer 2027 / Immediate remote roles), collaborative research in statistical inference, and full-stack AI engineering.
+                </p>
+              </div>
+            </Reveal>
           </div>
 
-          {/* status */}
-          <div className="mt-8 flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
-            </span>
-            <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-tertiary)]">
-              Open to opportunities
-            </span>
-          </div>
+          {/* Right Column: Direct details & Live Clock (5 cols) */}
+          <div className="lg:col-span-5">
+            <Reveal delay={60}>
+              <div className="card p-6 sm:p-8 space-y-6">
+                <div>
+                  <span className="text-[11px] font-mono uppercase text-[var(--text-tertiary)]">
+                    Direct Email
+                  </span>
+                  <p className="mt-1 text-base font-bold font-mono text-[var(--text-primary)]">
+                    siumahameed2003@gmail.com
+                  </p>
+                </div>
 
-          <div className="mt-4 flex flex-col items-start gap-2 font-mono text-xs text-[var(--text-tertiary)] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-3">
-            {["AI/ML Internships", "Research Collaborations", "Data Science Projects"].map(
-              (item, i) => (
-                <span key={item} className="flex items-center gap-3">
-                  {i > 0 && <span className="hidden text-[var(--border)] sm:inline">·</span>}
-                  {item}
-                </span>
-              )
-            )}
-          </div>
+                <div className="pt-4 border-t border-[var(--border)]">
+                  <span className="text-[11px] font-mono uppercase text-[var(--text-tertiary)]">
+                    Location &amp; Local Time
+                  </span>
+                  <div className="mt-2 flex items-center justify-between text-sm text-[var(--text-secondary)]">
+                    <span className="flex items-center gap-2">
+                      <MapPin className="h-4 w-4 text-[var(--accent)]" />
+                      Dhaka, Bangladesh
+                    </span>
+                    {dhakaTime && (
+                      <span className="font-mono text-xs text-[var(--text-primary)] font-semibold flex items-center gap-1.5 bg-[var(--bg-secondary)] px-2 py-0.5 rounded">
+                        <Clock className="h-3 w-3 text-[var(--accent)]" />
+                        {dhakaTime}
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-1.5 text-xs text-[var(--text-tertiary)] font-mono">
+                    Timezone: UTC+6 (BST) &middot; Typically responds within 24h
+                  </div>
+                </div>
 
-          <div className="mt-8 flex items-center gap-1">
-            <a
-              href="https://github.com/siumahameed"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
-              aria-label="GitHub"
-            >
-              <GithubIcon className="h-5 w-5" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/sium11/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
-              aria-label="LinkedIn"
-            >
-              <LinkedinIcon className="h-5 w-5" />
-            </a>
-            <a
-              href="mailto:siumahameed2003@gmail.com"
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)]"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+                <div className="pt-4 border-t border-[var(--border)]">
+                  <span className="text-[11px] font-mono uppercase text-[var(--text-tertiary)]">
+                    Professional Profiles &amp; Resume
+                  </span>
+                  <div className="mt-3 flex items-center gap-2">
+                    <a
+                      href="https://github.com/siumahameed"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--text-secondary)] transition-all hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+                      aria-label="GitHub Profile"
+                    >
+                      <GithubIcon className="h-4 w-4" />
+                    </a>
+                    <a
+                      href="https://www.linkedin.com/in/sium11/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--text-secondary)] transition-all hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+                      aria-label="LinkedIn Profile"
+                    >
+                      <LinkedinIcon className="h-4 w-4" />
+                    </a>
+                    <a
+                      href="https://www.kaggle.com/siumahameedbhuiyain"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--text-secondary)] transition-all hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+                      aria-label="Kaggle Profile"
+                    >
+                      <KaggleIcon className="h-4 w-4" />
+                    </a>
+                    <a
+                      href="mailto:siumahameed2003@gmail.com"
+                      className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--text-secondary)] transition-all hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
+                      aria-label="Direct Email"
+                    >
+                      <Mail className="h-4 w-4" />
+                    </a>
+                    <a
+                      href="/files/CV.pdf"
+                      download="Sium_Ahameed_CV.pdf"
+                      className="flex-1 flex items-center justify-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-xs font-semibold text-[var(--text-primary)] py-2.5 transition-all hover:border-[var(--border-hover)]"
+                    >
+                      <FileText className="h-3.5 w-3.5 text-[var(--accent)]" />
+                      Download Resume
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
           </div>
-        </Reveal>
+        </div>
       </div>
     </section>
   );
