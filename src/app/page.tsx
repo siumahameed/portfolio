@@ -1,6 +1,5 @@
 import { Hero } from "@/components/Hero";
 import { Stats } from "@/components/Stats";
-import { StatEngineSpotlight } from "@/components/StatEngineSpotlight";
 import { WhatIBuild } from "@/components/WhatIBuild";
 import { About } from "@/components/About";
 import { Workflow } from "@/components/Workflow";
@@ -17,7 +16,6 @@ export default function Home() {
     <>
       <Hero />
       <Stats />
-      <StatEngineSpotlight />
       <WhatIBuild />
       <About />
       <Workflow />
