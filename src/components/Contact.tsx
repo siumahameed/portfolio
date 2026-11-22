@@ -110,7 +110,7 @@ export function Contact() {
                   href={waUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-primary px-5 py-3 text-sm inline-flex items-center gap-2"
+                  className="btn-primary w-full sm:w-auto px-5 py-3 text-sm inline-flex items-center justify-center gap-2"
                 >
                   <MessageSquare className="h-4 w-4" />
                   Chat on WhatsApp
@@ -119,7 +119,7 @@ export function Contact() {
 
                 <a
                   href={emailUrl}
-                  className="btn-secondary px-5 py-3 text-sm inline-flex items-center gap-2"
+                  className="btn-secondary w-full sm:w-auto px-5 py-3 text-sm inline-flex items-center justify-center gap-2"
                 >
                   <Send className="h-4 w-4 text-[var(--accent)]" />
                   Compose Email
@@ -127,7 +127,7 @@ export function Contact() {
 
                 <button
                   onClick={copyEmail}
-                  className="btn-secondary px-4 py-3 text-sm inline-flex items-center gap-2"
+                  className="btn-secondary w-full sm:w-auto px-4 py-3 text-sm inline-flex items-center justify-center gap-2"
                 >
                   {copied ? (
                     <>
@@ -206,7 +206,7 @@ export function Contact() {
                   <span className="text-[11px] font-mono uppercase text-[var(--text-tertiary)]">
                     Professional Profiles &amp; Resume
                   </span>
-                  <div className="mt-3 flex items-center gap-2">
+                  <div className="mt-3 flex flex-wrap items-center gap-2">
                     <a
                       href="https://github.com/siumahameed"
                       target="_blank"
@@ -244,7 +244,7 @@ export function Contact() {
                     <a
                       href="/files/CV.pdf"
                       download="Sium_Ahameed_CV.pdf"
-                      className="flex-1 flex items-center justify-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-xs font-semibold text-[var(--text-primary)] py-2.5 transition-all hover:border-[var(--border-hover)]"
+                      className="w-full sm:w-auto sm:flex-1 flex items-center justify-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-xs font-semibold text-[var(--text-primary)] py-2.5 px-3 transition-all hover:border-[var(--border-hover)]"
                     >
                       <FileText className="h-3.5 w-3.5 text-[var(--accent)]" />
                       Download Resume

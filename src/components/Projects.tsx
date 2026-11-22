@@ -203,7 +203,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
 
           {/* Key Metrics KPI bar */}
           {project.metrics && (
-            <div className="mt-5 flex flex-wrap gap-4 sm:gap-6 pt-4 border-t border-[var(--border)]">
+            <div className="mt-5 grid grid-cols-2 sm:flex sm:flex-wrap gap-4 sm:gap-6 pt-4 border-t border-[var(--border)]">
               {project.metrics.map((m) => (
                 <div key={m.label} className="flex flex-col">
                   <span className="text-[10px] font-mono uppercase tracking-wider text-[var(--text-tertiary)]">
@@ -262,7 +262,7 @@ function FeaturedProjectCard({ project, index }: { project: Project; index: numb
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-row lg:flex-col items-center gap-2.5 shrink-0 pt-2 lg:pt-0">
+        <div className="flex flex-col sm:flex-row lg:flex-col items-stretch sm:items-center lg:items-stretch gap-2.5 shrink-0 pt-2 lg:pt-0 w-full sm:w-auto lg:w-36">
           {project.live && (
             <a
               href={project.live}

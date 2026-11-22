@@ -63,24 +63,24 @@ export function CurrentlyExploring() {
                   <button
                     onClick={() => setExpanded(isExpanded ? null : i)}
                     aria-expanded={isExpanded}
-                    className="w-full flex items-center justify-between p-5 text-left"
+                    className="w-full flex items-center justify-between p-4 sm:p-5 text-left gap-3"
                   >
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-3 min-w-0">
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card-subtle)] text-[var(--accent)]">
                         <Compass className="h-4 w-4" />
                       </div>
-                      <div>
-                        <h3 className="text-base font-bold text-[var(--text-primary)] font-heading">
+                      <div className="min-w-0">
+                        <h3 className="text-sm sm:text-base font-bold text-[var(--text-primary)] font-heading truncate sm:text-clip">
                           {track.domain}
                         </h3>
-                        <span className="text-[11px] font-mono text-[var(--accent)]">
+                        <span className="text-[10px] sm:text-[11px] font-mono text-[var(--accent)] block">
                           {track.status}
                         </span>
                       </div>
                     </div>
 
                     <ChevronRight
-                      className={`h-4 w-4 text-[var(--text-tertiary)] transition-transform duration-200 ${
+                      className={`h-4 w-4 shrink-0 text-[var(--text-tertiary)] transition-transform duration-200 ${
                         isExpanded ? "rotate-90 text-[var(--accent)]" : ""
                       }`}
                     />

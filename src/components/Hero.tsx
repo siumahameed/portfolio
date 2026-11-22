@@ -48,14 +48,14 @@ export function Hero() {
 
             <Reveal instant>
               <div className="mt-7 flex min-w-0 flex-wrap items-center gap-3">
-                <a href="#projects" className="btn-primary px-6 py-3 text-[15px]">
+                <a href="#projects" className="btn-primary w-full sm:w-auto px-6 py-3 text-[15px] justify-center">
                   View Work
                   <ArrowRight className="h-4 w-4" aria-hidden="true" />
                 </a>
                 <a
                   href="/files/CV.pdf"
                   download="Sium_Ahameed_CV.pdf"
-                  className="btn-secondary px-6 py-3 text-[15px]"
+                  className="btn-secondary w-full sm:w-auto px-6 py-3 text-[15px] justify-center"
                 >
                   <Download className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
                   Resume
@@ -130,7 +130,7 @@ function TerminalCard() {
       </div>
 
       {/* Terminal content */}
-      <div className="p-6 font-mono text-xs space-y-2.5">
+      <div className="p-5 sm:p-6 font-mono text-xs space-y-2.5">
         <div>
           <span className="text-[var(--text-tertiary)]">$ </span>
           <span className="text-[var(--text-primary)]">whoami</span>
@@ -148,7 +148,7 @@ function TerminalCard() {
           <span className="text-[var(--text-tertiary)]">$ </span>
           <span className="text-[var(--text-primary)]">status</span>
           <p className="text-[var(--accent)] font-semibold mt-0.5">building @ DataTistics</p>
-          <p className="text-[var(--text-tertiary)] text-[11px]">5,000+ active users &middot; 65 engines &middot; 99.8% uptime</p>
+          <p className="text-[var(--text-tertiary)] text-[11px] break-words">5,000+ active users &middot; 65 engines &middot; 99.8% uptime</p>
         </div>
 
         <div className="pt-1">
@@ -161,7 +161,7 @@ function TerminalCard() {
       </div>
 
       {/* Pipeline bar at bottom */}
-      <div className="border-t border-[var(--border)] bg-[var(--bg-card-subtle)] px-6 py-3.5">
+      <div className="border-t border-[var(--border)] bg-[var(--bg-card-subtle)] px-4 sm:px-6 py-3">
         <div className="flex items-center justify-between">
           {[
             { label: "DATA", active: true },

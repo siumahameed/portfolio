@@ -39,25 +39,25 @@ export function About() {
                 </div>
 
                 <div className="mt-5 space-y-2.5 pt-4 border-t border-[var(--border)] text-xs">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--text-tertiary)] font-mono">Current Focus:</span>
-                    <span className="font-semibold text-[var(--text-primary)]">DataTistics SaaS &amp; ML Research</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[var(--text-tertiary)] font-mono shrink-0">Current Focus:</span>
+                    <span className="font-semibold text-[var(--text-primary)] text-right">DataTistics SaaS &amp; ML</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--text-tertiary)] font-mono">Degree:</span>
-                    <span className="font-semibold text-[var(--text-primary)]">BSc in Statistics (CGPA: 3.36)</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[var(--text-tertiary)] font-mono shrink-0">Degree:</span>
+                    <span className="font-semibold text-[var(--text-primary)] text-right">BSc Statistics (CGPA: 3.36)</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--text-tertiary)] font-mono">Certifications:</span>
-                    <span className="font-semibold text-[var(--text-primary)]">DeepLearning.AI &middot; Coursera</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[var(--text-tertiary)] font-mono shrink-0">Certifications:</span>
+                    <span className="font-semibold text-[var(--text-primary)] text-right">DeepLearning.AI &middot; Coursera</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--text-tertiary)] font-mono">Expected Grad:</span>
-                    <span className="font-semibold text-[var(--text-primary)]">June 2027</span>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[var(--text-tertiary)] font-mono shrink-0">Expected Grad:</span>
+                    <span className="font-semibold text-[var(--text-primary)] text-right">June 2027</span>
                   </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[var(--text-tertiary)] font-mono">Status:</span>
-                    <span className="font-semibold text-emerald-500 flex items-center gap-1">
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="text-[var(--text-tertiary)] font-mono shrink-0">Status:</span>
+                    <span className="font-semibold text-emerald-500 flex items-center gap-1 shrink-0">
                       <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" /> Open to Opportunities
                     </span>
                   </div>
@@ -104,7 +104,7 @@ export function About() {
                   >
                     DataTistics
                   </a>
-                  . It has grown to support over 5,000 students, researchers, and small businesses with 47 automated statistical routines and instant AI-synthesized PDF reports.
+                  . It has grown to support over 5,000 students, researchers, and small businesses with 65 computational engines and instant AI-synthesized PDF reports.
                 </p>
               </div>
             </Reveal>

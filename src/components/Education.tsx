@@ -108,7 +108,7 @@ export function Education() {
 
             {/* Higher Secondary Certificate */}
             <Reveal delay={60}>
-              <div className="card p-5 border-[var(--border)] flex items-center justify-between">
+              <div className="card p-5 border-[var(--border)] flex flex-col sm:flex-row sm:items-center justify-between gap-3">
                 <div>
                   <h4 className="text-sm font-bold text-[var(--text-primary)] font-heading">
                     Higher Secondary Certificate (Science)
@@ -117,7 +117,7 @@ export function Education() {
                     National College of Education &middot; 2019 &ndash; 2021
                   </p>
                 </div>
-                <span className="font-mono text-xs font-bold text-[var(--accent)] bg-[var(--accent-subtle)] px-2.5 py-1 rounded">
+                <span className="font-mono text-xs font-bold text-[var(--accent)] bg-[var(--accent-subtle)] px-2.5 py-1 rounded self-start sm:self-auto">
                   GPA: 4.92 / 5.00
                 </span>
               </div>
