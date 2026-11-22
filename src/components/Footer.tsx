@@ -64,11 +64,8 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t border-[var(--border)] flex flex-col sm:flex-row items-center justify-between text-xs text-[var(--text-tertiary)] gap-2">
+        <div className="mt-8 pt-6 border-t border-[var(--border)] text-center text-xs text-[var(--text-tertiary)]">
           <p>&copy; {new Date().getFullYear()} Sium Ahameed Bhuyan. All rights reserved.</p>
-          <p className="font-mono text-[11px]">
-            Engineered with Next.js, TypeScript &amp; Tailwind CSS
-          </p>
         </div>
       </div>
     </footer>
