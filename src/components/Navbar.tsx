@@ -96,8 +96,8 @@ export function Navbar() {
           aria-label="Sium Ahameed - Home"
           className="group flex items-center gap-2.5 transition-opacity hover:opacity-90"
         >
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-xs font-mono font-bold text-[var(--accent)] shadow-sm transition-transform group-hover:scale-105">
-            SA
+          <div className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-sm font-mono font-bold text-[var(--accent)] shadow-sm transition-transform group-hover:scale-105">
+            S
           </div>
           <div className="flex flex-col">
             <span className="text-sm font-bold tracking-tight text-[var(--text-primary)] font-heading leading-none">
