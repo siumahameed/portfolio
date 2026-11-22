@@ -3,12 +3,11 @@
 import { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
 import { useTheme } from "./ThemeProvider";
-import { Menu, X, Sun, Moon, FileText, ArrowUpRight, Search } from "lucide-react";
+import { Menu, X, Sun, Moon, FileText } from "lucide-react";
 
 const navLinks = [
   { href: "/#about", label: "About" },
   { href: "/#projects", label: "Projects" },
-  { href: "/#skills", label: "Skills" },
   { href: "/#experience", label: "Experience" },
   { href: "/#contact", label: "Contact" },
   { href: "/blog", label: "Blog" },
@@ -157,26 +156,6 @@ export function Navbar() {
             Resume
           </a>
 
-          <a
-            href="#contact"
-            onClick={(e) => handleAnchorClick(e, "/#contact")}
-            className="inline-flex items-center gap-1 rounded-lg bg-[var(--accent)] px-3 py-1.5 text-xs font-medium text-white transition-all duration-200 hover:bg-[var(--accent-hover)] shadow-xs"
-          >
-            Connect
-            <ArrowUpRight className="h-3.5 w-3.5" aria-hidden="true" />
-          </a>
-
-          <div className="w-px h-4 bg-[var(--border)] mx-1" aria-hidden="true" />
-
-          <button
-            onClick={() => window.dispatchEvent(new KeyboardEvent("keydown", { key: "k", metaKey: true }))}
-            className="flex items-center gap-1.5 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] px-2.5 py-1.5 text-xs font-mono text-[var(--text-tertiary)] transition-colors hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
-            aria-label="Open Command Menu"
-          >
-            <Search className="h-3 w-3 text-[var(--accent)]" />
-            <span className="hidden lg:inline text-[10px]">⌘K</span>
-          </button>
-
           <button
             onClick={toggle}
             className="flex h-8 w-8 items-center justify-center rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] transition-colors hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
@@ -255,24 +234,15 @@ export function Navbar() {
             );
           })}
           <div className="h-px bg-[var(--border)] my-2" aria-hidden="true" />
-          <div className="flex gap-2 pt-1">
+          <div className="pt-1">
             <a
               href="/files/CV.pdf"
               download="Sium_Ahameed_CV.pdf"
               tabIndex={mobileOpen ? 0 : -1}
-              className="flex-1 flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-sm font-medium text-[var(--text-primary)] py-2.5 px-3"
+              className="w-full flex items-center justify-center gap-2 rounded-lg border border-[var(--border)] bg-[var(--bg-card)] text-sm font-medium text-[var(--text-primary)] py-2.5 px-3"
             >
               <FileText className="h-4 w-4 text-[var(--accent)]" aria-hidden="true" />
-              Resume
-            </a>
-            <a
-              href="#contact"
-              onClick={(e) => handleAnchorClick(e, "/#contact")}
-              tabIndex={mobileOpen ? 0 : -1}
-              className="flex-1 flex items-center justify-center gap-1 rounded-lg bg-[var(--accent)] text-sm font-medium text-white py-2.5 px-3"
-            >
-              Contact
-              <ArrowUpRight className="h-4 w-4" />
+              Download Resume
             </a>
           </div>
         </div>

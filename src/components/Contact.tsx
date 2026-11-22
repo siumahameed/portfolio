@@ -5,32 +5,8 @@ import { Reveal } from "@/lib/Reveal";
 import { ArrowUpRight, Mail, Copy, Check, MessageSquare, MapPin, Clock, FileText, Send } from "lucide-react";
 import { GithubIcon, LinkedinIcon, KaggleIcon } from "@/lib/icons";
 
-const contactTopics = [
-  {
-    label: "ML Internship (Summer 2027)",
-    waMsg: "Hi Sium! I saw your portfolio and would like to discuss a Machine Learning Internship opportunity.",
-    emailSubj: "Machine Learning Internship Opportunity",
-  },
-  {
-    label: "Statistical / AI Research",
-    waMsg: "Hi Sium! I am interested in collaborating on statistical modeling or ML research with you.",
-    emailSubj: "Research Collaboration Inquiry",
-  },
-  {
-    label: "DataTistics / AI Platforms",
-    waMsg: "Hi Sium! I tried DataTistics and would love to talk about building intelligent data tools.",
-    emailSubj: "DataTistics & AI Platform Discussion",
-  },
-  {
-    label: "General Discussion",
-    waMsg: "Hi Sium! I came across your work in ML and statistics and wanted to connect.",
-    emailSubj: "Portfolio Connection & Introduction",
-  },
-];
-
 export function Contact() {
   const [copied, setCopied] = useState(false);
-  const [selectedTopicIdx, setSelectedTopicIdx] = useState(0);
   const [dhakaTime, setDhakaTime] = useState("");
 
   useEffect(() => {
@@ -61,9 +37,8 @@ export function Contact() {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const activeTopic = contactTopics[selectedTopicIdx];
-  const waUrl = `https://wa.me/8801571076708?text=${encodeURIComponent(activeTopic.waMsg)}`;
-  const emailUrl = `mailto:siumahameed2003@gmail.com?subject=${encodeURIComponent(activeTopic.emailSubj)}&body=${encodeURIComponent(activeTopic.waMsg)}`;
+  const waUrl = `https://wa.me/8801571076708?text=${encodeURIComponent("Hi Sium! I came across your portfolio and would like to connect.")}`;
+  const emailUrl = `mailto:siumahameed2003@gmail.com?subject=${encodeURIComponent("Portfolio Inquiry / Discussion")}&body=${encodeURIComponent("Hi Sium,\n\nI came across your portfolio and would love to connect.")}`;
 
   return (
     <section id="contact" className="section-padding">
@@ -89,31 +64,9 @@ export function Contact() {
               </div>
             </Reveal>
 
-            {/* Topic selector */}
-            <Reveal delay={40} className="mt-6">
-              <span className="text-[11px] font-mono uppercase tracking-wider text-[var(--text-tertiary)] block mb-2">
-                Tailor inquiry message:
-              </span>
-              <div className="flex flex-wrap gap-1.5">
-                {contactTopics.map((topic, i) => (
-                  <button
-                    key={topic.label}
-                    onClick={() => setSelectedTopicIdx(i)}
-                    className={`rounded-lg px-3 py-1.5 text-xs font-medium transition-all ${
-                      selectedTopicIdx === i
-                        ? "bg-[var(--accent)] text-white font-semibold shadow-xs"
-                        : "border border-[var(--border)] bg-[var(--bg-card)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--border-hover)]"
-                    }`}
-                  >
-                    {topic.label}
-                  </button>
-                ))}
-              </div>
-            </Reveal>
-
             {/* Quick Actions */}
-            <Reveal delay={60}>
-              <div className="mt-5 flex flex-wrap items-center gap-2.5">
+            <Reveal delay={40}>
+              <div className="mt-6 flex flex-wrap items-center gap-2.5">
                 <a
                   href={waUrl}
                   target="_blank"
